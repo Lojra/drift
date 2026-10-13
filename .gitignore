@@ -32,3 +32,5 @@ test_e2e.cjs
 verify_fit.cjs
 stitch_screen_*
 Testing.code-workspace
+
+.vercel
