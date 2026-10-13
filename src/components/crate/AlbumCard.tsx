@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Album, AlbumRating } from '../../types/music';
+import { Disc3 } from 'lucide-react';
 
 interface AlbumCardProps {
   album: Album;
@@ -14,6 +15,7 @@ export const AlbumCard: React.FC<AlbumCardProps> = ({
   isSelected,
   onSelect
 }) => {
+  const [imgError, setImgError] = useState(false);
   const primaryGenre = album.genres && album.genres.length > 0 ? album.genres.slice(0, 2).join(' / ') : 'Lateral Audio';
 
   return (
@@ -29,15 +31,19 @@ export const AlbumCard: React.FC<AlbumCardProps> = ({
       <div className="flex-1 min-h-0 flex flex-col">
         {/* Cover Art Wrapper with flex-1 min-h-0 so all 10 albums fit viewport without scrolling */}
         <div className="relative flex-1 min-h-0 w-full rounded-[6px] overflow-hidden bg-panel-elevated mb-2 flex items-center justify-center">
-          <img
-            src={album.coverArtUrl}
-            alt={`${album.title} by ${album.artist}`}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            onError={(e) => {
-              (e.target as HTMLElement).style.display = 'none';
-            }}
-          />
+          {!imgError && album.coverArtUrl ? (
+            <img
+              src={album.coverArtUrl}
+              alt={`${album.title} by ${album.artist}`}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-panel-elevated to-panel-obsidian text-text-muted/40">
+              <Disc3 className="w-10 h-10 group-hover:text-electric-blue/60 transition-colors" strokeWidth={1.2} />
+            </div>
+          )}
 
           {/* Top-Right Score Badge: Purple if rated, Muted UNRATED if unrated */}
           {rating ? (
