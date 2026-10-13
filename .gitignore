@@ -30,6 +30,7 @@ dist-ssr
 # Scratch & test scripts
 test_e2e.cjs
 verify_fit.cjs
+diagnose.cjs
 stitch_screen_*
 Testing.code-workspace
 

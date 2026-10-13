@@ -225,29 +225,7 @@ export async function searchItunesAlbums(keyword: string, limit = 8): Promise<Al
 
       const links = buildExternalLinks(artist, title);
 
-      // Fetch tracks for the first few albums
-      const lookupUrl = `https://itunes.apple.com/lookup?id=${item.collectionId}&entity=song&limit=15`;
-      let tracks: Track[] = [];
-      try {
-        const lookupRes = await fetch(lookupUrl);
-        if (lookupRes.ok) {
-          const lookupData = await lookupRes.json();
-          tracks = (lookupData.results || [])
-            .slice(1)
-            .filter((t: any) => t.wrapperType === 'track')
-            .map((t: any, idx: number) => ({
-              id: `itunes-${t.trackId || idx}`,
-              title: t.trackName || `Track ${idx + 1}`,
-              durationMs: t.trackTimeMillis || null,
-              previewUrl: t.previewUrl || null,
-              trackNumber: t.trackNumber || idx + 1
-            }));
-        }
-      } catch {
-        // Fallback placeholder track
-        tracks = [{ id: `itunes-${item.collectionId}-1`, title: 'Album Preview', durationMs: null, previewUrl: null, trackNumber: 1 }];
-      }
-
+      // Fast initial album representation: tracks are loaded on-demand when clicked
       albums.push({
         id: `itunes-${item.collectionId}`,
         title,
@@ -256,7 +234,7 @@ export async function searchItunesAlbums(keyword: string, limit = 8): Promise<Al
         coverArtUrl: highResArt,
         genres: [genre, keyword],
         driftReason: `Selected for its distinctive ${genre} sonic identity.`,
-        tracks,
+        tracks: [],
         ...links,
         sonicTraits: {
           era: typeof releaseYear === 'number' ? `${Math.floor(releaseYear / 10) * 10}s` : undefined
@@ -345,4 +323,52 @@ export async function generateLateralRecommendations(
     ...album,
     driftReason: `${driftReason} ${sonicTag ? `(Reflecting your "${sonicTag}" reaction)` : ''}`.trim()
   }));
+}
+
+/**
+ * Loads tracks and 30-second audio previews on-demand for a single album
+ */
+export async function fetchTracksForAlbum(album: Album): Promise<Track[]> {
+  if (album.tracks && album.tracks.length > 0) {
+    return album.tracks;
+  }
+
+  // If album is an iTunes collection
+  if (album.id.startsWith('itunes-')) {
+    const collectionId = album.id.replace('itunes-', '');
+    try {
+      const lookupUrl = `https://itunes.apple.com/lookup?id=${collectionId}&entity=song&limit=25`;
+      const res = await fetch(lookupUrl);
+      if (res.ok) {
+        const data = await res.json();
+        const tracks: Track[] = (data.results || [])
+          .slice(1)
+          .filter((t: any) => t.wrapperType === 'track')
+          .map((t: any, idx: number) => ({
+            id: `itunes-${t.trackId || idx}`,
+            title: t.trackName || `Track ${idx + 1}`,
+            durationMs: t.trackTimeMillis || null,
+            previewUrl: t.previewUrl || null,
+            trackNumber: t.trackNumber || idx + 1
+          }));
+        if (tracks.length > 0) return tracks;
+      }
+    } catch (_) {}
+  }
+
+  // Fallback: search by artist & title
+  const details = await fetchItunesAlbumDetails(album.artist, album.title);
+  if (details.tracks && details.tracks.length > 0) {
+    return details.tracks;
+  }
+
+  return [
+    {
+      id: `fallback-${album.id}-1`,
+      title: 'Full Album Audio Available Via Spotify / YouTube Links',
+      durationMs: null,
+      previewUrl: null,
+      trackNumber: 1
+    }
+  ];
 }

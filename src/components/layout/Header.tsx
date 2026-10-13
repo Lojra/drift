@@ -22,19 +22,19 @@ export const Header: React.FC<HeaderProps> = ({
   const driftText = (tasteProfile.currentDriftPath || 'INITIAL EXPLORATION').toUpperCase();
 
   return (
-    <header className="h-16 flex-shrink-0 border-b border-border-subtle px-6 flex items-center justify-between bg-canvas-black/80 backdrop-blur-md z-10 select-none">
+    <header className="h-16 flex-shrink-0 border-b border-border-subtle px-4 lg:px-6 flex items-center justify-between gap-3 bg-canvas-black/80 backdrop-blur-md z-10 select-none min-w-0">
       {/* Left: Monospace Status Pill */}
-      <div className="flex items-center gap-3 min-w-0 mr-4">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-panel-obsidian border border-border-subtle flex-shrink-0">
-          <span className="w-2 h-2 rounded-full bg-purple-soft"></span>
-          <span className="font-mono text-xs font-semibold tracking-wide text-purple-soft truncate max-w-[280px] lg:max-w-[380px]">
+      <div className="flex items-center gap-2 min-w-0 max-w-[220px] sm:max-w-[320px] lg:max-w-[420px]">
+        <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-panel-obsidian border border-border-subtle min-w-0 truncate">
+          <span className="w-2 h-2 rounded-full bg-purple-soft flex-shrink-0"></span>
+          <span className="font-mono text-xs font-semibold tracking-wide text-purple-soft truncate" title={`CURRENT DRIFT: ${driftText}`}>
             CURRENT DRIFT: {driftText}
           </span>
         </div>
       </div>
 
-      {/* Center: Minimal Search Input from Stitch Style Board */}
-      <div className="relative flex-1 max-w-xs md:max-w-md mx-2">
+      {/* Center: Minimal Search Input */}
+      <div className="relative flex-1 max-w-[160px] sm:max-w-xs md:max-w-sm">
         <Search
           className="w-3.5 h-3.5 text-text-dim absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
           strokeWidth={1.8}
@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Search artist, album, or genre..."
+          placeholder="Search..."
           className="w-full bg-panel-obsidian border border-border-subtle focus:border-electric-blue rounded-md py-1.5 pl-8 pr-7 font-sans text-xs text-text-offwhite placeholder:text-text-dim outline-none transition-all shadow-inner"
         />
         {searchQuery && (
@@ -58,8 +58,8 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Right Header Action Button & Status */}
-      <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-        <div className="font-mono text-xs text-text-muted px-2.5 py-1.5 rounded bg-panel-obsidian border border-border-subtle hidden sm:flex items-center gap-1">
+      <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        <div className="font-mono text-xs text-text-muted px-2.5 py-1.5 rounded bg-panel-obsidian border border-border-subtle hidden md:flex items-center gap-1">
           <span>CRATE STATUS:</span>
           <span className="text-text-offwhite font-bold">{ratedInCrateCount} / 10 RATED</span>
         </div>
@@ -68,10 +68,11 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           onClick={onRefreshCrate}
           disabled={isLoading}
-          className="flex items-center gap-2 bg-electric-blue hover:bg-blue-600 text-text-offwhite px-4 py-2 rounded-md font-sans text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.35)] active:scale-95 disabled:opacity-50"
+          className="flex items-center gap-1.5 sm:gap-2 bg-electric-blue hover:bg-blue-600 text-text-offwhite px-3 sm:px-4 py-2 rounded-md font-sans text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.35)] active:scale-95 disabled:opacity-50"
         >
           <RotateCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2} />
-          <span>Refresh Crate (10)</span>
+          <span className="hidden sm:inline">Refresh Crate (10)</span>
+          <span className="sm:hidden">Refresh</span>
         </button>
       </div>
     </header>

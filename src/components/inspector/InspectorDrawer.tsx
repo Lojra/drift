@@ -6,6 +6,8 @@ import { ExternalLinks } from './ExternalLinks';
 import { Tracklist } from './Tracklist';
 import { useAudioPreview } from '../../hooks/useAudioPreview';
 
+import { fetchTracksForAlbum } from '../../services/musicApi';
+
 interface InspectorDrawerProps {
   album: Album | null;
   currentRating?: AlbumRating;
@@ -22,6 +24,22 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
   onReplaceAlbum
 }) => {
   const { currentTrackId, isPlaying, progress, error, playTrack, stop } = useAudioPreview();
+  const [tracks, setTracks] = React.useState(album?.tracks || []);
+
+  React.useEffect(() => {
+    if (!album) return;
+    if (album.tracks && album.tracks.length > 0) {
+      setTracks(album.tracks);
+      return;
+    }
+    let isCurrent = true;
+    fetchTracksForAlbum(album).then(loadedTracks => {
+      if (isCurrent) {
+        setTracks(loadedTracks);
+      }
+    });
+    return () => { isCurrent = false; };
+  }, [album?.id]);
 
   if (!album) return null;
 
@@ -154,7 +172,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
 
         {/* 6. Tracklist Section with 30-Second Previews */}
         <Tracklist
-          tracks={album.tracks}
+          tracks={tracks}
           currentTrackId={currentTrackId}
           isPlaying={isPlaying}
           progress={progress}

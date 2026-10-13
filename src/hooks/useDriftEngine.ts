@@ -86,9 +86,11 @@ export function useDriftEngine() {
         genresToQuery.push('Krautrock', 'Post-Punk', 'Ambient', 'Dub', 'Trip-Hop', 'Ethio-Jazz');
       }
 
-      // Collect initial albums
-      for (const g of genresToQuery.slice(0, 4)) {
-        const results = await searchItunesAlbums(g, 4);
+      // Collect initial albums concurrently across target genres
+      const targetGenres = genresToQuery.slice(0, 4);
+      const queryPromises = targetGenres.map(g => searchItunesAlbums(g, 4));
+      const queryResults = await Promise.all(queryPromises);
+      for (const results of queryResults) {
         candidatePool.push(...results);
       }
 
