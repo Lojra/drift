@@ -31,6 +31,7 @@ dist-ssr
 test_e2e.cjs
 verify_fit.cjs
 diagnose.cjs
+check_assets.cjs
 stitch_screen_*
 Testing.code-workspace
 

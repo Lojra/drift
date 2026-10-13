@@ -1,14 +1,12 @@
-const CACHE_NAME = 'drift-cache-v1';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './drift-icon.svg'
+const CACHE_NAME = 'drift-cache-v3';
+const ASSETS_TO_PRECACHE = [
+  '/drift-icon.svg',
+  '/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_PRECACHE))
   );
   self.skipWaiting();
 });
@@ -27,19 +25,43 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Let external music API and audio stream requests pass through
+  // Let external music API and audio streams pass through directly
+  const url = event.request.url;
   if (
-    event.request.url.includes('musicbrainz.org') ||
-    event.request.url.includes('apple.com') ||
-    event.request.url.includes('coverartarchive.org') ||
-    event.request.url.includes('googleapis.com')
+    url.includes('musicbrainz.org') ||
+    url.includes('apple.com') ||
+    url.includes('coverartarchive.org') ||
+    url.includes('googleapis.com') ||
+    url.includes('/api/')
   ) {
     return;
   }
 
+  // Network-First for HTML navigation to prevent stale index.html chunk mismatch
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Cache-first only for static assets (images, icons)
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) return cachedResponse;
+      return fetch(event.request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const clone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return networkResponse;
+      });
     })
   );
 });
