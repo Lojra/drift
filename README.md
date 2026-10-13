@@ -2,7 +2,9 @@
 
 > **Obsidian Minimalist Editorial** music discovery web application designed to navigate unexpected genres through lateral recommendations.
 
-![DRIFT Architecture](public/drift-icon.svg)
+[![Live App](https://img.shields.io/badge/Live_Web_App-drift--ochre--mu.vercel.app-3B82F6?style=flat-square)](https://drift-ochre-mu.vercel.app)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Lojra%2Fdrift-black?style=flat-square&logo=github)](https://github.com/Lojra/drift)
+[![License: MIT](https://img.shields.io/badge/License-MIT-C084FC?style=flat-square)](LICENSE)
 
 ---
 
