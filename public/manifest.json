@@ -1,0 +1,18 @@
+{
+  "name": "DRIFT — Lateral Music Discovery",
+  "short_name": "DRIFT",
+  "description": "Minimalist pitch-black music discovery and rating web application navigating unexpected genres through lateral recommendations.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    {
+      "src": "drift-icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
