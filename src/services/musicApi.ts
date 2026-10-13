@@ -30,6 +30,21 @@ export async function fetchItunesAlbumDetails(artist: string, albumTitle: string
     return memoryCache.get(cacheKey);
   }
 
+  // 1. Try serverless edge cache proxy first for 10x faster response & zero CORS
+  try {
+    const apiUrl = `/api/music?artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(albumTitle)}`;
+    const apiRes = await fetch(apiUrl);
+    if (apiRes.ok) {
+      const apiData = await apiRes.json();
+      if (apiData && (apiData.artworkUrl || (apiData.tracks && apiData.tracks.length > 0))) {
+        memoryCache.set(cacheKey, apiData);
+        return apiData;
+      }
+    }
+  } catch (_) {
+    // Continue to direct fetch if running standalone locally
+  }
+
   try {
     const term = `${artist} ${albumTitle}`;
     const url = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=album&limit=3`;
@@ -96,8 +111,24 @@ export async function searchMusicBrainz(tagOrQuery: string, limit = 10): Promise
     return memoryCache.get(cacheKey);
   }
 
+  const isTag = !tagOrQuery.includes(':') && !tagOrQuery.includes(' ');
+
+  // 1. Try serverless edge cache proxy first to bypass client rate limits
+  if (isTag) {
+    try {
+      const apiUrl = `/api/music?genre=${encodeURIComponent(tagOrQuery)}&limit=${limit}`;
+      const apiRes = await fetch(apiUrl);
+      if (apiRes.ok) {
+        const apiData = await apiRes.json();
+        if (apiData && apiData.albums && apiData.albums.length > 0) {
+          memoryCache.set(cacheKey, apiData.albums);
+          return apiData.albums;
+        }
+      }
+    } catch (_) {}
+  }
+
   try {
-    const isTag = !tagOrQuery.includes(':') && !tagOrQuery.includes(' ');
     const query = isTag
       ? `tag:"${tagOrQuery}" AND primarytype:Album`
       : `${tagOrQuery} AND primarytype:Album`;

@@ -6,13 +6,35 @@ export async function getGeminiLateralRecommendations(
   ratings: AlbumRating[],
   existingAlbumIds: Set<string>
 ): Promise<Album[] | null> {
-  const apiKey = (import.meta as any).env?.VITE_GEMINI_API_KEY;
-  if (!apiKey) {
+  const highRatings = ratings.filter(r => r.score >= 7.0);
+  if (highRatings.length === 0) {
     return null;
   }
 
-  const highRatings = ratings.filter(r => r.score >= 7.0);
-  if (highRatings.length === 0) {
+  // 1. Try serverless backend endpoint first (protects API keys on server)
+  try {
+    const res = await fetch('/api/recommend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ratings,
+        existingIds: Array.from(existingAlbumIds)
+      })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.available && Array.isArray(data.albums) && data.albums.length > 0) {
+        return data.albums.filter((a: Album) => !existingAlbumIds.has(a.id));
+      }
+    }
+  } catch (_) {
+    // Continue to client-side fallback if backend is unavailable
+  }
+
+  // 2. Client-side fallback if VITE_GEMINI_API_KEY is defined in client environment
+  const apiKey = (import.meta as any).env?.VITE_GEMINI_API_KEY;
+  if (!apiKey) {
     return null;
   }
 
