@@ -2,31 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Obsidian Dark Mode (Default) */
+  --canvas-bg: #050507;
+  --panel-obsidian: #0C0C10;
+  --panel-elevated: #13131A;
+  --panel-hover: #181822;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-light: rgba(255, 255, 255, 0.12);
+  --electric-blue: #3B82F6;
+  --purple-soft: #C084FC;
+  --text-offwhite: #F4F4F6;
+  --text-muted: #8E8E9E;
+  --text-dim: #575766;
+  --scrollbar-thumb: #1c1c28;
+}
+
+.light {
+  /* Editorial Alabaster White Mode */
+  --canvas-bg: #F8F9FA;
+  --panel-obsidian: #FFFFFF;
+  --panel-elevated: #F1F3F5;
+  --panel-hover: #E9ECEF;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.14);
+  --electric-blue: #2563EB;
+  --purple-soft: #9333EA;
+  --text-offwhite: #0A0A0E;
+  --text-muted: #4B5563;
+  --text-dim: #6B7280;
+  --scrollbar-thumb: #D1D5DB;
+}
+
 @layer base {
   body {
-    background-color: #050507;
-    color: #F4F4F6;
+    background-color: var(--canvas-bg);
+    color: var(--text-offwhite);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 }
 
-/* Pitch-black custom sleek scrollbar */
+/* Theme-adaptive custom sleek scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: var(--canvas-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1c1c28;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B82F6;
+  background: var(--electric-blue);
 }
 
 /* Custom range slider styling matching Stitch */
@@ -36,24 +69,29 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #3B82F6;
-  border: 2px solid #F4F4F6;
+  background: var(--electric-blue);
+  border: 2px solid var(--text-offwhite);
   cursor: pointer;
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
-  transition: transform 0.1s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .custom-range::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  background: #60a5fa;
+  transform: scale(1.2);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.8);
 }
 
 .custom-range::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #3B82F6;
-  border: 2px solid #F4F4F6;
+  background: var(--electric-blue);
+  border: 2px solid var(--text-offwhite);
   cursor: pointer;
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+}
+
+/* Vinyl Micro-Groove Texture effect */
+.vinyl-grooves {
+  background: radial-gradient(circle, #0a0a0d 20%, #15151b 21%, #0a0a0d 22%, #15151b 35%, #0a0a0d 36%, #15151b 48%, #0a0a0d 49%, #15151b 60%, #0a0a0d 61%, #15151b 75%, #0a0a0d 76%);
 }

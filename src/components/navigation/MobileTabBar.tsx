@@ -15,7 +15,7 @@ export const MobileTabBar: React.FC<MobileTabBarProps> = ({
   ratedCount
 }) => {
   return (
-    <nav className="fixed bottom-0 inset-x-0 bg-[#050507]/95 backdrop-blur-xl border-t border-border-light z-30 md:hidden pb-safe select-none">
+    <nav className="fixed bottom-0 inset-x-0 bg-background/95 backdrop-blur-xl border-t border-border-light z-30 md:hidden pb-safe select-none">
       <div className="grid grid-cols-3 h-14 items-center max-w-md mx-auto">
         {/* Tab 1: Crate */}
         <button

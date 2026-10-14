@@ -5,7 +5,7 @@ import { RatingWidget } from './RatingWidget';
 import { ExternalLinks } from './ExternalLinks';
 import { Tracklist } from './Tracklist';
 import { useAudioPreview } from '../../hooks/useAudioPreview';
-
+import { GenerativeVinylCover } from '../crate/GenerativeVinylCover';
 import { fetchTracksForAlbum } from '../../services/musicApi';
 
 interface InspectorDrawerProps {
@@ -99,7 +99,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
           {/* 1. Large Square Album Cover Art with Gradient & Monospace Badges */}
           <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-panel-elevated border border-border-light shadow-2xl group flex items-center justify-center">
             {!imgLoaded && !imgError && album.coverArtUrl && (
-              <div className="absolute inset-0 bg-[#13131A] animate-pulse flex items-center justify-center z-10">
+              <div className="absolute inset-0 bg-panel-elevated animate-pulse flex items-center justify-center z-10">
                 <div className="w-8 h-8 rounded-full border border-border-light/40 border-t-electric-blue animate-spin" />
               </div>
             )}
@@ -116,22 +116,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
                 }}
               />
             ) : (
-              <div className="w-full h-full flex flex-col justify-between p-4 bg-[#0C0C10] border border-border-light text-left select-none">
-                <span className="font-mono text-[10px] text-purple-soft uppercase tracking-wider">
-                  {album.genres?.[0] || 'ARCHIVE'}
-                </span>
-                <div className="my-auto">
-                  <div className="font-semibold text-text-offwhite text-base leading-tight">
-                    {album.title}
-                  </div>
-                  <div className="font-mono text-xs text-text-muted mt-1.5">
-                    {album.artist} &middot; {album.releaseYear}
-                  </div>
-                </div>
-                <span className="font-mono text-[9px] text-text-muted/60 tracking-widest uppercase">
-                  DRIFT ARCHIVAL RECORD
-                </span>
-              </div>
+              <GenerativeVinylCover album={album} className="w-full h-full" />
             )}
 
             <div className="absolute inset-0 bg-gradient-to-t from-panel-obsidian/85 via-transparent to-transparent pointer-events-none"></div>

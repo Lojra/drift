@@ -1,6 +1,7 @@
 import React from 'react';
-import { RotateCw, Search, X } from 'lucide-react';
+import { RotateCw, Search, X, Sun, Moon } from 'lucide-react';
 import { TasteProfile } from '../../types/music';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface HeaderProps {
   tasteProfile: TasteProfile;
@@ -19,10 +20,11 @@ export const Header: React.FC<HeaderProps> = ({
   searchQuery,
   onSearchChange
 }) => {
+  const { theme, toggleTheme } = useTheme();
   const driftText = (tasteProfile.currentDriftPath || 'INITIAL EXPLORATION').toUpperCase();
 
   return (
-    <header className="h-16 flex-shrink-0 border-b border-border-subtle px-4 lg:px-6 flex items-center justify-between gap-3 bg-canvas-black/80 backdrop-blur-md z-10 select-none min-w-0">
+    <header className="h-16 flex-shrink-0 border-b border-border-subtle px-4 lg:px-6 flex items-center justify-between gap-3 bg-background/80 backdrop-blur-md z-10 select-none min-w-0">
       {/* Left: Monospace Status Pill */}
       <div className="flex items-center gap-2 min-w-0 max-w-[220px] sm:max-w-[320px] lg:max-w-[420px]">
         <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-panel-obsidian border border-border-subtle min-w-0 truncate">
@@ -64,11 +66,25 @@ export const Header: React.FC<HeaderProps> = ({
           <span className="text-text-offwhite font-bold">{ratedInCrateCount} / 10 RATED</span>
         </div>
 
+        {/* Editorial White Mode / Dark Mode Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="flex items-center justify-center w-8 h-8 rounded-md bg-panel-obsidian hover:bg-panel-elevated border border-border-subtle hover:border-border-light text-text-offwhite transition-all active:scale-95"
+          title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+          aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-4 h-4 text-electric-blue" strokeWidth={1.75} />
+          ) : (
+            <Moon className="w-4 h-4 text-purple-soft" strokeWidth={1.75} />
+          )}
+        </button>
+
         {/* Primary Electric Blue Button */}
         <button
           onClick={onRefreshCrate}
           disabled={isLoading}
-          className="flex items-center gap-1.5 sm:gap-2 bg-electric-blue hover:bg-blue-600 text-text-offwhite px-3 sm:px-4 py-2 rounded-md font-sans text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.35)] active:scale-95 disabled:opacity-50"
+          className="flex items-center gap-1.5 sm:gap-2 bg-electric-blue hover:bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-md font-sans text-xs font-semibold tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.35)] active:scale-95 disabled:opacity-50"
         >
           <RotateCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2} />
           <span className="hidden sm:inline">Refresh Crate (10)</span>

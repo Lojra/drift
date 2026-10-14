@@ -69,9 +69,9 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
   const isReady = selectedCount >= 2 || (selectedCount >= 1 && anchorInput.trim().length > 0);
 
   return (
-    <div className="fixed inset-0 z-50 bg-canvas-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 select-none">
+    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 select-none">
       {/* Calibration Modal Container (Exact 560px max width, scrollable on mobile) */}
-      <div className="relative w-full max-w-[560px] max-h-[92vh] bg-panel-obsidian rounded-2xl border border-white/[0.08] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-y-auto flex flex-col z-20">
+      <div className="relative w-full max-w-[560px] max-h-[92vh] bg-panel-obsidian rounded-2xl border border-border-light shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-y-auto flex flex-col z-20">
         {/* Top Subtle Illumination Accent Strip */}
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-purple-soft/60 to-transparent flex-shrink-0"></div>
 

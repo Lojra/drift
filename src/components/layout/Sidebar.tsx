@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { Layers, Disc3, Compass, Sliders, Download, Upload, Share2 } from 'lucide-react';
+import { Layers, Disc3, Compass, Sliders, Download, Upload, Share2, Sun, Moon } from 'lucide-react';
 import { TasteProfile, AlbumRating } from '../../types/music';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface SidebarProps {
   activeTab: 'crate' | 'archive' | 'taste';
@@ -24,6 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onToggleDivergence
 }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { theme, toggleTheme } = useTheme();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -265,6 +267,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
           >
             <Share2 className="w-3 h-3 text-text-dim" strokeWidth={1.5} />
             <span>Copy App Link</span>
+          </button>
+
+          {/* Theme Mode Toggle (Zero Emoji) */}
+          <button
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+            className="w-full flex items-center justify-center gap-1.5 py-1 px-2 rounded border border-border-subtle hover:border-border-light text-[10px] font-mono text-text-dim hover:text-text-muted transition-colors"
+          >
+            {theme === 'dark' ? (
+              <>
+                <Sun className="w-3 h-3 text-electric-blue" strokeWidth={1.5} />
+                <span>White Mode</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-3 h-3 text-purple-soft" strokeWidth={1.5} />
+                <span>Dark Mode</span>
+              </>
+            )}
           </button>
         </div>
       </div>

@@ -33,6 +33,8 @@ verify_fit.cjs
 diagnose.cjs
 check_assets.cjs
 verify_mobile.cjs
+verify_white_mode_and_covers.cjs
+scripts/hydrateCatalogArtwork.cjs
 stitch_screen_*
 Testing.code-workspace
 

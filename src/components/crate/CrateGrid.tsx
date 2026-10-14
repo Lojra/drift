@@ -78,10 +78,11 @@ export const CrateGrid: React.FC<CrateGridProps> = ({
 
       {/* 5-Column Responsive Album Grid (scrollable on mobile, 2 rows on desktop) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 lg:grid-rows-2 gap-2.5 xl:gap-3 lg:flex-1 lg:min-h-0 lg:h-full lg:auto-rows-fr" id="albumGrid">
-        {albums.map((album) => (
+        {albums.map((album, idx) => (
           <AlbumCard
             key={album.id}
             album={album}
+            index={idx}
             rating={ratingMap.get(album.id)}
             isSelected={selectedAlbum?.id === album.id}
             onSelect={onSelectAlbum}

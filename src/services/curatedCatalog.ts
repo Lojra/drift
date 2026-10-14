@@ -32,7 +32,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Tago Mago',
     artist: 'Can',
     releaseYear: 1971,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/01/2d/4a012d21-f3b1-6a2c-6112-70b135bb0ca1/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/ce/7e/be/ce7ebe2d-418a-bbf6-8fd6-054beff0cf18/724596905456.jpg/1000x1000bb.jpg',
     genres: ['Krautrock', 'Psychedelic Rock', 'Experimental'],
     driftReason: 'Jaki Liebezeit\'s metronomic funk drumming wrapped in tape-loop mysticism and hypnotic tension.',
     tracks: [
@@ -47,7 +47,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Future Days',
     artist: 'Can',
     releaseYear: 1973,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d4/0b/b7/d40bb711-e630-f92d-947b-1cb81e9bc4e0/5016025683240.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music/v4/30/8c/92/308c9257-f37a-3546-e53a-906a9fc5735b/5099930156050.jpg/1000x1000bb.jpg',
     genres: ['Krautrock', 'Ambient Pop', 'Space Rock'],
     driftReason: 'Gentle, oceanic polyrhythms and ambient textures floating in warm Mediterranean sunshine.',
     tracks: [
@@ -63,7 +63,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Musik von Harmonia',
     artist: 'Harmonia',
     releaseYear: 1974,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/ad/eb/4aadeb1c-7f5d-75e1-ea3b-7be716df0702/4015698006323.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music20/v4/97/35/c4/9735c4f2-9502-7a15-31f9-738fe9c3b96d/mzm.ujzxjfaj.jpg/1000x1000bb.jpg',
     genres: ['Krautrock', 'Electronic', 'Motorik'],
     driftReason: 'Delicate electronic arpeggios that Brian Eno declared "the world\'s most important rock band".',
     tracks: [
@@ -78,7 +78,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Faust IV',
     artist: 'Faust',
     releaseYear: 1973,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/42/bb/63/42bb63bb-6101-7132-ecab-b631d8c1c4f5/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/c1/72/5d/c1725d1b-1b0d-e93c-4458-178aab6081a7/00094635636253.jpg/1000x1000bb.jpg',
     genres: ['Krautrock', 'Drone Rock', 'Avant-Garde'],
     driftReason: 'Monolithic, buzzing drone rock leading into sparkling acoustic vignettes and subverted pop hooks.',
     tracks: [
@@ -93,7 +93,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Trans-Europe Express',
     artist: 'Kraftwerk',
     releaseYear: 1977,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/0e/db/ef0edb3b-8cf7-23e5-813e-f1484ff2f99f/5099996602058.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/80/bc/e280bcf9-4048-8c42-2b6b-d8b9c9bbed52/5099996602058_1500x1500_300dpi.jpg/1000x1000bb.jpg',
     genres: ['Electronic', 'Synth-Pop', 'Krautrock'],
     driftReason: 'The sonic cornerstone connecting European minimalist classicism to early hip-hop and Detroit techno.',
     tracks: [
@@ -108,7 +108,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Hosianna Mantra',
     artist: 'Popol Vuh',
     releaseYear: 1972,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2b/e4/20/2be4203e-80c1-236b-ca98-33010b9ca5d9/4015698006224.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/30/67/b7306799-75b3-9302-18ef-8b8b4b1199ff/885890728049.jpg/1000x1000bb.jpg',
     genres: ['Krautrock', 'Spiritual Ambient', 'Chamber Folk'],
     driftReason: 'Sacred piano, oboe, and tambura tapestries written for Werner Herzog\'s transcendental cinema.',
     tracks: [
@@ -125,7 +125,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'King Tubbys Meets Rockers Uptown',
     artist: 'Augustus Pablo & King Tubby',
     releaseYear: 1976,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/19/2d/e9/192de9cf-5f4a-fa0d-85f0-b98a339c9402/054645100363.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/23/86/5f/23865ff8-4f99-c071-25ce-a0f950400cda/881626559765_cover.jpg/1000x1000bb.jpg',
     genres: ['Dub', 'Reggae', 'Roots Dub'],
     driftReason: 'King Tubby\'s cavernous spring reverbs and Augustus Pablo\'s haunting, mystical melodica.',
     tracks: [
@@ -140,7 +140,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Super Ape',
     artist: 'The Upsetters & Lee Perry',
     releaseYear: 1976,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/19/1c/fc191cb3-f145-6cf1-97ce-a7bc0bb414ce/00731454848524.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/10/5b/82/105b8201-428c-c314-1aa4-acae0ed466a8/5414939490675.jpg/1000x1000bb.jpg',
     genres: ['Dub', 'Roots Reggae', 'Psychedelic Dub'],
     driftReason: 'The Black Ark studio\'s peak alchemical production: bass frequencies pushed to pure physical hypnosis.',
     tracks: [
@@ -155,7 +155,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Scientist Rids the World of the Evil Curse of the Vampires',
     artist: 'Scientist',
     releaseYear: 1981,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/58/01/5e/58015e10-c0be-4a24-9b2f-981f42289f89/054645100363.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/57/6d/4e/576d4e7a-7860-595a-5ccd-05e965413df5/886443746404.jpg/1000x1000bb.jpg',
     genres: ['Dub', 'Roots Dub', 'Dancehall'],
     driftReason: 'Roots Radics\' heaviest riddims deconstructed with surgical delay throws and sinister tape echoes.',
     tracks: [
@@ -170,7 +170,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Flesh of My Skin Blood of My Blood',
     artist: 'Keith Hudson',
     releaseYear: 1974,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/12/34/4a1234bc-56de-78fa-bcde-123456789abc/5060135760012.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9c/a8/76/9ca87686-dcbf-7342-f97f-ed4fe1aeb24b/054645273060.jpg/1000x1000bb.jpg',
     genres: ['Dub', 'Dark Roots', 'Spiritual Reggae'],
     driftReason: 'The "Dark Prince of Reggae" creates an ominous, deeply brooding sonic universe of raw social reflection.',
     tracks: [
@@ -187,7 +187,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Closer',
     artist: 'Joy Division',
     releaseYear: 1980,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/80/7e/40/807e408a-ea32-8438-d9d3-559d1ba95cfa/825646183913.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/d9/2a/d1/d92ad12e-cdf2-e567-9612-af2fdfa82237/dj.uzqznczn.jpg/1000x1000bb.jpg',
     genres: ['Post-Punk', 'Gothic Rock', 'Art Rock'],
     driftReason: 'Martin Hannett\'s architectural sonic space, Stephen Morris\'s relentless drums, and Ian Curtis\'s sepulchral vocals.',
     tracks: [
@@ -203,7 +203,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Faith',
     artist: 'The Cure',
     releaseYear: 1981,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/bc/de/4abcde12-3456-7890-abcd-ef1234567890/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Features/v4/80/60/0c/80600c25-52bb-64cc-e04e-c26f306c8870/dj.vszhkpcz.jpg/1000x1000bb.jpg',
     genres: ['Post-Punk', 'Gothic Rock', 'Cold Wave'],
     driftReason: 'Minimal, sparse grey textures, subterranean six-string basslines, and existential mourning.',
     tracks: [
@@ -219,7 +219,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Script of the Bridge',
     artist: 'The Chameleons',
     releaseYear: 1983,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/23/45/67/23456789-abcd-ef01-2345-6789abcdef01/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music/90/b8/a7/mzi.szblpyfb.jpg/1000x1000bb.jpg',
     genres: ['Post-Punk', 'Neo-Psychedelia', 'Gothic Rock'],
     driftReason: 'Vast, crystalline twin-guitar panoramas that became the blueprint for modern indie and post-rock.',
     tracks: [
@@ -234,7 +234,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Entertainment!',
     artist: 'Gang of Four',
     releaseYear: 1979,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/90/ab/7890abcd-ef12-3456-7890-abcdef123456/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/86/8e/e9/868ee973-0caf-a663-9d4f-58ff57c104da/191401174275.png/1000x1000bb.jpg',
     genres: ['Post-Punk', 'Dance-Punk', 'Funk Rock'],
     driftReason: 'Razor-wire guitar shards and kinetic, dub-infected basslines dissecting media and consumer alienation.',
     tracks: [
@@ -249,7 +249,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: '154',
     artist: 'Wire',
     releaseYear: 1979,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/56/78/3456789a-bcde-f012-3456-789abcdef012/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/b3/0f/89/b30f89e5-7747-c011-a4f4-d8a446b9e795/cover.jpg/1000x1000bb.jpg',
     genres: ['Post-Punk', 'Art Punk', 'Experimental Rock'],
     driftReason: 'Surgical minimalism evolving into moody gothic synth washes and avant-garde structural decay.',
     tracks: [
@@ -264,7 +264,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Yr Body Is Nothing',
     artist: 'Boy Harsher',
     releaseYear: 2016,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/bc/78/4abc7890-def1-2345-6789-abcdef123456/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/13/31/66/13316699-202d-c975-98cb-04f573ab1844/4250506829698_cover.jpg/1000x1000bb.jpg',
     genres: ['Darkwave', 'Minimal Wave', 'EBM'],
     driftReason: 'Sensual, brooding cold-wave synths with relentless, hypnotic four-on-the-floor kick drums.',
     tracks: [
@@ -281,7 +281,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Mulatu of Ethiopia',
     artist: 'Mulatu Astatke',
     releaseYear: 1972,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/10/7b/25/107b25ee-5b80-1a1a-a53c-1123456789ab/825646183913.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/58/10/09/5810099d-35d5-ac1f-e786-9c11e2ee70b4/0730003312953_1448.jpg/1000x1000bb.jpg',
     genres: ['Ethio-Jazz', 'Spiritual Jazz', 'Afro-Cuban Jazz'],
     driftReason: 'Ancient Ethiopian five-tone scales fused with 1970s Latin jazz polyrhythms and cool vibrato vibraphone.',
     tracks: [
@@ -296,7 +296,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Hailu Mergia & His Classical Instrument',
     artist: 'Hailu Mergia',
     releaseYear: 1985,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/78/90/567890ab-cdef-1234-5678-9abcdef01234/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/7f/b0/2f/7fb02f1c-f0b8-ed84-9b4f-7d9f28bb97cd/dj.jjefresi.jpg/1000x1000bb.jpg',
     genres: ['Ethio-Jazz', 'Accordion Ambient', 'African Electronic'],
     driftReason: 'Nostalgic, dusty Moog synths and Rhodes accordion drifting through Addis Ababa night air.',
     tracks: [
@@ -311,7 +311,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Expensive Shit',
     artist: 'Fela Kuti & Africa 70',
     releaseYear: 1975,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/67/89/0a/67890abc-def1-2345-6789-abcdef012345/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/21/3b/a3/213ba30b-7c96-fcdb-18d6-1b8466808eb4/720841208303_Cover.jpg/1000x1000bb.jpg',
     genres: ['Afrobeat', 'Funk', 'Jazz-Funk'],
     driftReason: 'Tony Allen\'s unmatched interlocking polyrhythms backing Fela\'s blistering horn-fired revolutionary call.',
     tracks: [
@@ -326,7 +326,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Life Stories: Highlife & Afro-Soul Classics',
     artist: 'Ebo Taylor',
     releaseYear: 1977,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/78/9a/bc/789abcde-f012-3456-789a-bcdef0123456/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music49/v4/88/38/c4/8838c4b3-03c3-dd4a-8fbf-d6e61d95135f/cover.jpg/1000x1000bb.jpg',
     genres: ['Highlife', 'Afrobeat', 'Afro-Funk'],
     driftReason: 'Ghanaian highlife guitar counterpoint driven by searing brass sections and infectious coastal swing.',
     tracks: [
@@ -341,7 +341,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Atomic Bomb',
     artist: 'William Onyeabor',
     releaseYear: 1978,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/89/ab/cd/89abcdef-0123-4567-89ab-cdef01234567/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music71/v4/a9/3f/fe/a93ffeb6-f1f0-9ef8-2cec-8dd66209a1f2/680899503327.jpg/1000x1000bb.jpg',
     genres: ['Afro-Synth', 'Electro-Funk', 'Afrobeat'],
     driftReason: 'Analog synthesizer loops and space-age disco rhythms straight from a clandestine Nigerian studio.',
     tracks: [
@@ -356,7 +356,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Lazy Bones!!',
     artist: 'WITCH',
     releaseYear: 1975,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9a/bc/de/9abcdef0-1234-5678-9abc-def012345678/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/18/af/96/18af96aa-0568-43f6-f201-6cde583688a5/WITCH-LazyBones.jpg/1000x1000bb.jpg',
     genres: ['Zamrock', 'Psychedelic Rock', 'Garage Rock'],
     driftReason: 'Raw, fuzz-drenched Zambian garage rock driven by garage punk energy and hypnotic African backbeats.',
     tracks: [
@@ -373,7 +373,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Apollo: Atmospheres and Soundtracks',
     artist: 'Brian Eno',
     releaseYear: 1983,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ab/cd/ef/abcdef01-2345-6789-abcd-ef0123456789/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/99/3b/d1/993bd1fa-13ab-7898-6993-bc4da32be961/00724356364752.rgb.jpg/1000x1000bb.jpg',
     genres: ['Ambient', 'Space Ambient', 'Drone'],
     driftReason: 'Weightless pedal steel guitars and serene synth currents capturing the quiet awe of lunar exploration.',
     tracks: [
@@ -388,7 +388,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'The Tired Sounds of Stars of the Lid',
     artist: 'Stars of the Lid',
     releaseYear: 2001,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bc/de/f0/bcdef012-3456-789a-bcde-f0123456789a/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/6e/07/20/6e0720ae-5fa3-45a4-ba49-44f412376670/dj.lepjddjz.jpg/1000x1000bb.jpg',
     genres: ['Drone', 'Ambient', 'Modern Classical'],
     driftReason: 'Glacial, orchestral drones that unfold with cathedral-scale patience and deep, meditative peace.',
     tracks: [
@@ -403,7 +403,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Ravedeath, 1972',
     artist: 'Tim Hecker',
     releaseYear: 2011,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cd/ef/01/cdef0123-4567-89ab-cdef-0123456789ab/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4a/68/4c/4a684c10-456b-8442-9ed3-764d57a32aed/mzi.ukvgcwzt.jpg/1000x1000bb.jpg',
     genres: ['Ambient', 'Drone', 'Noise'],
     driftReason: 'A pipe organ recorded in an Icelandic church, meticulously fragmented into radiant, distorted sonic embers.',
     tracks: [
@@ -418,7 +418,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'The Disintegration Loops',
     artist: 'William Basinski',
     releaseYear: 2002,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/de/f0/12/def01234-5678-9abc-def0-123456789abc/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/fa/6f/68/fa6f6823-1602-945e-d3c4-3d3f17d02bc8/cover.jpg/1000x1000bb.jpg',
     genres: ['Ambient', 'Tape Music', 'Minimalism'],
     driftReason: 'Pastoral brass tape loops gradually decaying into dust in real time, chronicling the impermanence of memory.',
     tracks: [
@@ -432,7 +432,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Dragging a Dead Deer Up a Hill',
     artist: 'Grouper',
     releaseYear: 2008,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/01/23/ef012345-6789-abcd-ef01-23456789abcd/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/83/c4/d1/83c4d1e8-0735-ca6d-5e3e-bbbac99cef41/mzi.euplhgfk.jpg/1000x1000bb.jpg',
     genres: ['Ambient Folk', 'Dream Pop', 'Slowcore'],
     driftReason: 'Whispered, reverb-drowned acoustic strums and spectral tape hiss creating an intimate cabin shelter.',
     tracks: [
@@ -449,7 +449,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Mezzanine',
     artist: 'Massive Attack',
     releaseYear: 1998,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f0/12/34/f0123456-789a-bcde-f012-3456789abcde/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8a/c1/04/8ac104fb-d37e-1433-5d2e-805710d7a7c4/00602567930983.rgb.jpg/1000x1000bb.jpg',
     genres: ['Trip-Hop', 'Downtempo', 'Post-Punk'],
     driftReason: 'Heavy cavernous sub-bass, dark dub spaces, and distorted post-punk guitars forming pure nocturnal tension.',
     tracks: [
@@ -465,7 +465,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Dummy',
     artist: 'Portishead',
     releaseYear: 1994,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/23/45/01234567-89ab-cdef-0123-456789abcdef/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/71/93/c1719342-df7d-e9c5-c87c-53dae5afb289/00042282855329.rgb.jpg/1000x1000bb.jpg',
     genres: ['Trip-Hop', 'Downtempo', 'Dark Jazz'],
     driftReason: 'Spine-tingling theremin, hip-hop vinyl crackle, and Beth Gibbons\' heartbroken noir torch vocals.',
     tracks: [
@@ -481,7 +481,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Endtroducing.....',
     artist: 'DJ Shadow',
     releaseYear: 1996,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/12/34/56/12345678-9abc-def0-1234-56789abcdef0/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6c/85/15/6c8515bb-7ccf-ffaf-9b17-fd83073e234a/812814029821.jpg/1000x1000bb.jpg',
     genres: ['Instrumental Hip-Hop', 'Trip-Hop', 'Plunderphonics'],
     driftReason: 'Constructed entirely from thrift-store vinyl samples, forging an atmospheric cinematic masterpiece.',
     tracks: [
@@ -496,7 +496,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Maxinquaye',
     artist: 'Tricky',
     releaseYear: 1995,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/23/45/67/23456789-abcd-ef01-2345-6789abcdef01/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/da/46/8a/da468ae4-2956-89d5-de70-0fce8dcfd572/00731452408921.rgb.jpg/1000x1000bb.jpg',
     genres: ['Trip-Hop', 'Downtempo', 'Dub'],
     driftReason: 'Murky Bristol dub claustrophobia tangled with hip-hop breaks and whispered, paranoid poetry.',
     tracks: [
@@ -513,7 +513,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Loveless',
     artist: 'My Bloody Valentine',
     releaseYear: 1991,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/56/78/3456789a-bcde-f012-3456-789abcdef012/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f9/7e/6b/f97e6b94-f307-ae7f-e94c-d74860a44350/887830016094.png/1000x1000bb.jpg',
     genres: ['Shoegaze', 'Noise Pop', 'Dream Pop'],
     driftReason: 'Kevin Shields\' glide guitar technique crafting an undulating wall of warm, euphoric distortion.',
     tracks: [
@@ -529,7 +529,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Souvlaki',
     artist: 'Slowdive',
     releaseYear: 1993,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/45/67/89/456789ab-cdef-0123-4567-89abcdef0123/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/a0/a4/c2a0a495-ec33-27f1-c6db-0dff1c3ba15d/dj.pzrqoswp.jpg/1000x1000bb.jpg',
     genres: ['Shoegaze', 'Dream Pop', 'Ambient Rock'],
     driftReason: 'Lush, delay-drenched sonic cathedrals co-crafted with ambient visionary Brian Eno.',
     tracks: [
@@ -545,7 +545,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Heaven or Las Vegas',
     artist: 'Cocteau Twins',
     releaseYear: 1990,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/78/9a/56789abc-def0-1234-5678-9abcdef01234/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/76/cd/61/76cd61e7-0714-dce5-c48e-0f05f8fcb84b/652637001280.png/1000x1000bb.jpg',
     genres: ['Dream Pop', 'Ethereal Wave', 'Art Pop'],
     driftReason: 'Elizabeth Fraser\'s glossolalic soaring vocals intertwined with Robin Guthrie\'s chorused, shimmering guitar waterfalls.',
     tracks: [
@@ -563,7 +563,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Geogaddi',
     artist: 'Boards of Canada',
     releaseYear: 2002,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/67/89/ab/6789abcd-ef01-2345-6789-abcdef012345/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/77/7c/2e777c13-60e3-c231-8be0-b0d43dc91598/mzi.yseuvnlj.jpg/1000x1000bb.jpg',
     genres: ['IDM', 'Downtempo', 'Hauntology'],
     driftReason: 'Warm analog synthesizers, childhood memory nostalgia, and subliminal numerological puzzlecraft.',
     tracks: [
@@ -579,7 +579,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Selected Ambient Works 85-92',
     artist: 'Aphex Twin',
     releaseYear: 1992,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/9a/bc/789abcde-f012-3456-789a-bcdef0123456/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5f/b3/e0/5fb3e08d-c2cd-3da4-6ad7-c5dc61803683/cover.jpg/1000x1000bb.jpg',
     genres: ['Ambient Techno', 'IDM', 'Electronic'],
     driftReason: 'Richard D. James\'s handcrafted analog gear generating melodic, celestial techno of profound intimacy.',
     tracks: [
@@ -595,7 +595,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Untrue',
     artist: 'Burial',
     releaseYear: 2007,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/89/ab/cd/89abcdef-0123-4567-89ab-cdef01234567/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/9d/0f/1c/9d0f1c2b-2fae-d8ac-3920-ce9ec5bc85b5/7982.jpg/1000x1000bb.jpg',
     genres: ['Dubstep', 'Future Garage', 'Ambient'],
     driftReason: 'Rain-soaked London night bus ambience, pitch-shifted R&B ghosts, and shuffling, unquantized syncopation.',
     tracks: [
@@ -611,7 +611,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Tri Repetae',
     artist: 'Autechre',
     releaseYear: 1995,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9a/bc/de/9abcdef0-1234-5678-9abc-def012345678/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music/a9/36/b6/mzi.vtdskskv.jpg/1000x1000bb.jpg',
     genres: ['IDM', 'Glitch', 'Industrial Techno'],
     driftReason: 'Metallic, algorithmic percussion patterns woven with austere emotional synth counter-melodies.',
     tracks: [
@@ -626,7 +626,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Rounds',
     artist: 'Four Tet',
     releaseYear: 2003,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ab/cd/ef/abcdef01-2345-6789-abcd-ef0123456789/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music/4a/82/02/mzi.wggtbdbs.jpg/1000x1000bb.jpg',
     genres: ['Folktronica', 'IDM', 'Downtempo'],
     driftReason: 'Pastoral harp arpeggios and jazz drum loops spliced into warm, emotionally resonant electronic collages.',
     tracks: [
@@ -673,7 +673,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Through the Looking Glass',
     artist: 'Midori Takada',
     releaseYear: 1983,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/de/f0/12/def01234-5678-9abc-def0-123456789abc/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a7/85/97/a7859765-d7a1-80ed-6ffb-c09e30e3ff09/00602547027238.rgb.jpg/1000x1000bb.jpg',
     genres: ['Minimalism', 'Percussion', 'Ambient'],
     driftReason: 'Solo marimba, reed organ, and bells creating crystalline polyrhythmic patterns inspired by African and Indonesian music.',
     tracks: [
@@ -688,7 +688,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Spacy',
     artist: 'Tatsuro Yamashita',
     releaseYear: 1977,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/01/23/ef012345-6789-abcd-ef01-23456789abcd/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/71/26/d8/7126d88b-7cf5-5ba5-7043-f1d26a8dd87f/jacket_MHXX00766B00Z_550.jpg/1000x1000bb.jpg',
     genres: ['City Pop', 'Funk', 'Soul'],
     driftReason: 'Immaculate studio craftsmanship, soaring vocal harmonies, and irresistible Japanese groove.',
     tracks: [
@@ -703,7 +703,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Solid State Survivor',
     artist: 'Yellow Magic Orchestra',
     releaseYear: 1979,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f0/12/34/f0123456-789a-bcde-f012-3456789abcde/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/7b/a4/1a/7ba41a51-f5e0-042d-5d10-8fd10b629bab/886447666654.jpg/1000x1000bb.jpg',
     genres: ['Synth-Pop', 'Electronic', 'New Wave'],
     driftReason: 'Haruomi Hosono, Ryuichi Sakamoto, and Yukihiro Takahashi invent hyper-kinetic synth-pop brilliance.',
     tracks: [
@@ -720,7 +720,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Journey in Satchidananda',
     artist: 'Alice Coltrane',
     releaseYear: 1971,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/01/23/45/01234567-89ab-cdef-0123-456789abcdef/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/af/5c/40/af5c40a1-54b1-855d-3da2-f875efbd8372/06UMGIM04169.rgb.jpg/1000x1000bb.jpg',
     genres: ['Spiritual Jazz', 'Modal Jazz', 'Avant-Garde Jazz'],
     driftReason: 'Cascading concert harp, Pharoah Sanders\' soprano sax, and Cecil McBee\'s droning tambura meditation.',
     tracks: [
@@ -735,7 +735,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Karma',
     artist: 'Pharoah Sanders',
     releaseYear: 1969,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/12/34/56/12345678-9abc-def0-1234-56789abcdef0/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/01/36/a6/0136a666-36d2-caf1-efb1-da77a646d104/06UMGIM03764.rgb.jpg/1000x1000bb.jpg',
     genres: ['Spiritual Jazz', 'Free Jazz', 'Avant-Garde'],
     driftReason: 'Leon Thomas\'s transcendental yodeling and Sanders\' cathartic overblown tenor sax preaching universal love.',
     tracks: [
@@ -749,7 +749,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Brown Rice',
     artist: 'Don Cherry',
     releaseYear: 1975,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/23/45/67/23456789-abcd-ef01-2345-6789abcdef01/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/a5/ba/60/a5ba6018-6b5b-4801-3fcf-dd4a5b949a16/19UMGIM37596.rgb.jpg/1000x1000bb.jpg',
     genres: ['Jazz Fusion', 'Fourth World', 'Spiritual Jazz'],
     driftReason: 'Pocket trumpet meditations over deep hypnotic funk grooves and Indian drone textures.',
     tracks: [
@@ -766,7 +766,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Arthur Verocai',
     artist: 'Arthur Verocai',
     releaseYear: 1972,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/56/78/3456789a-bcde-f012-3456-789abcdef012/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/9d/31/5f/9d315fe2-06d7-5ad4-f2ce-1e89bc331ebd/191404130575.png/1000x1000bb.jpg',
     genres: ['MPB', 'Samba-Jazz', 'Orchestral Soul'],
     driftReason: 'The holy grail of Brazilian arranger soul: cinematic strings, nylon acoustics, and breathtaking brass flourishes.',
     tracks: [
@@ -782,7 +782,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Transa',
     artist: 'Caetano Veloso',
     releaseYear: 1972,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/45/67/89/456789ab-cdef-0123-4567-89abcdef0123/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/27/12/b2/2712b23f-21d2-7e27-6896-8af0d216509d/00602537065974.rgb.jpg/1000x1000bb.jpg',
     genres: ['Tropicália', 'Folk Rock', 'Samba-Reggae'],
     driftReason: 'Recorded in London exile: bittersweet acoustic melancholy infused with Afro-Brazilian rhythmic momentum.',
     tracks: [
@@ -797,7 +797,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Os Mutantes',
     artist: 'Os Mutantes',
     releaseYear: 1968,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/78/9a/56789abc-def0-1234-5678-9abcdef01234/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d7/fd/d1/d7fdd1ea-9025-6346-0834-48ed931dd62f/00602537449460.rgb.jpg/1000x1000bb.jpg',
     genres: ['Tropicália', 'Psychedelic Rock', 'Avant-Pop'],
     driftReason: 'Anarchic fuzz pedals, tape-manipulation antics, and exuberant Brazilian bossa melodies.',
     tracks: [
@@ -829,7 +829,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Tender Buttons',
     artist: 'Broadcast',
     releaseYear: 2005,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/78/9a/bc/789abcde-f012-3456-789a-bcdef0123456/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music/51/f4/91/mzi.gcqyntqr.jpg/1000x1000bb.jpg',
     genres: ['Indie Pop', 'Hauntology', 'Experimental Pop'],
     driftReason: 'Trish Keenan\'s pure, crystalline voice over brittle vintage drum machines and uncanny radiophonic synth chirps.',
     tracks: [
@@ -844,7 +844,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Dots and Loops',
     artist: 'Stereolab',
     releaseYear: 1997,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/89/ab/cd/89abcdef-0123-4567-89ab-cdef01234567/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4c/5c/9e/4c5c9ee4-67ce-fc9f-a8b4-db7d5802c608/5060384616148.jpg/1000x1000bb.jpg',
     genres: ['Post-Rock', 'Krautrock', 'Bossa Nova'],
     driftReason: 'Krautrock motorik momentum married to Brazilian bossa lounge and vintage analog synthesizer mastery.',
     tracks: [
@@ -859,7 +859,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Masana Temples',
     artist: 'Kikagaku Moyo',
     releaseYear: 2018,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9a/bc/de/9abcdef0-1234-5678-9abc-def012345678/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/45/fd/4c/45fd4c9d-5626-c1e0-17b8-516fe473a5fd/606825444144_cover.jpg/1000x1000bb.jpg',
     genres: ['Psychedelic Rock', 'Krautrock', 'Raga Rock'],
     driftReason: 'Tokyo psych explorers blending Indian sitar drone with motorik krautrock and fluid acid folk.',
     tracks: [
@@ -891,7 +891,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Ágætis byrjun',
     artist: 'Sigur Rós',
     releaseYear: 1999,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bc/de/f0/bcdef012-3456-789a-bcde-f0123456789a/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/f7/34/fd/f734fd6c-aeca-8052-825c-706d1c665a8b/190296941856.jpg/1000x1000bb.jpg',
     genres: ['Post-Rock', 'Dream Pop', 'Chamber Rock'],
     driftReason: 'Bowed electric guitars, soaring falsetto, and majestic sub-arctic orchestral arrangements.',
     tracks: [
@@ -923,7 +923,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Hounds of Love',
     artist: 'Kate Bush',
     releaseYear: 1985,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/de/f0/12/def01234-5678-9abc-def0-123456789abc/5016025683226.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/62/97/32/62973286-5bb3-0de7-c051-8b2de8d95472/cover.jpg/1000x1000bb.jpg',
     genres: ['Art Pop', 'Progressive Pop', 'Synth-Pop'],
     driftReason: 'Fairlight CMI sampling sorcery and Celtic folk percussion backing a conceptual masterpiece of emotional rebirth.',
     tracks: [
@@ -970,7 +970,7 @@ export const CURATED_ALBUMS: Album[] = [
     title: 'Spirit of Eden',
     artist: 'Talk Talk',
     releaseYear: 1988,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/01/23/45/01234567-89ab-cdef-0123-456789abcdef/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/36/84/e8/3684e84e-5b87-f5d3-3e93-500c9807aefd/724385712951.jpg/1000x1000bb.jpg',
     genres: ['Post-Rock', 'Art Rock', 'Ambient Jazz'],
     driftReason: 'Mark Hollis\'s quiet revolution: vast silences, church organ breathing, and improvisational spiritual ecstasy.',
     tracks: [

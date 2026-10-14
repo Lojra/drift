@@ -1,5 +1,6 @@
 import React from 'react';
-import { RotateCw, Compass } from 'lucide-react';
+import { RotateCw, Compass, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface MobileHeaderProps {
   driftPath: string;
@@ -14,8 +15,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
   isLoading,
   onCalibrate
 }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <header className="sticky top-0 z-30 bg-[#050507]/90 backdrop-blur-xl border-b border-border-subtle md:hidden px-3.5 py-2.5 flex items-center justify-between gap-2 select-none">
+    <header className="sticky top-0 z-30 bg-background/90 backdrop-blur-xl border-b border-border-subtle md:hidden px-3.5 py-2.5 flex items-center justify-between gap-2 select-none">
       {/* Brand & Wordmark */}
       <div className="flex items-center gap-2 flex-shrink-0">
         <div className="w-6 h-6 rounded bg-electric-blue/15 border border-electric-blue/30 flex items-center justify-center">
@@ -36,16 +39,31 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         </button>
       </div>
 
-      {/* One-Tap Refresh Crate Button */}
-      <button
-        onClick={onRefreshCrate}
-        disabled={isLoading}
-        className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-md bg-panel-elevated hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all disabled:opacity-50 flex-shrink-0"
-        title="Refresh with 10 completely fresh albums"
-        aria-label="Refresh crate"
-      >
-        <RotateCw className={`w-4 h-4 text-electric-blue ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.8} />
-      </button>
+      {/* Action Controls: Theme Switcher & Refresh Crate */}
+      <div className="flex items-center gap-1.5 flex-shrink-0">
+        <button
+          onClick={toggleTheme}
+          className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-md bg-panel-elevated hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all"
+          title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+          aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-4 h-4 text-electric-blue" strokeWidth={1.75} />
+          ) : (
+            <Moon className="w-4 h-4 text-purple-soft" strokeWidth={1.75} />
+          )}
+        </button>
+
+        <button
+          onClick={onRefreshCrate}
+          disabled={isLoading}
+          className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-md bg-panel-elevated hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all disabled:opacity-50"
+          title="Refresh with 10 completely fresh albums"
+          aria-label="Refresh crate"
+        >
+          <RotateCw className={`w-4 h-4 text-electric-blue ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.8} />
+        </button>
+      </div>
     </header>
   );
 };
