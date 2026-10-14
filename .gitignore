@@ -1,4 +1,4 @@
-# Logs
+# Logs & Debugging
 logs
 *.log
 npm-debug.log*
@@ -7,12 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies & Build Output
 node_modules
 dist
 dist-ssr
-*.local
 
-# Editor directories and files
+# Environment & Secrets (Never commit secrets or keys)
+.env
+.env.*
+!.env.example
+*.env
+*.local
+*.pem
+*.key
+*.cert
+credentials.json
+service-account*.json
+
+# Editor & System Files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,20 +34,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.tsbuildinfo
 
-# Environment
-.env
-.env.production
-
-# Scratch & test scripts
+# Scratch & Temporary Scripts
 test_e2e.cjs
 verify_fit.cjs
 diagnose.cjs
 check_assets.cjs
 verify_mobile.cjs
 verify_white_mode_and_covers.cjs
+capture_*.mjs
 scripts/hydrateCatalogArtwork.cjs
 stitch_screen_*
 Testing.code-workspace
 
+# Cloud Hosting & Deployments
 .vercel
