@@ -69,20 +69,26 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
   const isReady = selectedCount >= 2 || (selectedCount >= 1 && anchorInput.trim().length > 0);
 
   return (
-    <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 select-none">
-      {/* Calibration Modal Container (Exact 560px max width, scrollable on mobile) */}
-      <div className="relative w-full max-w-[560px] max-h-[92vh] bg-panel-obsidian rounded-2xl border border-border-light shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-y-auto flex flex-col z-20">
-        {/* Top Subtle Illumination Accent Strip */}
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-purple-soft/60 to-transparent flex-shrink-0"></div>
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 select-none">
+      {/* Audiophile Hardware Setup Container (Exact 560px max width) */}
+      <div className="relative w-full max-w-[560px] max-h-[92vh] audiophile-chassis rounded-2xl border border-border-light shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] overflow-y-auto flex flex-col z-20">
+        {/* Hex Bolts in Corners */}
+        <div className="absolute top-2.5 left-2.5 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
+        <div className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
+        <div className="absolute bottom-2.5 left-2.5 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
+        <div className="absolute bottom-2.5 right-2.5 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
+
+        {/* Top Amber Illumination Accent Strip */}
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-amber-500/70 to-transparent flex-shrink-0" />
 
         {/* Modal Header */}
         <div className="px-5 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 flex-shrink-0">
           <div className="flex items-center justify-between mb-2">
-            {/* Eyebrow with Pulsing Purple Node */}
+            {/* Eyebrow with Pulsing Amber Valve Node */}
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-soft shadow-[0_0_8px_#C084FC]"></span>
-              <span className="font-mono text-[10px] text-purple-soft tracking-widest uppercase">
-                TASTE RECALIBRATION // STEP 01
+              <span className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_#F59E0B] animate-pulse" />
+              <span className="font-mono text-[10px] text-amber-500 tracking-widest uppercase font-bold">
+                PHONO CARTRIDGE ALIGNMENT &middot; STEP 01
               </span>
             </div>
             {/* Dismiss / Escape Hint */}
@@ -102,10 +108,10 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
           </div>
 
           <h1 className="text-xl font-bold tracking-tight text-text-offwhite font-sans">
-            SET YOUR STARTING DIRECTION
+            SET INITIAL ACOUSTIC HARMONICS
           </h1>
           <p className="font-sans text-xs text-text-muted mt-1 leading-relaxed">
-            Pick 2-3 broad sonic textures. We will generate 10 albums and drift across new genres as you rate them.
+            Select 2-3 sonic frequency foundations. We will carve your first 10 vinyl records and dynamically drift into lateral acoustic dimensions as you evaluate them.
           </p>
         </div>
 
@@ -121,14 +127,14 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
                   onClick={() => toggleTexture(point.id)}
                   className={`texture-card cursor-pointer p-3.5 rounded-xl transition-all flex flex-col justify-between group ${
                     isSelected
-                      ? 'bg-panel-elevated border border-purple-soft/80 shadow-[0_0_16px_rgba(192,132,252,0.12)]'
-                      : 'bg-panel-elevated border border-white/[0.06] hover:border-white/[0.18] hover:bg-panel-hover'
+                      ? 'bg-panel-elevated border-2 border-amber-500/80 shadow-[0_0_16px_rgba(245,158,11,0.2)]'
+                      : 'bg-panel-obsidian border border-border-subtle hover:border-border-light hover:bg-panel-elevated'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span
-                      className={`text-xs font-semibold leading-tight transition-colors ${
-                        isSelected ? 'text-text-offwhite' : 'text-text-offwhite group-hover:text-purple-soft'
+                      className={`text-xs font-bold leading-tight font-sans transition-colors ${
+                        isSelected ? 'text-amber-400' : 'text-text-offwhite group-hover:text-amber-300'
                       }`}
                     >
                       {point.title}
@@ -136,12 +142,12 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
                     <div
                       className={`status-icon w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
                         isSelected
-                          ? 'text-purple-soft'
+                          ? 'bg-amber-500 text-black font-bold'
                           : 'border border-border-subtle group-hover:border-text-muted'
                       }`}
                     >
                       {isSelected && (
-                        <Check className="w-3.5 h-3.5 text-purple-soft stroke-[2.2]" />
+                        <Check className="w-3 h-3 text-black stroke-[3]" />
                       )}
                     </div>
                   </div>
@@ -153,12 +159,12 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
             })}
           </div>
 
-          {/* Section: Optional Anchor Input */}
+          {/* Section: Optional Reference Artist/Album Anchor Input */}
           <div className="pt-1 space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span className="font-mono text-[10px] text-text-dim uppercase tracking-wider">
-                  OPTIONAL ANCHOR REFERENCE
+                  REFERENCE DISC / ARTIST ANCHOR
                 </span>
                 <span className="font-mono text-[9px] text-text-dim px-1 rounded bg-panel-elevated border border-border-subtle">
                   GEO-BIAS 0%
@@ -169,21 +175,21 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
 
             <div className="relative flex items-center">
               <div className="absolute left-3.5 text-text-muted pointer-events-none">
-                <Compass className="w-4 h-4" strokeWidth={1.5} />
+                <Compass className="w-4 h-4 text-amber-500" strokeWidth={1.5} />
               </div>
               <input
                 type="text"
                 value={anchorInput}
                 onChange={(e) => setAnchorInput(e.target.value)}
-                placeholder="Or type 1-2 artists or genres as a loose anchor..."
-                className="w-full bg-panel-elevated border border-white/[0.08] focus:border-electric-blue rounded-lg py-2.5 pl-10 pr-24 font-sans text-xs text-text-offwhite placeholder:text-text-dim outline-none transition-all"
+                placeholder="Or type 1-2 benchmark artists or albums as reference..."
+                className="w-full bg-panel-obsidian border border-border-subtle focus:border-amber-500 rounded-lg py-2.5 pl-10 pr-24 font-mono text-xs text-text-offwhite placeholder:text-text-dim outline-none transition-all shadow-inner"
               />
               <div className="absolute right-2 flex items-center gap-1">
                 {anchorInput.trim() ? (
                   <button
                     type="button"
                     onClick={handleClearAnchor}
-                    className="font-mono text-[10px] text-purple-soft/90 bg-purple-soft/10 border border-purple-soft/30 px-1.5 py-0.5 rounded cursor-pointer hover:bg-purple-soft/20 transition-all"
+                    className="font-mono text-[10px] text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded cursor-pointer hover:bg-amber-500/20 transition-all font-bold"
                   >
                     Active Anchor
                   </button>
@@ -203,13 +209,13 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
             type="button"
             onClick={handleSubmit}
             disabled={!isReady || isSubmitting}
-            className="w-full py-3 px-4 rounded-lg bg-electric-blue hover:bg-blue-600 text-text-offwhite font-sans text-xs font-semibold tracking-wide transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full py-3 px-4 rounded-lg bg-electric-blue hover:bg-blue-600 text-text-offwhite font-mono text-xs font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(59,130,246,0.35)] active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
-              <span>Calculating Vector Trajectory...</span>
+              <span>CALCULATING PHONO BIAS &amp; CUTTING CRATE...</span>
             ) : (
               <>
-                <span>Generate First 10 Albums</span>
+                <span>INITIALIZE FIRST 10 VINYL RECORDS</span>
                 <ArrowRight className="w-4 h-4 stroke-[2]" />
               </>
             )}
@@ -219,12 +225,12 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
           <div className="text-center font-mono text-[11px] text-text-muted tracking-tight">
             {selectedCount >= 2 ? (
               <span>
-                {selectedCount} OF 3 TEXTURES SELECTED &bull;{' '}
-                <span className="text-purple-soft">ALGORITHM CALIBRATION READY</span>
+                {selectedCount} OF 3 BIAS TILES SELECTED &bull;{' '}
+                <span className="text-amber-400 font-bold">CARTRIDGE ALIGNMENT READY</span>
               </span>
             ) : (
               <span>
-                {selectedCount} OF 3 TEXTURES SELECTED &bull;{' '}
+                {selectedCount} OF 3 BIAS TILES SELECTED &bull;{' '}
                 <span className="text-text-dim">SELECT AT LEAST 2 TO CALIBRATE</span>
               </span>
             )}

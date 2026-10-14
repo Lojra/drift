@@ -95,3 +95,55 @@
 .vinyl-grooves {
   background: radial-gradient(circle, #0a0a0d 20%, #15151b 21%, #0a0a0d 22%, #15151b 35%, #0a0a0d 36%, #15151b 48%, #0a0a0d 49%, #15151b 60%, #0a0a0d 61%, #15151b 75%, #0a0a0d 76%);
 }
+
+/* Audiophile Brushed Chassis & Rackmount Textures */
+.audiophile-chassis {
+  background: linear-gradient(180deg, rgba(22, 22, 28, 0.95) 0%, rgba(12, 12, 16, 0.98) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.7), 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.audiophile-rack-edge {
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.07), inset -1px 0 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Warm Incandescent Amber Glow for Audiophile Meters & Filament Valves */
+.amber-glow {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+}
+
+.amber-meter-scale {
+  background: radial-gradient(circle at 50% 120%, rgba(245, 158, 11, 0.25) 0%, rgba(26, 18, 8, 0.9) 75%);
+}
+
+/* Phosphor Green / Cyan CRT Scanline Overlay */
+.crt-screen-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+/* Gatefold Vinyl Jacket Outer Mylar Poly-Sleeve Gloss Highlight */
+.vinyl-sleeve-gloss {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.02) 75%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* Tactile Knurled Aluminum Fader Cap */
+.fader-cap-knurled {
+  background: linear-gradient(180deg, #40404a 0%, #22222a 50%, #15151c 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.8);
+}
+

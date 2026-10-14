@@ -22,15 +22,15 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-2xl border-b border-border-subtle md:hidden px-3.5 py-2.5 flex items-center justify-between gap-2 select-none shadow-[inset_0_-1px_0_rgba(255,255,255,0.06),0_4px_20px_rgba(0,0,0,0.15)] transition-colors">
+    <header className="sticky top-0 z-30 audiophile-chassis border-b border-border-subtle md:hidden px-3.5 py-2.5 flex items-center justify-between gap-2 select-none shadow-[inset_0_-1px_0_rgba(255,255,255,0.06),0_4px_20px_rgba(0,0,0,0.5)] transition-colors">
       {/* Brand & Wordmark */}
       <div className="flex items-center gap-2 flex-shrink-0">
-        <div className="w-7 h-7 rounded-lg bg-electric-blue/15 border border-electric-blue/30 flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.2)]">
-          <div className="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_#3B82F6]" />
+        <div className="w-7 h-7 rounded-lg bg-panel-obsidian border border-amber-500/40 flex items-center justify-center shadow-[0_0_10px_rgba(245,158,11,0.3)]">
+          <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_#F59E0B] animate-pulse" />
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold tracking-tight text-sm text-text-offwhite leading-none">DRIFT</span>
-          <span className="font-mono text-[8px] text-text-dim tracking-widest leading-none mt-0.5">LOCAL VAULT</span>
+          <span className="font-extrabold tracking-widest text-sm text-text-offwhite leading-none font-sans">DRIFT</span>
+          <span className="font-mono text-[8px] text-amber-500/90 tracking-widest leading-none mt-0.5">PHONO LAB</span>
         </div>
       </div>
 
@@ -38,10 +38,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
       <div className="flex-1 min-w-0 px-1 text-center">
         <button
           onClick={onCalibrate}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-panel-elevated/70 backdrop-blur-md border border-border-light text-[10px] font-mono text-purple-soft truncate max-w-full hover:border-purple-soft/50 shadow-sm active:scale-95 transition-all"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-panel-obsidian/90 border border-border-light text-[10px] font-mono text-amber-400 truncate max-w-full hover:border-amber-500/50 shadow-sm active:scale-95 transition-all"
           title="Tap to recalibrate taste baseline"
         >
-          <Compass className="w-3 h-3 flex-shrink-0 text-purple-soft animate-spin-slow" />
+          <Compass className="w-3 h-3 flex-shrink-0 text-amber-500 animate-spin-slow" />
           <span className="truncate">{driftPath || 'Calibrated Taste Vector'}</span>
         </button>
       </div>
@@ -51,7 +51,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         {onToggleViewMode && (
           <button
             onClick={() => onToggleViewMode(viewMode === 'grid' ? 'studio' : 'grid')}
-            className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-panel-elevated/80 border border-border-light text-electric-blue active:scale-95 transition-all"
+            className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-panel-obsidian border border-border-light text-amber-400 active:scale-95 transition-all shadow-sm"
             title={viewMode === 'grid' ? 'Switch to Hi-Fi Turntable' : 'Switch to Crate Grid'}
             aria-label="Toggle view mode"
           >
@@ -61,12 +61,12 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
 
         <button
           onClick={toggleTheme}
-          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-panel-elevated/80 hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all shadow-sm"
+          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-panel-obsidian hover:bg-panel-elevated border border-border-light text-text-offwhite active:scale-95 transition-all shadow-sm"
           title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
           aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-electric-blue" strokeWidth={1.75} />
+            <Sun className="w-4 h-4 text-amber-500" strokeWidth={1.75} />
           ) : (
             <Moon className="w-4 h-4 text-purple-soft" strokeWidth={1.75} />
           )}
@@ -75,11 +75,11 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         <button
           onClick={onRefreshCrate}
           disabled={isLoading}
-          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-panel-elevated/80 hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all disabled:opacity-50 shadow-sm"
+          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-electric-blue hover:bg-blue-600 border border-electric-blue text-white active:scale-95 transition-all disabled:opacity-50 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
           title="Refresh with 10 completely fresh albums"
           aria-label="Refresh crate"
         >
-          <RotateCw className={`w-4 h-4 text-electric-blue ${isLoading ? 'animate-spin' : ''}`} strokeWidth={1.8} />
+          <RotateCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2} />
         </button>
       </div>
     </header>

@@ -169,11 +169,11 @@ export const App: React.FC = () => {
             {activeTab === 'archive' && (
               <div className="space-y-4">
                 <div className="pb-1">
-                  <h2 className="text-base font-bold tracking-tight text-text-offwhite">
-                    Rated Discovery Archive
+                  <h2 className="text-sm font-bold tracking-wider font-mono text-text-offwhite uppercase">
+                    AUDIOPHILE VINYL VAULT // 12-INCH MASTER ARCHIVE
                   </h2>
-                  <p className="text-xs text-text-muted mt-0.5">
-                    Your complete rating log, sonic reaction chips, and discovered lateral lineages.
+                  <p className="text-xs text-text-muted mt-0.5 font-sans">
+                    Your complete physical pressing registry, master grade certifications, and acoustic reaction stamps.
                   </p>
                 </div>
 
@@ -187,11 +187,11 @@ export const App: React.FC = () => {
             {activeTab === 'taste' && (
               <div className="space-y-4">
                 <div className="pb-1">
-                  <h2 className="text-base font-bold tracking-tight text-text-offwhite">
-                    Taste Vector Telemetry
+                  <h2 className="text-sm font-bold tracking-wider font-mono text-text-offwhite uppercase">
+                    STUDIO ACOUSTIC ANALYZER // 6-BAND PARAMETRIC CONSOLE
                   </h2>
-                  <p className="text-xs text-text-muted mt-0.5">
-                    Real-time visualization of your acoustic dimensions, liked lateral genres, and suppression boundaries.
+                  <p className="text-xs text-text-muted mt-0.5 font-sans">
+                    Real-time polar acoustic radar scope, RIAA calibrated parametric faders, and magnetic tape bias anchors.
                   </p>
                 </div>
 
