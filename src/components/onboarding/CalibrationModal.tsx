@@ -69,14 +69,14 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
   const isReady = selectedCount >= 2 || (selectedCount >= 1 && anchorInput.trim().length > 0);
 
   return (
-    <div className="fixed inset-0 z-50 bg-canvas-black/80 backdrop-blur-md flex items-center justify-center p-4 select-none">
-      {/* Calibration Modal Container (Exact 560px max width) */}
-      <div className="relative w-full max-w-[560px] bg-panel-obsidian rounded-2xl border border-white/[0.08] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col z-20">
+    <div className="fixed inset-0 z-50 bg-canvas-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 select-none">
+      {/* Calibration Modal Container (Exact 560px max width, scrollable on mobile) */}
+      <div className="relative w-full max-w-[560px] max-h-[92vh] bg-panel-obsidian rounded-2xl border border-white/[0.08] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-y-auto flex flex-col z-20">
         {/* Top Subtle Illumination Accent Strip */}
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-purple-soft/60 to-transparent"></div>
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-purple-soft/60 to-transparent flex-shrink-0"></div>
 
         {/* Modal Header */}
-        <div className="px-7 pt-6 pb-4">
+        <div className="px-5 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 flex-shrink-0">
           <div className="flex items-center justify-between mb-2">
             {/* Eyebrow with Pulsing Purple Node */}
             <div className="flex items-center gap-2">
@@ -110,7 +110,7 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
         </div>
 
         {/* Main Modal Body */}
-        <div className="px-7 space-y-4 pb-2">
+        <div className="px-5 sm:px-7 space-y-4 pb-2">
           {/* 12 Sonic Texture Cards in 2-column scrollable grid */}
           <div className="grid grid-cols-2 gap-2.5 max-h-[290px] overflow-y-auto pr-1" id="textureGrid">
             {SONIC_STARTING_POINTS.map((point) => {
@@ -198,7 +198,7 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
         </div>
 
         {/* Modal Footer Action */}
-        <div className="px-7 pt-3 pb-6 space-y-3">
+        <div className="px-5 sm:px-7 pt-3 pb-6 space-y-3">
           <button
             type="button"
             onClick={handleSubmit}

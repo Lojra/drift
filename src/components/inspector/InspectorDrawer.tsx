@@ -25,8 +25,12 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
 }) => {
   const { currentTrackId, isPlaying, progress, error, playTrack, stop } = useAudioPreview();
   const [tracks, setTracks] = React.useState(album?.tracks || []);
+  const [imgLoaded, setImgLoaded] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
 
   React.useEffect(() => {
+    setImgLoaded(false);
+    setImgError(false);
     if (!album) return;
     if (album.tracks && album.tracks.length > 0) {
       setTracks(album.tracks);
@@ -47,54 +51,99 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
   const scoreDisplay = currentRating ? currentRating.score.toFixed(1) : 'UNRATED';
 
   return (
-    <aside className="w-[380px] flex-shrink-0 bg-panel-obsidian border-l border-border-subtle flex flex-col h-screen z-20 overflow-y-auto select-none">
-      {/* Top Inspector Header */}
-      <div className="px-5 py-3.5 border-b border-border-subtle flex items-center justify-between bg-panel-obsidian sticky top-0 z-30">
-        <div className="flex items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-text-dim">
-            Album Inspector
-          </span>
-          <span className="font-mono text-[10px] text-text-muted bg-panel-elevated px-1.5 py-0.5 rounded border border-border-subtle">
-            ID #{album.id.slice(-5)}
-          </span>
-        </div>
+    <>
+      {/* Mobile Backdrop Overlay */}
+      <div
+        className="fixed inset-0 bg-black/75 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+        onClick={() => {
+          stop();
+          onClose();
+        }}
+      />
 
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-electric-blue"></span>
-          <span className="font-mono text-[11px] text-electric-blue font-semibold">
-            Active Selection
-          </span>
-          <button
-            onClick={() => {
-              stop();
-              onClose();
-            }}
-            className="p-1 rounded hover:bg-panel-elevated text-text-dim hover:text-text-offwhite ml-1.5 transition-colors"
-            title="Close inspector drawer"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
+      <aside className="fixed bottom-0 inset-x-0 max-h-[88vh] rounded-t-2xl border-t border-border-light bg-panel-obsidian z-50 overflow-y-auto select-none shadow-[0_-10px_40px_rgba(0,0,0,0.8)] md:relative md:inset-x-auto md:bottom-auto md:w-[380px] xl:w-[400px] md:rounded-none md:border-t-0 md:border-l md:border-border-subtle md:max-h-none md:h-screen md:z-20 flex flex-col flex-shrink-0 animate-slide-up md:animate-none">
+        {/* Mobile Swipe/Drag Handle Pill */}
+        <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-2.5 md:hidden flex-shrink-0" />
 
-      <div className="p-5 space-y-5">
-        {/* 1. Large Square Album Cover Art with Gradient & Monospace Badges */}
-        <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-panel-elevated border border-border-light shadow-2xl group">
-          <img
-            src={album.coverArtUrl}
-            alt={`${album.title} by ${album.artist}`}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-panel-obsidian/85 via-transparent to-transparent pointer-events-none"></div>
-          <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-            <span className="font-mono text-[11px] text-text-offwhite/90 bg-panel-obsidian/80 backdrop-blur-md px-2 py-1 rounded border border-border-subtle">
-              Cat: {catalogId}
+        {/* Top Inspector Header */}
+        <div className="px-5 py-3.5 border-b border-border-subtle flex items-center justify-between bg-panel-obsidian sticky top-0 z-30">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-text-dim">
+              Album Inspector
             </span>
-            <span className="font-mono text-[11px] font-bold text-purple-soft bg-panel-obsidian/80 backdrop-blur-md px-2 py-1 rounded border border-purple-soft/30">
-              Score: {scoreDisplay}
+            <span className="font-mono text-[10px] text-text-muted bg-panel-elevated px-1.5 py-0.5 rounded border border-border-subtle">
+              ID #{album.id.slice(-5)}
             </span>
           </div>
+
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-electric-blue"></span>
+            <span className="font-mono text-[11px] text-electric-blue font-semibold hidden sm:inline">
+              Active Selection
+            </span>
+            <button
+              onClick={() => {
+                stop();
+                onClose();
+              }}
+              className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-md hover:bg-panel-elevated text-text-dim hover:text-text-offwhite ml-1.5 transition-colors"
+              title="Close inspector drawer"
+              aria-label="Close inspector drawer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
+
+        <div className="p-5 space-y-5">
+          {/* 1. Large Square Album Cover Art with Gradient & Monospace Badges */}
+          <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-panel-elevated border border-border-light shadow-2xl group flex items-center justify-center">
+            {!imgLoaded && !imgError && album.coverArtUrl && (
+              <div className="absolute inset-0 bg-[#13131A] animate-pulse flex items-center justify-center z-10">
+                <div className="w-8 h-8 rounded-full border border-border-light/40 border-t-electric-blue animate-spin" />
+              </div>
+            )}
+
+            {!imgError && album.coverArtUrl ? (
+              <img
+                src={album.coverArtUrl}
+                alt={`${album.title} by ${album.artist}`}
+                className={`w-full h-full object-cover transition-opacity duration-300 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+                onLoad={() => setImgLoaded(true)}
+                onError={() => {
+                  setImgError(true);
+                  setImgLoaded(true);
+                }}
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col justify-between p-4 bg-[#0C0C10] border border-border-light text-left select-none">
+                <span className="font-mono text-[10px] text-purple-soft uppercase tracking-wider">
+                  {album.genres?.[0] || 'ARCHIVE'}
+                </span>
+                <div className="my-auto">
+                  <div className="font-semibold text-text-offwhite text-base leading-tight">
+                    {album.title}
+                  </div>
+                  <div className="font-mono text-xs text-text-muted mt-1.5">
+                    {album.artist} &middot; {album.releaseYear}
+                  </div>
+                </div>
+                <span className="font-mono text-[9px] text-text-muted/60 tracking-widest uppercase">
+                  DRIFT ARCHIVAL RECORD
+                </span>
+              </div>
+            )}
+
+            <div className="absolute inset-0 bg-gradient-to-t from-panel-obsidian/85 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between z-10">
+              <span className="font-mono text-[11px] text-text-offwhite/90 bg-panel-obsidian/80 backdrop-blur-md px-2 py-1 rounded border border-border-subtle">
+                Cat: {catalogId}
+              </span>
+              <span className="font-mono text-[11px] font-bold text-purple-soft bg-panel-obsidian/80 backdrop-blur-md px-2 py-1 rounded border border-purple-soft/30">
+                Score: {scoreDisplay}
+              </span>
+            </div>
+          </div>
 
         {/* 2. Album Title, Artist, Release Year, Record Label */}
         <div className="space-y-2">
@@ -180,5 +229,6 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
         />
       </div>
     </aside>
-  );
+  </>
+);
 };

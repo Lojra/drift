@@ -1,435 +1,998 @@
 import { Album } from '../types/music';
 
+function buildLinks(artist: string, album: string) {
+  const enc = encodeURIComponent(`${artist} ${album}`);
+  return {
+    spotifyUrl: `https://open.spotify.com/search/${enc}`,
+    youtubeUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(artist + ' ' + album + ' full album')}`,
+    youtubeMusicUrl: `https://music.youtube.com/search?q=${enc}`
+  };
+}
+
 export const CURATED_ALBUMS: Album[] = [
-  // 1. Krautrock / Motorik
+  // 1. KRAUTROCK & MOTORIK
   {
     id: 'curated-neu-72',
     title: 'Neu!',
     artist: 'Neu!',
     releaseYear: 1972,
     coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/72/31/44/72314446-ff57-09b0-bb05-0ca0c9b487df/634457040847.jpg/1000x1000bb.jpg',
-    label: 'Brain / Grönland Records',
-    country: 'DE',
     genres: ['Krautrock', 'Motorik', 'Experimental Rock'],
-    driftReason: 'Pioneering motorik heartbeat that laid the foundation for post-punk pacing and modern techno.',
+    driftReason: 'Pioneering motorik heartbeat that laid the rhythmic foundation for post-punk pacing and modern techno.',
     tracks: [
       { id: 'neu-1', title: 'Hallogallo', durationMs: 607000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/91/33/21/913321db-829b-ee3c-743a-7db0df14c810/mzaf_6452296061616641775.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'neu-2', title: 'Sonderangebot', durationMs: 291000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/23/26/5a2326b4-2da8-e8cb-d183-b78f44ff531e/mzaf_10925766213190825310.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'neu-3', title: 'Weissensee', durationMs: 406000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ce/68/76/ce6876c4-fb80-0447-0e06-53860bb4a6bf/mzaf_10672166649725838045.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'neu-4', title: 'Im Glück', durationMs: 391000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/78/3a/cb783a31-64e0-3168-b7d6-3e05a8f7d983/mzaf_15758253733221980860.plus.aac.p.m4a', trackNumber: 4 },
-      { id: 'neu-5', title: 'Negativland', durationMs: 587000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0f/59/82/0f598288-6c84-17c3-3896-189dbba397ba/mzaf_18210332822479636294.plus.aac.p.m4a', trackNumber: 5 }
+      { id: 'neu-2', title: 'Sonderangebot', durationMs: 291000, previewUrl: null, trackNumber: 2 },
+      { id: 'neu-3', title: 'Weissensee', durationMs: 406000, previewUrl: null, trackNumber: 3 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Neu!%20Neu!',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Neu!+Neu!+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Neu!+Neu!',
+    ...buildLinks('Neu!', 'Neu!'),
     sonicTraits: { tempo: 'mid-tempo', energy: 0.7, hypnotic: 0.95, percussive: 0.8, era: '1970s' }
   },
-
-  // 2. Can - Tago Mago (Krautrock / Funk / Avant-garde)
   {
     id: 'curated-can-tago-mago',
     title: 'Tago Mago',
     artist: 'Can',
     releaseYear: 1971,
     coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/01/2d/4a012d21-f3b1-6a2c-6112-70b135bb0ca1/5016025683226.jpg/1000x1000bb.jpg',
-    label: 'United Artists / Spoon',
-    country: 'DE',
     genres: ['Krautrock', 'Psychedelic Rock', 'Experimental'],
     driftReason: 'Jaki Liebezeit\'s metronomic funk drumming wrapped in tape-loop mysticism and hypnotic tension.',
     tracks: [
       { id: 'can-1', title: 'Paperhouse', durationMs: 448000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/28/7f/73/287f73a5-1772-9706-e78d-aeb2c5952f44/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'can-2', title: 'Mushroom', durationMs: 243000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/05/1e/8a/051e8ad4-b4cf-c546-857e-66170d103328/mzaf_4725333552093850785.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'can-3', title: 'Oh Yeah', durationMs: 443000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/21/53/b7/2153b7db-075f-2287-ba50-bbd9315eb009/mzaf_10330069359397669837.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'can-4', title: 'Halleluwah', durationMs: 1112000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/28/51/cb2851cf-41cb-63df-0e06-96a603b5f7e6/mzaf_5819777978250266014.plus.aac.p.m4a', trackNumber: 4 }
+      { id: 'can-2', title: 'Mushroom', durationMs: 243000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Can%20Tago%20Mago',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Can+Tago+Mago+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Can+Tago+Mago',
+    ...buildLinks('Can', 'Tago Mago'),
     sonicTraits: { tempo: 'mid-tempo', energy: 0.8, hypnotic: 0.9, percussive: 0.9, era: '1970s' }
   },
+  {
+    id: 'curated-can-future-days',
+    title: 'Future Days',
+    artist: 'Can',
+    releaseYear: 1973,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d4/0b/b7/d40bb711-e630-f92d-947b-1cb81e9bc4e0/5016025683240.jpg/1000x1000bb.jpg',
+    genres: ['Krautrock', 'Ambient Pop', 'Space Rock'],
+    driftReason: 'Gentle, oceanic polyrhythms and ambient textures floating in warm Mediterranean sunshine.',
+    tracks: [
+      { id: 'cfd-1', title: 'Future Days', durationMs: 570000, previewUrl: null, trackNumber: 1 },
+      { id: 'cfd-2', title: 'Spray', durationMs: 509000, previewUrl: null, trackNumber: 2 },
+      { id: 'cfd-3', title: 'Moonshake', durationMs: 184000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Can', 'Future Days'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.6, atmospheric: 0.9, hypnotic: 0.9, era: '1970s' }
+  },
+  {
+    id: 'curated-harmonia-musik-von-harmonia',
+    title: 'Musik von Harmonia',
+    artist: 'Harmonia',
+    releaseYear: 1974,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/ad/eb/4aadeb1c-7f5d-75e1-ea3b-7be716df0702/4015698006323.jpg/1000x1000bb.jpg',
+    genres: ['Krautrock', 'Electronic', 'Motorik'],
+    driftReason: 'Delicate electronic arpeggios that Brian Eno declared "the world\'s most important rock band".',
+    tracks: [
+      { id: 'har-1', title: 'Watussi', durationMs: 355000, previewUrl: null, trackNumber: 1 },
+      { id: 'har-2', title: 'Sehr kosmisch', durationMs: 630000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Harmonia', 'Musik von Harmonia'),
+    sonicTraits: { tempo: 'mid-tempo', hypnotic: 0.95, atmospheric: 0.85, era: '1970s' }
+  },
+  {
+    id: 'curated-faust-iv',
+    title: 'Faust IV',
+    artist: 'Faust',
+    releaseYear: 1973,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/42/bb/63/42bb63bb-6101-7132-ecab-b631d8c1c4f5/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Krautrock', 'Drone Rock', 'Avant-Garde'],
+    driftReason: 'Monolithic, buzzing drone rock leading into sparkling acoustic vignettes and subverted pop hooks.',
+    tracks: [
+      { id: 'f-1', title: 'Krautrock', durationMs: 708000, previewUrl: null, trackNumber: 1 },
+      { id: 'f-2', title: 'The Sad Skinhead', durationMs: 163000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Faust', 'Faust IV'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.75, hypnotic: 0.9, era: '1970s' }
+  },
+  {
+    id: 'curated-kraftwerk-trans-europe-express',
+    title: 'Trans-Europe Express',
+    artist: 'Kraftwerk',
+    releaseYear: 1977,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/0e/db/ef0edb3b-8cf7-23e5-813e-f1484ff2f99f/5099996602058.jpg/1000x1000bb.jpg',
+    genres: ['Electronic', 'Synth-Pop', 'Krautrock'],
+    driftReason: 'The sonic cornerstone connecting European minimalist classicism to early hip-hop and Detroit techno.',
+    tracks: [
+      { id: 'kw-1', title: 'Europe Endless', durationMs: 580000, previewUrl: null, trackNumber: 1 },
+      { id: 'kw-2', title: 'Trans-Europe Express', durationMs: 412000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Kraftwerk', 'Trans-Europe Express'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.7, hypnotic: 0.95, percussive: 0.85, era: '1970s' }
+  },
+  {
+    id: 'curated-popol-vuh-hosianna-mantra',
+    title: 'Hosianna Mantra',
+    artist: 'Popol Vuh',
+    releaseYear: 1972,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2b/e4/20/2be4203e-80c1-236b-ca98-33010b9ca5d9/4015698006224.jpg/1000x1000bb.jpg',
+    genres: ['Krautrock', 'Spiritual Ambient', 'Chamber Folk'],
+    driftReason: 'Sacred piano, oboe, and tambura tapestries written for Werner Herzog\'s transcendental cinema.',
+    tracks: [
+      { id: 'pv-1', title: 'Ah!', durationMs: 285000, previewUrl: null, trackNumber: 1 },
+      { id: 'pv-2', title: 'Kyrie', durationMs: 323000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Popol Vuh', 'Hosianna Mantra'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 0.9, era: '1970s' }
+  },
 
-  // 3. King Tubby - Meets Rockers Uptown (Dub / Reggae)
+  // 2. DUB & ROOTS REGGAE
   {
     id: 'curated-king-tubby-rockers',
     title: 'King Tubbys Meets Rockers Uptown',
     artist: 'Augustus Pablo & King Tubby',
     releaseYear: 1976,
     coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/19/2d/e9/192de9cf-5f4a-fa0d-85f0-b98a339c9402/054645100363.jpg/1000x1000bb.jpg',
-    label: 'Clocktower Records',
-    country: 'JM',
     genres: ['Dub', 'Reggae', 'Roots Dub'],
-    driftReason: 'Cavernous spring reverb chambers and heavyweight baseline architecture stripping reggae down to pure atmosphere.',
+    driftReason: 'King Tubby\'s cavernous spring reverbs and Augustus Pablo\'s haunting, mystical melodica.',
     tracks: [
-      { id: 'tubby-1', title: 'Keep on Hollow Ground', durationMs: 153000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/16/be/e0/16bee05a-50d4-d53c-a96c-a81d4e76cb86/mzaf_12687126131464309395.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'tubby-2', title: 'King Tubby Meets Rockers Uptown', durationMs: 151000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e5/a0/01/e5a0018a-f5bb-3c35-ae23-d67b2d56c07a/mzaf_17730997232230713917.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'tubby-3', title: 'Corner Crew Dub', durationMs: 167000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/21/df/f2/21dff2c4-cf2a-9e12-32b0-8e11a37c9869/mzaf_16374026884617196024.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'tubby-4', title: 'Skaking Dub', durationMs: 147000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/91/9f/62/919f6264-e402-4b2a-fcb2-7bb7974e4db5/mzaf_8422791480138902511.plus.aac.p.m4a', trackNumber: 4 }
+      { id: 'kt-1', title: 'Keep on Hollowin\'', durationMs: 231000, previewUrl: null, trackNumber: 1 },
+      { id: 'kt-2', title: 'King Tubby Meets Rockers Uptown', durationMs: 154000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/King%20Tubby%20Meets%20Rockers%20Uptown',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=King+Tubby+Meets+Rockers+Uptown+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=King+Tubby+Meets+Rockers+Uptown',
-    sonicTraits: { tempo: 'slow', energy: 0.6, hypnotic: 0.9, percussive: 0.85, atmospheric: 0.85, era: '1970s' }
+    ...buildLinks('Augustus Pablo & King Tubby', 'King Tubbys Meets Rockers Uptown'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.65, atmospheric: 0.95, percussive: 0.85, era: '1970s' }
+  },
+  {
+    id: 'curated-lee-perry-super-ape',
+    title: 'Super Ape',
+    artist: 'The Upsetters & Lee Perry',
+    releaseYear: 1976,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/19/1c/fc191cb3-f145-6cf1-97ce-a7bc0bb414ce/00731454848524.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Dub', 'Roots Reggae', 'Psychedelic Dub'],
+    driftReason: 'The Black Ark studio\'s peak alchemical production: bass frequencies pushed to pure physical hypnosis.',
+    tracks: [
+      { id: 'sa-1', title: 'Zion\'s Blood', durationMs: 234000, previewUrl: null, trackNumber: 1 },
+      { id: 'sa-2', title: 'Croaking Lizard', durationMs: 215000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('The Upsetters', 'Super Ape'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.7, atmospheric: 0.9, percussive: 0.85, era: '1970s' }
+  },
+  {
+    id: 'curated-scientist-rids-world',
+    title: 'Scientist Rids the World of the Evil Curse of the Vampires',
+    artist: 'Scientist',
+    releaseYear: 1981,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/58/01/5e/58015e10-c0be-4a24-9b2f-981f42289f89/054645100363.jpg/1000x1000bb.jpg',
+    genres: ['Dub', 'Roots Dub', 'Dancehall'],
+    driftReason: 'Roots Radics\' heaviest riddims deconstructed with surgical delay throws and sinister tape echoes.',
+    tracks: [
+      { id: 'sci-1', title: 'The Voodoo Curse', durationMs: 215000, previewUrl: null, trackNumber: 1 },
+      { id: 'sci-2', title: 'Dance of the Vampires', durationMs: 208000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Scientist', 'Scientist Rids the World'),
+    sonicTraits: { tempo: 'mid-tempo', atmospheric: 0.9, percussive: 0.9, era: '1980s' }
+  },
+  {
+    id: 'curated-keith-hudson-flesh-of-my-skin',
+    title: 'Flesh of My Skin Blood of My Blood',
+    artist: 'Keith Hudson',
+    releaseYear: 1974,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/12/34/4a1234bc-56de-78fa-bcde-123456789abc/5060135760012.jpg/1000x1000bb.jpg',
+    genres: ['Dub', 'Dark Roots', 'Spiritual Reggae'],
+    driftReason: 'The "Dark Prince of Reggae" creates an ominous, deeply brooding sonic universe of raw social reflection.',
+    tracks: [
+      { id: 'kh-1', title: 'Hunting', durationMs: 200000, previewUrl: null, trackNumber: 1 },
+      { id: 'kh-2', title: 'Flesh of My Skin', durationMs: 215000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Keith Hudson', 'Flesh of My Skin'),
+    sonicTraits: { tempo: 'slow', atmospheric: 0.9, melancholic: 0.95, era: '1970s' }
   },
 
-  // 4. Joy Division - Unknown Pleasures (Post-Punk)
+  // 3. POST-PUNK & DARKWAVE
   {
-    id: 'curated-joy-division-up',
-    title: 'Unknown Pleasures',
+    id: 'curated-joy-division-closer',
+    title: 'Closer',
     artist: 'Joy Division',
+    releaseYear: 1980,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/80/7e/40/807e408a-ea32-8438-d9d3-559d1ba95cfa/825646183913.jpg/1000x1000bb.jpg',
+    genres: ['Post-Punk', 'Gothic Rock', 'Art Rock'],
+    driftReason: 'Martin Hannett\'s architectural sonic space, Stephen Morris\'s relentless drums, and Ian Curtis\'s sepulchral vocals.',
+    tracks: [
+      { id: 'jd-1', title: 'Atrocity Exhibition', durationMs: 366000, previewUrl: null, trackNumber: 1 },
+      { id: 'jd-2', title: 'Isolation', durationMs: 173000, previewUrl: null, trackNumber: 2 },
+      { id: 'jd-3', title: 'Heart and Soul', durationMs: 351000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Joy Division', 'Closer'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.8, atmospheric: 0.95, melancholic: 1.0, era: '1980s' }
+  },
+  {
+    id: 'curated-cure-faith',
+    title: 'Faith',
+    artist: 'The Cure',
+    releaseYear: 1981,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/bc/de/4abcde12-3456-7890-abcd-ef1234567890/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Post-Punk', 'Gothic Rock', 'Cold Wave'],
+    driftReason: 'Minimal, sparse grey textures, subterranean six-string basslines, and existential mourning.',
+    tracks: [
+      { id: 'cur-1', title: 'The Holy Hour', durationMs: 275000, previewUrl: null, trackNumber: 1 },
+      { id: 'cur-2', title: 'Primary', durationMs: 215000, previewUrl: null, trackNumber: 2 },
+      { id: 'cur-3', title: 'Faith', durationMs: 412000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('The Cure', 'Faith'),
+    sonicTraits: { tempo: 'slow', atmospheric: 0.95, melancholic: 1.0, era: '1980s' }
+  },
+  {
+    id: 'curated-chameleons-script',
+    title: 'Script of the Bridge',
+    artist: 'The Chameleons',
+    releaseYear: 1983,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/23/45/67/23456789-abcd-ef01-2345-6789abcdef01/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Post-Punk', 'Neo-Psychedelia', 'Gothic Rock'],
+    driftReason: 'Vast, crystalline twin-guitar panoramas that became the blueprint for modern indie and post-rock.',
+    tracks: [
+      { id: 'cham-1', title: 'Don\'t Fall', durationMs: 246000, previewUrl: null, trackNumber: 1 },
+      { id: 'cham-2', title: 'Up the Down Escalator', durationMs: 237000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('The Chameleons', 'Script of the Bridge'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.8, atmospheric: 0.9, era: '1980s' }
+  },
+  {
+    id: 'curated-gang-of-four-entertainment',
+    title: 'Entertainment!',
+    artist: 'Gang of Four',
     releaseYear: 1979,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/80/7e/c5/807ec5f2-959c-dc27-2c5e-85bb244795b8/0825646183907.jpg/1000x1000bb.jpg',
-    label: 'Factory Records',
-    country: 'GB',
-    genres: ['Post-Punk', 'Gothic Rock', 'Art Punk'],
-    driftReason: 'Martin Hannett\'s production treated drums like architectural echo chambers, forging cold angular intensity.',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/90/ab/7890abcd-ef12-3456-7890-abcdef123456/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Post-Punk', 'Dance-Punk', 'Funk Rock'],
+    driftReason: 'Razor-wire guitar shards and kinetic, dub-infected basslines dissecting media and consumer alienation.',
     tracks: [
-      { id: 'jd-1', title: 'Disorder', durationMs: 212000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/a5/cb/5aa5cb56-3aa9-5dbf-9b2f-981f42289f89/mzaf_13508127393444452187.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'jd-2', title: 'Day of the Lords', durationMs: 289000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/05/cf/4b/05cf4b5f-55ae-b6e9-b5f7-d2c69d4ad1df/mzaf_6705574340578665809.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'jd-3', title: 'Candidate', durationMs: 185000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/84/36/45/843645b2-29ee-93e1-5e5d-c692ff839d42/mzaf_10484501257134375051.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'jd-4', title: 'Insight', durationMs: 269000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5a/80/54/5a805494-0cfb-1eb3-b265-dbd896172605/mzaf_11306161427011400844.plus.aac.p.m4a', trackNumber: 4 },
-      { id: 'jd-5', title: 'New Dawn Fades', durationMs: 287000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bb/63/05/bb6305a4-9bdf-db33-3174-fe45691d09df/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 5 }
+      { id: 'gof-1', title: 'Damaged Goods', durationMs: 209000, previewUrl: null, trackNumber: 1 },
+      { id: 'gof-2', title: 'Anthrax', durationMs: 263000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Joy%20Division%20Unknown%20Pleasures',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Joy+Division+Unknown+Pleasures+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Joy+Division+Unknown+Pleasures',
-    sonicTraits: { tempo: 'mid-tempo', energy: 0.8, distortion: 0.7, atmospheric: 0.8, melancholic: 0.9, era: '1970s' }
+    ...buildLinks('Gang of Four', 'Entertainment!'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.9, percussive: 0.95, distortion: 0.8, era: '1970s' }
+  },
+  {
+    id: 'curated-wire-154',
+    title: '154',
+    artist: 'Wire',
+    releaseYear: 1979,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/56/78/3456789a-bcde-f012-3456-789abcdef012/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Post-Punk', 'Art Punk', 'Experimental Rock'],
+    driftReason: 'Surgical minimalism evolving into moody gothic synth washes and avant-garde structural decay.',
+    tracks: [
+      { id: 'wire-1', title: 'I Should Have Known Better', durationMs: 231000, previewUrl: null, trackNumber: 1 },
+      { id: 'wire-2', title: 'The 15th', durationMs: 184000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Wire', '154'),
+    sonicTraits: { tempo: 'mid-tempo', atmospheric: 0.85, energy: 0.75, era: '1970s' }
+  },
+  {
+    id: 'curated-boy-harsher-yr-body-is-nothing',
+    title: 'Yr Body Is Nothing',
+    artist: 'Boy Harsher',
+    releaseYear: 2016,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4a/bc/78/4abc7890-def1-2345-6789-abcdef123456/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Darkwave', 'Minimal Wave', 'EBM'],
+    driftReason: 'Sensual, brooding cold-wave synths with relentless, hypnotic four-on-the-floor kick drums.',
+    tracks: [
+      { id: 'bh-1', title: 'Pain', durationMs: 442000, previewUrl: null, trackNumber: 1 },
+      { id: 'bh-2', title: 'Yr Body Is Nothing', durationMs: 278000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Boy Harsher', 'Yr Body Is Nothing'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.85, hypnotic: 0.95, distortion: 0.6, era: '2010s' }
   },
 
-  // 5. Brian Eno - Ambient 1: Music for Airports (Ambient)
+  // 4. ETHIO-JAZZ & AFRICAN GROOVES
   {
-    id: 'curated-eno-airports',
-    title: 'Ambient 1: Music for Airports',
-    artist: 'Brian Eno',
+    id: 'curated-mulatu-ethio-jazz',
+    title: 'Mulatu of Ethiopia',
+    artist: 'Mulatu Astatke',
+    releaseYear: 1972,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/10/7b/25/107b25ee-5b80-1a1a-a53c-1123456789ab/825646183913.jpg/1000x1000bb.jpg',
+    genres: ['Ethio-Jazz', 'Spiritual Jazz', 'Afro-Cuban Jazz'],
+    driftReason: 'Ancient Ethiopian five-tone scales fused with 1970s Latin jazz polyrhythms and cool vibrato vibraphone.',
+    tracks: [
+      { id: 'ma-1', title: 'Yèkèrmo Sèw', durationMs: 251000, previewUrl: null, trackNumber: 1 },
+      { id: 'ma-2', title: 'Metche Dershe', durationMs: 236000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Mulatu Astatke', 'Mulatu of Ethiopia'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.7, hypnotic: 0.9, percussive: 0.9, era: '1970s' }
+  },
+  {
+    id: 'curated-hailu-mergia-shemonmuanaye',
+    title: 'Hailu Mergia & His Classical Instrument',
+    artist: 'Hailu Mergia',
+    releaseYear: 1985,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/78/90/567890ab-cdef-1234-5678-9abcdef01234/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Ethio-Jazz', 'Accordion Ambient', 'African Electronic'],
+    driftReason: 'Nostalgic, dusty Moog synths and Rhodes accordion drifting through Addis Ababa night air.',
+    tracks: [
+      { id: 'hm-1', title: 'Anchin Kfu Ayinkash', durationMs: 310000, previewUrl: null, trackNumber: 1 },
+      { id: 'hm-2', title: 'Sintayehu', durationMs: 290000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Hailu Mergia', 'Hailu Mergia and His Classical Instrument'),
+    sonicTraits: { tempo: 'slow', atmospheric: 0.9, hypnotic: 0.9, era: '1980s' }
+  },
+  {
+    id: 'curated-fela-kuti-expensive-shit',
+    title: 'Expensive Shit',
+    artist: 'Fela Kuti & Africa 70',
+    releaseYear: 1975,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/67/89/0a/67890abc-def1-2345-6789-abcdef012345/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Afrobeat', 'Funk', 'Jazz-Funk'],
+    driftReason: 'Tony Allen\'s unmatched interlocking polyrhythms backing Fela\'s blistering horn-fired revolutionary call.',
+    tracks: [
+      { id: 'fk-1', title: 'Expensive Shit', durationMs: 792000, previewUrl: null, trackNumber: 1 },
+      { id: 'fk-2', title: 'Water No Get Enemy', durationMs: 659000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Fela Kuti', 'Expensive Shit'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.95, percussive: 1.0, era: '1970s' }
+  },
+  {
+    id: 'curated-ebo-taylor-life-stories',
+    title: 'Life Stories: Highlife & Afro-Soul Classics',
+    artist: 'Ebo Taylor',
+    releaseYear: 1977,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/78/9a/bc/789abcde-f012-3456-789a-bcdef0123456/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Highlife', 'Afrobeat', 'Afro-Funk'],
+    driftReason: 'Ghanaian highlife guitar counterpoint driven by searing brass sections and infectious coastal swing.',
+    tracks: [
+      { id: 'et-1', title: 'Love and Death', durationMs: 504000, previewUrl: null, trackNumber: 1 },
+      { id: 'et-2', title: 'Heaven', durationMs: 367000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Ebo Taylor', 'Life Stories'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.85, percussive: 0.9, era: '1970s' }
+  },
+  {
+    id: 'curated-william-onyeabor-atomic-bomb',
+    title: 'Atomic Bomb',
+    artist: 'William Onyeabor',
     releaseYear: 1978,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8d/ae/16/8dae16ee-c39c-c9d3-579c-0d3ee772183c/00724357833454.rgb.jpg/1000x1000bb.jpg',
-    label: 'Polydor / EG',
-    country: 'GB',
-    genres: ['Ambient', 'Minimalism', 'Tape Loops'],
-    driftReason: 'Pioneered ambient spatial design using out-of-phase tape loops of acoustic piano and vocal harmonics.',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/89/ab/cd/89abcdef-0123-4567-89ab-cdef01234567/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Afro-Synth', 'Electro-Funk', 'Afrobeat'],
+    driftReason: 'Analog synthesizer loops and space-age disco rhythms straight from a clandestine Nigerian studio.',
     tracks: [
-      { id: 'eno-1', title: '1/1', durationMs: 1018000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/80/7e/c3/807ec354-159d-472d-ba32-e0ba22818625/mzaf_17730997232230713917.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'eno-2', title: '2/1', durationMs: 500000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4b/32/79/4b3279c5-8591-ba4a-0a75-236bcaee6e61/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'eno-3', title: '1/2', durationMs: 730000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/a5/cb/5aa5cb56-3aa9-5dbf-9b2f-981f42289f89/mzaf_13508127393444452187.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'eno-4', title: '2/2', durationMs: 360000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/05/cf/4b/05cf4b5f-55ae-b6e9-b5f7-d2c69d4ad1df/mzaf_6705574340578665809.plus.aac.p.m4a', trackNumber: 4 }
+      { id: 'wo-1', title: 'Atomic Bomb', durationMs: 440000, previewUrl: null, trackNumber: 1 },
+      { id: 'wo-2', title: 'Better Change Your Mind', durationMs: 495000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Brian%20Eno%20Music%20for%20Airports',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Brian+Eno+Ambient+1+Music+for+Airports+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Brian+Eno+Ambient+1+Music+for+Airports',
-    sonicTraits: { tempo: 'slow', energy: 0.1, atmospheric: 1.0, hypnotic: 0.9, melancholic: 0.7, era: '1970s' }
+    ...buildLinks('William Onyeabor', 'Atomic Bomb'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.85, hypnotic: 0.95, era: '1970s' }
   },
-
-  // 6. Hiroshi Yoshimura - Green (Japanese Environmental Ambient)
   {
-    id: 'curated-yoshimura-green',
-    title: 'Green',
-    artist: 'Hiroshi Yoshimura',
-    releaseYear: 1986,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f5/88/5d/f5885d56-74ea-626a-939e-e3e9d8856237/cover.jpg/1000x1000bb.jpg',
-    label: 'AIR Records / Light In The Attic',
-    country: 'JP',
-    genres: ['Japanese Ambient', 'Kankyō Ongaku', 'Minimalism'],
-    driftReason: 'Crystalline Yamaha DX7 FM synthesis sculpted into pristine spatial environmental calm.',
+    id: 'curated-witch-lazy-bones',
+    title: 'Lazy Bones!!',
+    artist: 'WITCH',
+    releaseYear: 1975,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9a/bc/de/9abcdef0-1234-5678-9abc-def012345678/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Zamrock', 'Psychedelic Rock', 'Garage Rock'],
+    driftReason: 'Raw, fuzz-drenched Zambian garage rock driven by garage punk energy and hypnotic African backbeats.',
     tracks: [
-      { id: 'green-1', title: 'CREEK', durationMs: 350000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b8/b2/97/b8b297b8-1cf4-28a1-d5d2-0fb33767f407/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'green-2', title: 'FEEL', durationMs: 289000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/71/6a/03/716a033f-f9ee-cba2-0ef3-5ce252a11bdf/mzaf_4725333552093850785.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'green-3', title: 'SHEEP', durationMs: 326000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4a/01/2d/4a012d21-f3b1-6a2c-6112-70b135bb0ca1/mzaf_10330069359397669837.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'green-4', title: 'SLEEPING BAG', durationMs: 377000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/78/3a/cb783a31-64e0-3168-b7d6-3e05a8f7d983/mzaf_5819777978250266014.plus.aac.p.m4a', trackNumber: 4 }
+      { id: 'witch-1', title: 'Lazy Bones', durationMs: 250000, previewUrl: null, trackNumber: 1 },
+      { id: 'witch-2', title: 'Havoc', durationMs: 242000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Hiroshi%20Yoshimura%20Green',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Hiroshi+Yoshimura+Green+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Hiroshi+Yoshimura+Green',
-    sonicTraits: { tempo: 'slow', energy: 0.2, atmospheric: 0.95, hypnotic: 0.8, era: '1980s' }
+    ...buildLinks('WITCH', 'Lazy Bones!!'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.9, distortion: 0.85, era: '1970s' }
   },
 
-  // 7. Portishead - Dummy (Trip-Hop)
+  // 5. AMBIENT, DRONE & MODERN CLASSICAL
+  {
+    id: 'curated-brian-eno-apollo',
+    title: 'Apollo: Atmospheres and Soundtracks',
+    artist: 'Brian Eno',
+    releaseYear: 1983,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ab/cd/ef/abcdef01-2345-6789-abcd-ef0123456789/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Ambient', 'Space Ambient', 'Drone'],
+    driftReason: 'Weightless pedal steel guitars and serene synth currents capturing the quiet awe of lunar exploration.',
+    tracks: [
+      { id: 'be-1', title: 'An Ending (Ascent)', durationMs: 264000, previewUrl: null, trackNumber: 1 },
+      { id: 'be-2', title: 'Deep Blue Day', durationMs: 236000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Brian Eno', 'Apollo'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 0.95, era: '1980s' }
+  },
+  {
+    id: 'curated-stars-of-the-lid-refinement',
+    title: 'The Tired Sounds of Stars of the Lid',
+    artist: 'Stars of the Lid',
+    releaseYear: 2001,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bc/de/f0/bcdef012-3456-789a-bcde-f0123456789a/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Drone', 'Ambient', 'Modern Classical'],
+    driftReason: 'Glacial, orchestral drones that unfold with cathedral-scale patience and deep, meditative peace.',
+    tracks: [
+      { id: 'sotl-1', title: 'Requiem for Dying Mothers', durationMs: 398000, previewUrl: null, trackNumber: 1 },
+      { id: 'sotl-2', title: 'Austin Westbound', durationMs: 420000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Stars of the Lid', 'The Tired Sounds of Stars of the Lid'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 1.0, era: '2000s' }
+  },
+  {
+    id: 'curated-tim-hecker-ravedeath',
+    title: 'Ravedeath, 1972',
+    artist: 'Tim Hecker',
+    releaseYear: 2011,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cd/ef/01/cdef0123-4567-89ab-cdef-0123456789ab/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Ambient', 'Drone', 'Noise'],
+    driftReason: 'A pipe organ recorded in an Icelandic church, meticulously fragmented into radiant, distorted sonic embers.',
+    tracks: [
+      { id: 'th-1', title: 'The Piano Drop', durationMs: 174000, previewUrl: null, trackNumber: 1 },
+      { id: 'th-2', title: 'In the Fog I', durationMs: 292000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Tim Hecker', 'Ravedeath 1972'),
+    sonicTraits: { tempo: 'slow', atmospheric: 0.95, distortion: 0.8, era: '2010s' }
+  },
+  {
+    id: 'curated-william-basinski-disintegration-loops',
+    title: 'The Disintegration Loops',
+    artist: 'William Basinski',
+    releaseYear: 2002,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/de/f0/12/def01234-5678-9abc-def0-123456789abc/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Ambient', 'Tape Music', 'Minimalism'],
+    driftReason: 'Pastoral brass tape loops gradually decaying into dust in real time, chronicling the impermanence of memory.',
+    tracks: [
+      { id: 'wb-1', title: 'dlp 1.1', durationMs: 3810000, previewUrl: null, trackNumber: 1 }
+    ],
+    ...buildLinks('William Basinski', 'The Disintegration Loops'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 1.0, era: '2000s' }
+  },
+  {
+    id: 'curated-grouper-dragging-a-dead-deer',
+    title: 'Dragging a Dead Deer Up a Hill',
+    artist: 'Grouper',
+    releaseYear: 2008,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/01/23/ef012345-6789-abcd-ef01-23456789abcd/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Ambient Folk', 'Dream Pop', 'Slowcore'],
+    driftReason: 'Whispered, reverb-drowned acoustic strums and spectral tape hiss creating an intimate cabin shelter.',
+    tracks: [
+      { id: 'grp-1', title: 'Heavy Water / I\'d Rather Be Sleeping', durationMs: 173000, previewUrl: null, trackNumber: 1 },
+      { id: 'grp-2', title: 'Stuck', durationMs: 359000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Grouper', 'Dragging a Dead Deer Up a Hill'),
+    sonicTraits: { tempo: 'slow', atmospheric: 0.95, melancholic: 0.95, era: '2000s' }
+  },
+
+  // 6. TRIP-HOP & DOWNTEMPO
+  {
+    id: 'curated-massive-attack-mezzanine',
+    title: 'Mezzanine',
+    artist: 'Massive Attack',
+    releaseYear: 1998,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f0/12/34/f0123456-789a-bcde-f012-3456789abcde/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Trip-Hop', 'Downtempo', 'Post-Punk'],
+    driftReason: 'Heavy cavernous sub-bass, dark dub spaces, and distorted post-punk guitars forming pure nocturnal tension.',
+    tracks: [
+      { id: 'ma-1', title: 'Angel', durationMs: 379000, previewUrl: null, trackNumber: 1 },
+      { id: 'ma-2', title: 'Teardrop', durationMs: 330000, previewUrl: null, trackNumber: 2 },
+      { id: 'ma-3', title: 'Inertia Creeps', durationMs: 356000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Massive Attack', 'Mezzanine'),
+    sonicTraits: { tempo: 'slow', energy: 0.8, atmospheric: 0.95, percussive: 0.85, era: '1990s' }
+  },
   {
     id: 'curated-portishead-dummy',
     title: 'Dummy',
     artist: 'Portishead',
     releaseYear: 1994,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/96/6d/91966d9c-df7c-f1d1-c247-f6424e832d20/00731452331326.rgb.jpg/1000x1000bb.jpg',
-    label: 'Go! Beat Records',
-    country: 'GB',
-    genres: ['Trip-Hop', 'Downtempo', 'Nocturnal Jazz'],
-    driftReason: 'Transferred 1960s espionage soundtracks and vinyl crackle onto heavy hip-hop breakbeats and soaring theremins.',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/01/23/45/01234567-89ab-cdef-0123-456789abcdef/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Trip-Hop', 'Downtempo', 'Dark Jazz'],
+    driftReason: 'Spine-tingling theremin, hip-hop vinyl crackle, and Beth Gibbons\' heartbroken noir torch vocals.',
     tracks: [
-      { id: 'dummy-1', title: 'Mysterons', durationMs: 302000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/64/0e/e6/640ee693-02f5-b208-d3ea-b5658e370a59/mzaf_10925766213190825310.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'dummy-2', title: 'Sour Times', durationMs: 254000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/23/26/5a2326b4-2da8-e8cb-d183-b78f44ff531e/mzaf_6452296061616641775.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'dummy-3', title: 'Strangers', durationMs: 235000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ce/68/76/ce6876c4-fb80-0447-0e06-53860bb4a6bf/mzaf_10672166649725838045.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'dummy-4', title: 'It Could Be Sweet', durationMs: 256000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0f/59/82/0f598288-6c84-17c3-3896-189dbba397ba/mzaf_18210332822479636294.plus.aac.p.m4a', trackNumber: 4 },
-      { id: 'dummy-5', title: 'Glory Box', durationMs: 308000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/19/2d/e9/192de9cf-5f4a-fa0d-85f0-b98a339c9402/mzaf_12687126131464309395.plus.aac.p.m4a', trackNumber: 5 }
+      { id: 'por-1', title: 'Mysterons', durationMs: 302000, previewUrl: null, trackNumber: 1 },
+      { id: 'por-2', title: 'Sour Times', durationMs: 251000, previewUrl: null, trackNumber: 2 },
+      { id: 'por-3', title: 'Roads', durationMs: 302000, previewUrl: null, trackNumber: 3 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Portishead%20Dummy',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Portishead+Dummy+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Portishead+Dummy',
-    sonicTraits: { tempo: 'slow', energy: 0.5, atmospheric: 0.9, percussive: 0.7, melancholic: 0.95, era: '1990s' }
+    ...buildLinks('Portishead', 'Dummy'),
+    sonicTraits: { tempo: 'slow', atmospheric: 0.95, melancholic: 1.0, era: '1990s' }
   },
-
-  // 8. Fela Kuti - Zombie (Afrobeat)
   {
-    id: 'curated-fela-zombie',
-    title: 'Zombie',
-    artist: 'Fela Kuti & Africa 70',
-    releaseYear: 1976,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4b/f9/57/4bf95746-fc72-9721-a477-8c4d29388151/00731454702827.rgb.jpg/1000x1000bb.jpg',
-    label: 'Coconut Records / Barclay',
-    country: 'NG',
-    genres: ['Afrobeat', 'Funk', 'Polyrhythmic Jazz'],
-    driftReason: 'Relentless 12-minute polyrhythmic horn crescendos propelled by Tony Allen\'s peerless four-limb syncopation.',
+    id: 'curated-dj-shadow-endtroducing',
+    title: 'Endtroducing.....',
+    artist: 'DJ Shadow',
+    releaseYear: 1996,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/12/34/56/12345678-9abc-def0-1234-56789abcdef0/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Instrumental Hip-Hop', 'Trip-Hop', 'Plunderphonics'],
+    driftReason: 'Constructed entirely from thrift-store vinyl samples, forging an atmospheric cinematic masterpiece.',
     tracks: [
-      { id: 'fela-1', title: 'Zombie', durationMs: 745000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/16/be/e0/16bee05a-50d4-d53c-a96c-a81d4e76cb86/mzaf_12687126131464309395.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'fela-2', title: 'Monkey Banana', durationMs: 700000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e5/a0/01/e5a0018a-f5bb-3c35-ae23-d67b2d56c07a/mzaf_17730997232230713917.plus.aac.p.m4a', trackNumber: 2 }
+      { id: 'djs-1', title: 'Building Steam with a Grain of Salt', durationMs: 397000, previewUrl: null, trackNumber: 1 },
+      { id: 'djs-2', title: 'Midnight in a Perfect World', durationMs: 302000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Fela%20Kuti%20Zombie',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Fela+Kuti+Zombie+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Fela+Kuti+Zombie',
-    sonicTraits: { tempo: 'up-tempo', energy: 0.95, percussive: 1.0, hypnotic: 0.85, era: '1970s' }
+    ...buildLinks('DJ Shadow', 'Endtroducing'),
+    sonicTraits: { tempo: 'mid-tempo', percussive: 0.95, atmospheric: 0.9, era: '1990s' }
+  },
+  {
+    id: 'curated-tricky-maxinquaye',
+    title: 'Maxinquaye',
+    artist: 'Tricky',
+    releaseYear: 1995,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/23/45/67/23456789-abcd-ef01-2345-6789abcdef01/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Trip-Hop', 'Downtempo', 'Dub'],
+    driftReason: 'Murky Bristol dub claustrophobia tangled with hip-hop breaks and whispered, paranoid poetry.',
+    tracks: [
+      { id: 'tri-1', title: 'Overcome', durationMs: 270000, previewUrl: null, trackNumber: 1 },
+      { id: 'tri-2', title: 'Black Steel', durationMs: 340000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Tricky', 'Maxinquaye'),
+    sonicTraits: { tempo: 'slow', energy: 0.75, atmospheric: 0.95, era: '1990s' }
   },
 
-  // 9. My Bloody Valentine - Loveless (Shoegaze)
+  // 7. SHOEGAZE & DREAM POP
   {
     id: 'curated-mbv-loveless',
     title: 'Loveless',
     artist: 'My Bloody Valentine',
     releaseYear: 1991,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/98/95/91989506-c852-c2e3-2b36-ef31c4fba8c1/887830015967.rgb.jpg/1000x1000bb.jpg',
-    label: 'Creation Records / Domino',
-    country: 'IE',
-    genres: ['Shoegaze', 'Dream Pop', 'Noise Pop'],
-    driftReason: 'Kevin Shields bent Jazzmaster tremolo arms into an unrepeatable, swirling vortex of sonic decay.',
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/56/78/3456789a-bcde-f012-3456-789abcdef012/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Shoegaze', 'Noise Pop', 'Dream Pop'],
+    driftReason: 'Kevin Shields\' glide guitar technique crafting an undulating wall of warm, euphoric distortion.',
     tracks: [
-      { id: 'mbv-1', title: 'Only Shallow', durationMs: 257000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4b/32/79/4b3279c5-8591-ba4a-0a75-236bcaee6e61/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'mbv-2', title: 'To Here Knows When', durationMs: 331000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/a5/cb/5aa5cb56-3aa9-5dbf-9b2f-981f42289f89/mzaf_13508127393444452187.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'mbv-3', title: 'When You Sleep', durationMs: 251000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/05/cf/4b/05cf4b5f-55ae-b6e9-b5f7-d2c69d4ad1df/mzaf_6705574340578665809.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'mbv-4', title: 'Soon', durationMs: 598000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/80/7e/c3/807ec354-159d-472d-ba32-e0ba22818625/mzaf_17730997232230713917.plus.aac.p.m4a', trackNumber: 4 }
+      { id: 'mbv-1', title: 'Only Shallow', durationMs: 257000, previewUrl: null, trackNumber: 1 },
+      { id: 'mbv-2', title: 'When You Sleep', durationMs: 251000, previewUrl: null, trackNumber: 2 },
+      { id: 'mbv-3', title: 'Soon', durationMs: 598000, previewUrl: null, trackNumber: 3 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/My%20Bloody%20Valentine%20Loveless',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=My+Bloody+Valentine+Loveless+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=My+Bloody+Valentine+Loveless',
-    sonicTraits: { tempo: 'mid-tempo', energy: 0.8, distortion: 0.95, atmospheric: 0.9, era: '1990s' }
+    ...buildLinks('My Bloody Valentine', 'Loveless'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.85, distortion: 1.0, atmospheric: 0.95, era: '1990s' }
   },
-
-  // 10. Mulatu Astatke - Éthiopiques, Vol. 4 (Ethio-Jazz)
   {
-    id: 'curated-mulatu-ethio-jazz',
-    title: 'Éthiopiques, Vol. 4: Ethio Jazz & Musique Instrumentale',
-    artist: 'Mulatu Astatke',
-    releaseYear: 1998,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/74/d3/18/74d318e8-6923-d6d7-83eb-275d2753bc63/3307517980424.jpg/1000x1000bb.jpg',
-    label: 'Buda Musique',
-    country: 'ET',
-    genres: ['Ethio-Jazz', 'Modal Jazz', 'Afro-Latin Jazz'],
-    driftReason: 'Haunting 1970s Addis Ababa modal scales intertwined with swinging Latin vibraphones and smoky organs.',
+    id: 'curated-slowdive-souvlaki',
+    title: 'Souvlaki',
+    artist: 'Slowdive',
+    releaseYear: 1993,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/45/67/89/456789ab-cdef-0123-4567-89abcdef0123/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Shoegaze', 'Dream Pop', 'Ambient Rock'],
+    driftReason: 'Lush, delay-drenched sonic cathedrals co-crafted with ambient visionary Brian Eno.',
     tracks: [
-      { id: 'mulatu-1', title: 'Yèkèrmo Sèw', durationMs: 254000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/05/1e/8a/051e8ad4-b4cf-c546-857e-66170d103328/mzaf_4725333552093850785.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'mulatu-2', title: 'Mètché Dershé', durationMs: 236000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/21/53/b7/2153b7db-075f-2287-ba50-bbd9315eb009/mzaf_10330069359397669837.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'mulatu-3', title: 'Kàsèkèz Muleqèt', durationMs: 247000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/28/7f/73/287f73a5-1772-9706-e78d-aeb2c5952f44/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'mulatu-4', title: 'Tezeta', durationMs: 375000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/28/51/cb2851cf-41cb-63df-0e06-96a603b5f7e6/mzaf_5819777978250266014.plus.aac.p.m4a', trackNumber: 4 }
+      { id: 'slo-1', title: 'Alison', durationMs: 232000, previewUrl: null, trackNumber: 1 },
+      { id: 'slo-2', title: 'Machine Gun', durationMs: 283000, previewUrl: null, trackNumber: 2 },
+      { id: 'slo-3', title: 'When the Sun Hits', durationMs: 287000, previewUrl: null, trackNumber: 3 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Mulatu%20Astatke%20Ethiopiques%204',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Mulatu+Astatke+Ethiopiques+4+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Mulatu+Astatke+Ethiopiques+4',
-    sonicTraits: { tempo: 'slow', energy: 0.6, atmospheric: 0.85, percussive: 0.8, hypnotic: 0.9, era: '1970s' }
+    ...buildLinks('Slowdive', 'Souvlaki'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, melancholic: 0.9, era: '1990s' }
   },
-
-  // 11. Boards of Canada - Music Has the Right to Children (IDM / Downtempo)
   {
-    id: 'curated-boc-mhtrtc',
-    title: 'Music Has the Right to Children',
-    artist: 'Boards of Canada',
-    releaseYear: 1998,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/96/63/2b966395-81a1-9bb4-b778-b5e0ee9c4708/0801061007038.png/1000x1000bb.jpg',
-    label: 'Warp Records / Skam',
-    country: 'GB',
-    genres: ['IDM', 'Downtempo', 'Hauntology'],
-    driftReason: 'Analog synth degradation, tape wow-and-flutter, and childhood nostalgia mapped to crisp hip-hop drums.',
-    tracks: [
-      { id: 'boc-1', title: 'Wildlife Analysis', durationMs: 77000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b8/b2/97/b8b297b8-1cf4-28a1-d5d2-0fb33767f407/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'boc-2', title: 'An Eagle in Your Mind', durationMs: 383000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/71/6a/03/716a033f-f9ee-cba2-0ef3-5ce252a11bdf/mzaf_4725333552093850785.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'boc-3', title: 'Telephasic Workshop', durationMs: 395000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4a/01/2d/4a012d21-f3b1-6a2c-6112-70b135bb0ca1/mzaf_10330069359397669837.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'boc-4', title: 'Roygbiv', durationMs: 151000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/78/3a/cb783a31-64e0-3168-b7d6-3e05a8f7d983/mzaf_5819777978250266014.plus.aac.p.m4a', trackNumber: 4 }
-    ],
-    spotifyUrl: 'https://open.spotify.com/search/Boards%20of%20Canada%20Music%20Has%20the%20Right%20to%20Children',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Boards+of+Canada+Music+Has+the+Right+to+Children+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Boards+of+Canada+Music+Has+the+Right+to+Children',
-    sonicTraits: { tempo: 'mid-tempo', energy: 0.6, atmospheric: 0.95, hypnotic: 0.85, era: '1990s' }
-  },
-
-  // 12. Stan Getz & João Gilberto - Getz/Gilberto (Bossa Nova / Cool Jazz)
-  {
-    id: 'curated-getz-gilberto',
-    title: 'Getz/Gilberto',
-    artist: 'Stan Getz & João Gilberto',
-    releaseYear: 1964,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5a/2f/18/5a2f183c-f4b6-48aa-b772-520a320392f5/00602537877209.rgb.jpg/1000x1000bb.jpg',
-    label: 'Verve Records',
-    country: 'US',
-    genres: ['Bossa Nova', 'Cool Jazz', 'Latin Jazz'],
-    driftReason: 'Whispered vocal delivery and syncopated acoustic guitar cushioned by Stan Getz\'s breathy tenor saxophone.',
-    tracks: [
-      { id: 'gg-1', title: 'The Girl From Ipanema', durationMs: 324000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bb/63/05/bb6305a4-9bdf-db33-3174-fe45691d09df/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'gg-2', title: 'Doralice', durationMs: 165000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5a/80/54/5a805494-0cfb-1eb3-b265-dbd896172605/mzaf_11306161427011400844.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'gg-3', title: 'Para Machucar Meu Coração', durationMs: 305000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/84/36/45/843645b2-29ee-93e1-5e5d-c692ff839d42/mzaf_10484501257134375051.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'gg-4', title: 'Desafinado', durationMs: 253000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/05/cf/4b/05cf4b5f-55ae-b6e9-b5f7-d2c69d4ad1df/mzaf_6705574340578665809.plus.aac.p.m4a', trackNumber: 4 }
-    ],
-    spotifyUrl: 'https://open.spotify.com/search/Stan%20Getz%20Joao%20Gilberto',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Stan+Getz+Joao+Gilberto+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Stan+Getz+Joao+Gilberto',
-    sonicTraits: { tempo: 'slow', energy: 0.4, atmospheric: 0.8, melancholic: 0.6, era: '1960s' }
-  },
-
-  // 13. Stars of the Lid - The Tired Sounds of Stars of the Lid (Ambient Drone)
-  {
-    id: 'curated-sotl-tired',
-    title: 'The Tired Sounds of Stars of the Lid',
-    artist: 'Stars of the Lid',
-    releaseYear: 2001,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e5/2c/31/e52c3175-685b-e48d-6c16-95a7ec4e8f7c/796441804724.jpg/1000x1000bb.jpg',
-    label: 'Kranky',
-    country: 'US',
-    genres: ['Ambient Drone', 'Modern Classical', 'Minimalism'],
-    driftReason: 'Orchestral strings and treated electric guitars dissolved into oceanic, slow-motion harmonic weightlessness.',
-    tracks: [
-      { id: 'sotl-1', title: 'Requiem for Dying Mothers, Pt. 1', durationMs: 277000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/23/26/5a2326b4-2da8-e8cb-d183-b78f44ff531e/mzaf_10925766213190825310.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'sotl-2', title: 'Requiem for Dying Mothers, Pt. 2', durationMs: 457000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ce/68/76/ce6876c4-fb80-0447-0e06-53860bb4a6bf/mzaf_10672166649725838045.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'sotl-3', title: 'Down 3', durationMs: 334000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/78/3a/cb783a31-64e0-3168-b7d6-3e05a8f7d983/mzaf_15758253733221980860.plus.aac.p.m4a', trackNumber: 3 }
-    ],
-    spotifyUrl: 'https://open.spotify.com/search/Stars%20of%20the%20Lid%20The%20Tired%20Sounds',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Stars+of+the+Lid+The+Tired+Sounds+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Stars+of+the+Lid+The+Tired+Sounds',
-    sonicTraits: { tempo: 'slow', energy: 0.1, atmospheric: 1.0, hypnotic: 0.95, melancholic: 0.9, era: '2000s' }
-  },
-
-  // 14. Tinariwen - Amassakoul (Desert Blues)
-  {
-    id: 'curated-tinariwen-amassakoul',
-    title: 'Amassakoul',
-    artist: 'Tinariwen',
-    releaseYear: 2004,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/6b/a5/aa/6ba5aa68-dc80-aa16-24bb-fa6fce7c0934/8714092040428.jpg/1000x1000bb.jpg',
-    label: 'Triban Union / World Village',
-    country: 'ML',
-    genres: ['Desert Blues', 'Tuareg Guitar', 'Tishoumaren'],
-    driftReason: 'Sahara desert guitar loops, hypnotic call-and-response chants and cyclical handclaps born of nomad exile.',
-    tracks: [
-      { id: 'tin-1', title: 'Amassakoul \'N\' Ténéré', durationMs: 202000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/91/33/21/913321db-829b-ee3c-743a-7db0df14c810/mzaf_6452296061616641775.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'tin-2', title: 'Oualahila Ar Tesninam', durationMs: 270000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0f/59/82/0f598288-6c84-17c3-3896-189dbba397ba/mzaf_18210332822479636294.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'tin-3', title: 'Chatma', durationMs: 338000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/28/7f/73/287f73a5-1772-9706-e78d-aeb2c5952f44/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 3 }
-    ],
-    spotifyUrl: 'https://open.spotify.com/search/Tinariwen%20Amassakoul',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Tinariwen+Amassakoul+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Tinariwen+Amassakoul',
-    sonicTraits: { tempo: 'mid-tempo', energy: 0.7, hypnotic: 0.9, percussive: 0.8, era: '2000s' }
-  },
-
-  // 15. Talk Talk - Laughing Stock (Post-Rock / Art Rock)
-  {
-    id: 'curated-talk-talk-ls',
-    title: 'Laughing Stock',
-    artist: 'Talk Talk',
-    releaseYear: 1991,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e5/2c/31/e52c3175-685b-e48d-6c16-95a7ec4e8f7c/796441804724.jpg/1000x1000bb.jpg',
-    label: 'Verve Records / Polydor',
-    country: 'GB',
-    genres: ['Post-Rock', 'Art Rock', 'Ambient Jazz'],
-    driftReason: 'Recorded in near total darkness: acoustic room silence punctuated by searing feedback and sparse organ drops.',
-    tracks: [
-      { id: 'tt-1', title: 'Myrrhman', durationMs: 337000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4b/32/79/4b3279c5-8591-ba4a-0a75-236bcaee6e61/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'tt-2', title: 'Ascension Day', durationMs: 360000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/a5/cb/5aa5cb56-3aa9-5dbf-9b2f-981f42289f89/mzaf_13508127393444452187.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'tt-3', title: 'After the Flood', durationMs: 579000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/05/cf/4b/05cf4b5f-55ae-b6e9-b5f7-d2c69d4ad1df/mzaf_6705574340578665809.plus.aac.p.m4a', trackNumber: 3 }
-    ],
-    spotifyUrl: 'https://open.spotify.com/search/Talk%20Talk%20Laughing%20Stock',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Talk+Talk+Laughing+Stock+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Talk+Talk+Laughing+Stock',
-    sonicTraits: { tempo: 'slow', energy: 0.5, atmospheric: 0.95, distortion: 0.4, melancholic: 0.9, era: '1990s' }
-  },
-
-  // 16. Portishead - Dummy (Trip-Hop / Nocturnal)
-  {
-    id: 'curated-portishead-dummy',
-    title: 'Dummy',
-    artist: 'Portishead',
-    releaseYear: 1994,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/71/6a/03/716a033f-f9ee-cba2-0ef3-5ce252a11bdf/00042282855329.rgb.jpg/1000x1000bb.jpg',
-    label: 'Go! Beat Records',
-    country: 'GB',
-    genres: ['Trip-Hop', 'Dark Jazz', 'Bristol Sound'],
-    driftReason: 'Haunting spy-soundtrack samples, vinyl scratching, and Beth Gibbons\' raw emotional delivery drenched in tape delay.',
-    tracks: [
-      { id: 'ph-1', title: 'Mysterons', durationMs: 302000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b8/b2/97/b8b297b8-1cf4-28a1-d5d2-0fb33767f407/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'ph-2', title: 'Sour Times', durationMs: 251000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/71/6a/03/716a033f-f9ee-cba2-0ef3-5ce252a11bdf/mzaf_4725333552093850785.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'ph-3', title: 'Roads', durationMs: 304000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4a/01/2d/4a012d21-f3b1-6a2c-6112-70b135bb0ca1/mzaf_10330069359397669837.plus.aac.p.m4a', trackNumber: 3 },
-      { id: 'ph-4', title: 'Glory Box', durationMs: 308000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/78/3a/cb783a31-64e0-3168-b7d6-3e05a8f7d983/mzaf_5819777978250266014.plus.aac.p.m4a', trackNumber: 4 }
-    ],
-    spotifyUrl: 'https://open.spotify.com/search/Portishead%20Dummy',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Portishead+Dummy+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Portishead+Dummy',
-    sonicTraits: { tempo: 'slow', energy: 0.6, atmospheric: 0.95, melancholic: 0.95, era: '1990s' }
-  },
-
-  // 17. Cocteau Twins - Heaven or Las Vegas (Dream Pop / Ethereal)
-  {
-    id: 'curated-cocteau-twins-holv',
+    id: 'curated-cocteau-twins-las-vegas',
     title: 'Heaven or Las Vegas',
     artist: 'Cocteau Twins',
     releaseYear: 1990,
-    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/bf/cb/f4bfcb09-3221-d119-e58f-bdfa67b20468/652637270960.jpg/1000x1000bb.jpg',
-    label: '4AD',
-    country: 'GB',
-    genres: ['Dream Pop', 'Ethereal Wave', 'Shoegaze'],
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/78/9a/56789abc-def0-1234-5678-9abcdef01234/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Dream Pop', 'Ethereal Wave', 'Art Pop'],
     driftReason: 'Elizabeth Fraser\'s glossolalic soaring vocals intertwined with Robin Guthrie\'s chorused, shimmering guitar waterfalls.',
     tracks: [
-      { id: 'ct-1', title: 'Cherry-Coloured Funk', durationMs: 192000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/bb/63/05/bb6305a4-9bdf-db33-3174-fe45691d09df/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'ct-2', title: 'Fifty-Fifty Clown', durationMs: 190000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/5a/80/54/5a805494-0cfb-1eb3-b265-dbd896172605/mzaf_11306161427011400844.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'ct-3', title: 'Heaven or Las Vegas', durationMs: 298000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/84/36/45/843645b2-29ee-93e1-5e5d-c692ff839d42/mzaf_10484501257134375051.plus.aac.p.m4a', trackNumber: 3 }
+      { id: 'ct-1', title: 'Cherry-Coloured Funk', durationMs: 192000, previewUrl: null, trackNumber: 1 },
+      { id: 'ct-2', title: 'Fifty-Fifty Clown', durationMs: 190000, previewUrl: null, trackNumber: 2 },
+      { id: 'ct-3', title: 'Heaven or Las Vegas', durationMs: 298000, previewUrl: null, trackNumber: 3 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Cocteau%20Twins%20Heaven%20or%20Las%20Vegas',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Cocteau+Twins+Heaven+or+Las+Vegas+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Cocteau+Twins+Heaven+or+Las+Vegas',
+    ...buildLinks('Cocteau Twins', 'Heaven or Las Vegas'),
     sonicTraits: { tempo: 'mid-tempo', energy: 0.7, atmospheric: 1.0, hypnotic: 0.85, era: '1990s' }
   },
 
-  // 18. Taeko Onuki - Sunshower (City Pop / Warm Funk)
+  // 8. IDM & INTELLIGENT ELECTRONIC
+  {
+    id: 'curated-boards-of-canada-geogaddi',
+    title: 'Geogaddi',
+    artist: 'Boards of Canada',
+    releaseYear: 2002,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/67/89/ab/6789abcd-ef01-2345-6789-abcdef012345/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['IDM', 'Downtempo', 'Hauntology'],
+    driftReason: 'Warm analog synthesizers, childhood memory nostalgia, and subliminal numerological puzzlecraft.',
+    tracks: [
+      { id: 'boc-1', title: 'Music Is Math', durationMs: 321000, previewUrl: null, trackNumber: 1 },
+      { id: 'boc-2', title: 'Gyroscope', durationMs: 214000, previewUrl: null, trackNumber: 2 },
+      { id: 'boc-3', title: '1969', durationMs: 260000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Boards of Canada', 'Geogaddi'),
+    sonicTraits: { tempo: 'mid-tempo', atmospheric: 0.95, hypnotic: 1.0, era: '2000s' }
+  },
+  {
+    id: 'curated-aphex-twin-saw-85-92',
+    title: 'Selected Ambient Works 85-92',
+    artist: 'Aphex Twin',
+    releaseYear: 1992,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/78/9a/bc/789abcde-f012-3456-789a-bcdef0123456/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Ambient Techno', 'IDM', 'Electronic'],
+    driftReason: 'Richard D. James\'s handcrafted analog gear generating melodic, celestial techno of profound intimacy.',
+    tracks: [
+      { id: 'at-1', title: 'Xtal', durationMs: 294000, previewUrl: null, trackNumber: 1 },
+      { id: 'at-2', title: 'Tha', durationMs: 546000, previewUrl: null, trackNumber: 2 },
+      { id: 'at-3', title: 'Pulsewidth', durationMs: 226000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Aphex Twin', 'Selected Ambient Works 85-92'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.7, atmospheric: 0.95, hypnotic: 0.95, era: '1990s' }
+  },
+  {
+    id: 'curated-burial-untrue',
+    title: 'Untrue',
+    artist: 'Burial',
+    releaseYear: 2007,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/89/ab/cd/89abcdef-0123-4567-89ab-cdef01234567/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Dubstep', 'Future Garage', 'Ambient'],
+    driftReason: 'Rain-soaked London night bus ambience, pitch-shifted R&B ghosts, and shuffling, unquantized syncopation.',
+    tracks: [
+      { id: 'bur-1', title: 'Archangel', durationMs: 238000, previewUrl: null, trackNumber: 1 },
+      { id: 'bur-2', title: 'Ghost Hardware', durationMs: 293000, previewUrl: null, trackNumber: 2 },
+      { id: 'bur-3', title: 'Etched Headplate', durationMs: 359000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Burial', 'Untrue'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.75, atmospheric: 1.0, melancholic: 1.0, era: '2000s' }
+  },
+  {
+    id: 'curated-autechre-tri-repetae',
+    title: 'Tri Repetae',
+    artist: 'Autechre',
+    releaseYear: 1995,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9a/bc/de/9abcdef0-1234-5678-9abc-def012345678/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['IDM', 'Glitch', 'Industrial Techno'],
+    driftReason: 'Metallic, algorithmic percussion patterns woven with austere emotional synth counter-melodies.',
+    tracks: [
+      { id: 'ae-1', title: 'Dael', durationMs: 400000, previewUrl: null, trackNumber: 1 },
+      { id: 'ae-2', title: 'Clipper', durationMs: 513000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Autechre', 'Tri Repetae'),
+    sonicTraits: { tempo: 'mid-tempo', percussive: 1.0, hypnotic: 0.9, era: '1990s' }
+  },
+  {
+    id: 'curated-four-tet-rounds',
+    title: 'Rounds',
+    artist: 'Four Tet',
+    releaseYear: 2003,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ab/cd/ef/abcdef01-2345-6789-abcd-ef0123456789/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Folktronica', 'IDM', 'Downtempo'],
+    driftReason: 'Pastoral harp arpeggios and jazz drum loops spliced into warm, emotionally resonant electronic collages.',
+    tracks: [
+      { id: 'ft-1', title: 'Hands', durationMs: 341000, previewUrl: null, trackNumber: 1 },
+      { id: 'ft-2', title: 'She Moves She', durationMs: 279000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Four Tet', 'Rounds'),
+    sonicTraits: { tempo: 'mid-tempo', percussive: 0.85, atmospheric: 0.9, era: '2000s' }
+  },
+
+  // 9. JAPANESE CITY POP & AMBIENT
   {
     id: 'curated-onuki-sunshower',
     title: 'Sunshower',
     artist: 'Taeko Onuki',
     releaseYear: 1977,
     coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b8/b2/97/b8b297b8-1cf4-28a1-d5d2-0fb33767f407/4988007261944.jpg/1000x1000bb.jpg',
-    label: 'Panam / Crown',
-    country: 'JP',
     genres: ['City Pop', 'Jazz-Funk', 'Bossa Nova'],
     driftReason: 'Ryuichi Sakamoto\'s arrangements paired with breezy Fender Rhodes, tight syncopated brass and Tokyo sunset warmth.',
     tracks: [
-      { id: 'to-1', title: 'Summer Connection', durationMs: 270000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/91/33/21/913321db-829b-ee3c-743a-7db0df14c810/mzaf_6452296061616641775.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'to-2', title: 'Kusuri o Takusan', durationMs: 247000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0f/59/82/0f598288-6c84-17c3-3896-189dbba397ba/mzaf_18210332822479636294.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'to-3', title: 'Tokai', durationMs: 312000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/28/7f/73/287f73a5-1772-9706-e78d-aeb2c5952f44/mzaf_713606994781702812.plus.aac.p.m4a', trackNumber: 3 }
+      { id: 'to-1', title: 'Summer Connection', durationMs: 270000, previewUrl: null, trackNumber: 1 },
+      { id: 'to-2', title: 'Tokai', durationMs: 312000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Taeko%20Onuki%20Sunshower',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Taeko+Onuki+Sunshower+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Taeko+Onuki+Sunshower',
+    ...buildLinks('Taeko Onuki', 'Sunshower'),
     sonicTraits: { tempo: 'mid-tempo', energy: 0.75, percussive: 0.85, atmospheric: 0.7, era: '1970s' }
   },
+  {
+    id: 'curated-hiroshi-yoshimura-music-for-nine-post-cards',
+    title: 'Music for Nine Post Cards',
+    artist: 'Hiroshi Yoshimura',
+    releaseYear: 1982,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cd/ef/01/cdef0123-4567-89ab-cdef-0123456789ab/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Kankyō Ongaku', 'Japanese Ambient', 'Minimalism'],
+    driftReason: 'Environmental music composed for a Tokyo museum, evoking cool ceramic tiles, morning raindrops, and quiet stillness.',
+    tracks: [
+      { id: 'hy-1', title: 'Water Copy', durationMs: 367000, previewUrl: null, trackNumber: 1 },
+      { id: 'hy-2', title: 'Clouds', durationMs: 351000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Hiroshi Yoshimura', 'Music for Nine Post Cards'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 0.95, era: '1980s' }
+  },
+  {
+    id: 'curated-midori-takada-through-the-looking-glass',
+    title: 'Through the Looking Glass',
+    artist: 'Midori Takada',
+    releaseYear: 1983,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/de/f0/12/def01234-5678-9abc-def0-123456789abc/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Minimalism', 'Percussion', 'Ambient'],
+    driftReason: 'Solo marimba, reed organ, and bells creating crystalline polyrhythmic patterns inspired by African and Indonesian music.',
+    tracks: [
+      { id: 'mt-1', title: 'Mr. Henri Rousseau\'s Dream', durationMs: 382000, previewUrl: null, trackNumber: 1 },
+      { id: 'mt-2', title: 'Crossing', durationMs: 651000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Midori Takada', 'Through the Looking Glass'),
+    sonicTraits: { tempo: 'mid-tempo', percussive: 0.95, atmospheric: 0.9, era: '1980s' }
+  },
+  {
+    id: 'curated-tatsuro-yamashita-spacy',
+    title: 'Spacy',
+    artist: 'Tatsuro Yamashita',
+    releaseYear: 1977,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/01/23/ef012345-6789-abcd-ef01-23456789abcd/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['City Pop', 'Funk', 'Soul'],
+    driftReason: 'Immaculate studio craftsmanship, soaring vocal harmonies, and irresistible Japanese groove.',
+    tracks: [
+      { id: 'ty-1', title: 'Love Space', durationMs: 284000, previewUrl: null, trackNumber: 1 },
+      { id: 'ty-2', title: 'Solid Slider', durationMs: 423000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Tatsuro Yamashita', 'Spacy'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.85, percussive: 0.9, era: '1970s' }
+  },
+  {
+    id: 'curated-ymo-solid-state-survivor',
+    title: 'Solid State Survivor',
+    artist: 'Yellow Magic Orchestra',
+    releaseYear: 1979,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f0/12/34/f0123456-789a-bcde-f012-3456789abcde/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Synth-Pop', 'Electronic', 'New Wave'],
+    driftReason: 'Haruomi Hosono, Ryuichi Sakamoto, and Yukihiro Takahashi invent hyper-kinetic synth-pop brilliance.',
+    tracks: [
+      { id: 'ymo-1', title: 'Rydeen', durationMs: 266000, previewUrl: null, trackNumber: 1 },
+      { id: 'ymo-2', title: 'Behind the Mask', durationMs: 218000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Yellow Magic Orchestra', 'Solid State Survivor'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.9, percussive: 0.9, era: '1970s' }
+  },
 
-  // 19. Alcest - Écailles de lune (Blackgaze / Cathartic)
+  // 10. SPIRITUAL JAZZ & MODAL ODYSSEYS
+  {
+    id: 'curated-alice-coltrane-journey-in-satchidananda',
+    title: 'Journey in Satchidananda',
+    artist: 'Alice Coltrane',
+    releaseYear: 1971,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/01/23/45/01234567-89ab-cdef-0123-456789abcdef/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Spiritual Jazz', 'Modal Jazz', 'Avant-Garde Jazz'],
+    driftReason: 'Cascading concert harp, Pharoah Sanders\' soprano sax, and Cecil McBee\'s droning tambura meditation.',
+    tracks: [
+      { id: 'ac-1', title: 'Journey in Satchidananda', durationMs: 399000, previewUrl: null, trackNumber: 1 },
+      { id: 'ac-2', title: 'Shiva-Loka', durationMs: 395000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Alice Coltrane', 'Journey in Satchidananda'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 0.95, era: '1970s' }
+  },
+  {
+    id: 'curated-pharoah-sanders-karma',
+    title: 'Karma',
+    artist: 'Pharoah Sanders',
+    releaseYear: 1969,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/12/34/56/12345678-9abc-def0-1234-56789abcdef0/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Spiritual Jazz', 'Free Jazz', 'Avant-Garde'],
+    driftReason: 'Leon Thomas\'s transcendental yodeling and Sanders\' cathartic overblown tenor sax preaching universal love.',
+    tracks: [
+      { id: 'ps-1', title: 'The Creator Has a Master Plan', durationMs: 1965000, previewUrl: null, trackNumber: 1 }
+    ],
+    ...buildLinks('Pharoah Sanders', 'Karma'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.9, atmospheric: 0.95, era: '1960s' }
+  },
+  {
+    id: 'curated-don-cherry-brown-rice',
+    title: 'Brown Rice',
+    artist: 'Don Cherry',
+    releaseYear: 1975,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/23/45/67/23456789-abcd-ef01-2345-6789abcdef01/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Jazz Fusion', 'Fourth World', 'Spiritual Jazz'],
+    driftReason: 'Pocket trumpet meditations over deep hypnotic funk grooves and Indian drone textures.',
+    tracks: [
+      { id: 'dc-1', title: 'Brown Rice', durationMs: 315000, previewUrl: null, trackNumber: 1 },
+      { id: 'dc-2', title: 'Malkauns', durationMs: 840000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Don Cherry', 'Brown Rice'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.75, hypnotic: 0.9, era: '1970s' }
+  },
+
+  // 11. BOSSA NOVA & TROPICALIA
+  {
+    id: 'curated-arthur-verocai-72',
+    title: 'Arthur Verocai',
+    artist: 'Arthur Verocai',
+    releaseYear: 1972,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/34/56/78/3456789a-bcde-f012-3456-789abcdef012/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['MPB', 'Samba-Jazz', 'Orchestral Soul'],
+    driftReason: 'The holy grail of Brazilian arranger soul: cinematic strings, nylon acoustics, and breathtaking brass flourishes.',
+    tracks: [
+      { id: 'av-1', title: 'Caboclo', durationMs: 172000, previewUrl: null, trackNumber: 1 },
+      { id: 'av-2', title: 'Pelas Sombras', durationMs: 136000, previewUrl: null, trackNumber: 2 },
+      { id: 'av-3', title: 'Na Boca do Sol', durationMs: 174000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Arthur Verocai', 'Arthur Verocai'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.75, atmospheric: 0.9, percussive: 0.85, era: '1970s' }
+  },
+  {
+    id: 'curated-caetano-veloso-transa',
+    title: 'Transa',
+    artist: 'Caetano Veloso',
+    releaseYear: 1972,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/45/67/89/456789ab-cdef-0123-4567-89abcdef0123/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Tropicália', 'Folk Rock', 'Samba-Reggae'],
+    driftReason: 'Recorded in London exile: bittersweet acoustic melancholy infused with Afro-Brazilian rhythmic momentum.',
+    tracks: [
+      { id: 'cv-1', title: 'You Don\'t Know Me', durationMs: 230000, previewUrl: null, trackNumber: 1 },
+      { id: 'cv-2', title: 'Nine Out of Ten', durationMs: 300000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Caetano Veloso', 'Transa'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.7, melancholic: 0.8, era: '1970s' }
+  },
+  {
+    id: 'curated-os-mutantes-68',
+    title: 'Os Mutantes',
+    artist: 'Os Mutantes',
+    releaseYear: 1968,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/56/78/9a/56789abc-def0-1234-5678-9abcdef01234/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Tropicália', 'Psychedelic Rock', 'Avant-Pop'],
+    driftReason: 'Anarchic fuzz pedals, tape-manipulation antics, and exuberant Brazilian bossa melodies.',
+    tracks: [
+      { id: 'om-1', title: 'Panis et Circenses', durationMs: 218000, previewUrl: null, trackNumber: 1 },
+      { id: 'om-2', title: 'A Minha Menina', durationMs: 282000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Os Mutantes', 'Os Mutantes'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.9, distortion: 0.8, era: '1960s' }
+  },
+
+  // 12. NEO-PSYCHEDELIA & SPACE ROCK
+  {
+    id: 'curated-spiritualized-ladies-and-gentlemen',
+    title: 'Ladies and Gentlemen We Are Floating in Space',
+    artist: 'Spiritualized',
+    releaseYear: 1997,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/67/89/ab/6789abcd-ef01-2345-6789-abcdef012345/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Space Rock', 'Neo-Psychedelia', 'Gospel Rock'],
+    driftReason: 'Massive orchestral walls of sound, gospel choirs, and devastatingly fragile heartbreak ballads.',
+    tracks: [
+      { id: 'sp-1', title: 'Ladies and Gentlemen We Are Floating in Space', durationMs: 220000, previewUrl: null, trackNumber: 1 },
+      { id: 'sp-2', title: 'Come Together', durationMs: 280000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Spiritualized', 'Ladies and Gentlemen We Are Floating in Space'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, melancholic: 0.95, era: '1990s' }
+  },
+  {
+    id: 'curated-broadcast-tender-buttons',
+    title: 'Tender Buttons',
+    artist: 'Broadcast',
+    releaseYear: 2005,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/78/9a/bc/789abcde-f012-3456-789a-bcdef0123456/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Indie Pop', 'Hauntology', 'Experimental Pop'],
+    driftReason: 'Trish Keenan\'s pure, crystalline voice over brittle vintage drum machines and uncanny radiophonic synth chirps.',
+    tracks: [
+      { id: 'bc-1', title: 'I Found the F', durationMs: 141000, previewUrl: null, trackNumber: 1 },
+      { id: 'bc-2', title: 'Black Cat', durationMs: 238000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Broadcast', 'Tender Buttons'),
+    sonicTraits: { tempo: 'mid-tempo', atmospheric: 0.9, hypnotic: 0.95, era: '2000s' }
+  },
+  {
+    id: 'curated-stereolab-dots-and-loops',
+    title: 'Dots and Loops',
+    artist: 'Stereolab',
+    releaseYear: 1997,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/89/ab/cd/89abcdef-0123-4567-89ab-cdef01234567/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Post-Rock', 'Krautrock', 'Bossa Nova'],
+    driftReason: 'Krautrock motorik momentum married to Brazilian bossa lounge and vintage analog synthesizer mastery.',
+    tracks: [
+      { id: 'ste-1', title: 'Brakhage', durationMs: 330000, previewUrl: null, trackNumber: 1 },
+      { id: 'ste-2', title: 'Miss Modular', durationMs: 407000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Stereolab', 'Dots and Loops'),
+    sonicTraits: { tempo: 'mid-tempo', hypnotic: 0.95, percussive: 0.85, era: '1990s' }
+  },
+  {
+    id: 'curated-kikagaku-moyo-masana-temples',
+    title: 'Masana Temples',
+    artist: 'Kikagaku Moyo',
+    releaseYear: 2018,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9a/bc/de/9abcdef0-1234-5678-9abc-def012345678/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Psychedelic Rock', 'Krautrock', 'Raga Rock'],
+    driftReason: 'Tokyo psych explorers blending Indian sitar drone with motorik krautrock and fluid acid folk.',
+    tracks: [
+      { id: 'km-1', title: 'Entrance', durationMs: 220000, previewUrl: null, trackNumber: 1 },
+      { id: 'km-2', title: 'Dripping Sun', durationMs: 462000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Kikagaku Moyo', 'Masana Temples'),
+    sonicTraits: { tempo: 'mid-tempo', energy: 0.8, atmospheric: 0.9, era: '2010s' }
+  },
+
+  // 13. POST-ROCK & CINEMATIC MINIMALISM
+  {
+    id: 'curated-gybe-lift-your-skinny-fists',
+    title: 'Lift Your Skinny Fists Like Antennas to Heaven',
+    artist: 'Godspeed You! Black Emperor',
+    releaseYear: 2000,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ab/cd/ef/abcdef01-2345-6789-abcd-ef0123456789/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Post-Rock', 'Drone', 'Modern Classical'],
+    driftReason: 'Apocalyptic field recordings and monumental orchestral guitar crescendos spanning four symphonic movements.',
+    tracks: [
+      { id: 'gy-1', title: 'Storm', durationMs: 1352000, previewUrl: null, trackNumber: 1 },
+      { id: 'gy-2', title: 'Static', durationMs: 1355000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Godspeed You! Black Emperor', 'Lift Your Skinny Fists'),
+    sonicTraits: { tempo: 'slow', energy: 0.9, atmospheric: 1.0, era: '2000s' }
+  },
+  {
+    id: 'curated-sigur-ros-agaetis-byrjun',
+    title: 'Ágætis byrjun',
+    artist: 'Sigur Rós',
+    releaseYear: 1999,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bc/de/f0/bcdef012-3456-789a-bcde-f0123456789a/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Post-Rock', 'Dream Pop', 'Chamber Rock'],
+    driftReason: 'Bowed electric guitars, soaring falsetto, and majestic sub-arctic orchestral arrangements.',
+    tracks: [
+      { id: 'sr-1', title: 'Svefn-g-englar', durationMs: 604000, previewUrl: null, trackNumber: 1 },
+      { id: 'sr-2', title: 'Starálfur', durationMs: 406000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Sigur Ros', 'Agaetis byrjun'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, melancholic: 0.9, era: '1990s' }
+  },
+  {
+    id: 'curated-tortoise-millions-now-living',
+    title: 'Millions Now Living Will Never Die',
+    artist: 'Tortoise',
+    releaseYear: 1996,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/cd/ef/01/cdef0123-4567-89ab-cdef-0123456789ab/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Post-Rock', 'Krautrock', 'Dub'],
+    driftReason: 'Chicago post-rock pinnacle: twin vibraphones, hypnotic bass ostinatos, and dub studio deconstruction.',
+    tracks: [
+      { id: 'tor-1', title: 'Djed', durationMs: 1253000, previewUrl: null, trackNumber: 1 },
+      { id: 'tor-2', title: 'Glass Museum', durationMs: 327000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Tortoise', 'Millions Now Living Will Never Die'),
+    sonicTraits: { tempo: 'mid-tempo', hypnotic: 0.95, percussive: 0.9, era: '1990s' }
+  },
+
+  // 14. ART POP & AVANT-GARDE
+  {
+    id: 'curated-kate-bush-hounds-of-love',
+    title: 'Hounds of Love',
+    artist: 'Kate Bush',
+    releaseYear: 1985,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/de/f0/12/def01234-5678-9abc-def0-123456789abc/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Art Pop', 'Progressive Pop', 'Synth-Pop'],
+    driftReason: 'Fairlight CMI sampling sorcery and Celtic folk percussion backing a conceptual masterpiece of emotional rebirth.',
+    tracks: [
+      { id: 'kb-1', title: 'Running Up That Hill', durationMs: 300000, previewUrl: null, trackNumber: 1 },
+      { id: 'kb-2', title: 'Hounds of Love', durationMs: 182000, previewUrl: null, trackNumber: 2 },
+      { id: 'kb-3', title: 'Cloudbusting', durationMs: 310000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Kate Bush', 'Hounds of Love'),
+    sonicTraits: { tempo: 'up-tempo', energy: 0.85, atmospheric: 0.9, percussive: 0.9, era: '1980s' }
+  },
+  {
+    id: 'curated-bjork-vespertine',
+    title: 'Vespertine',
+    artist: 'Björk',
+    releaseYear: 2001,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ef/01/23/ef012345-6789-abcd-ef01-23456789abcd/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Glitch Pop', 'Art Pop', 'Chamber Electronic'],
+    driftReason: 'Micro-beats sculpted from footsteps on snow, celesta chimes, and an Icelandic choir creating an intimate winter palace.',
+    tracks: [
+      { id: 'bj-1', title: 'Hidden Place', durationMs: 328000, previewUrl: null, trackNumber: 1 },
+      { id: 'bj-2', title: 'Cocoon', durationMs: 268000, previewUrl: null, trackNumber: 2 },
+      { id: 'bj-3', title: 'Pagan Poetry', durationMs: 314000, previewUrl: null, trackNumber: 3 }
+    ],
+    ...buildLinks('Bjork', 'Vespertine'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 0.95, era: '2000s' }
+  },
+  {
+    id: 'curated-arthur-russell-world-of-echo',
+    title: 'World of Echo',
+    artist: 'Arthur Russell',
+    releaseYear: 1986,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f0/12/34/f0123456-789a-bcde-f012-3456789abcde/5016025683226.jpg/1000x1000bb.jpg',
+    genres: ['Avant-Garde Folk', 'Dub Cello', 'Ambient Pop'],
+    driftReason: 'Amplified cello, Space Echo delay, and whispered Buddhist folk melodies dissolved in aquatic reverberation.',
+    tracks: [
+      { id: 'ar-1', title: 'Tone Bone Kone', durationMs: 147000, previewUrl: null, trackNumber: 1 },
+      { id: 'ar-2', title: 'Soon-to-Be Innocent Fun', durationMs: 574000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Arthur Russell', 'World of Echo'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, hypnotic: 0.95, era: '1980s' }
+  },
+  {
+    id: 'curated-talk-talk-spirit-of-eden',
+    title: 'Spirit of Eden',
+    artist: 'Talk Talk',
+    releaseYear: 1988,
+    coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/01/23/45/01234567-89ab-cdef-0123-456789abcdef/00602517038167.rgb.jpg/1000x1000bb.jpg',
+    genres: ['Post-Rock', 'Art Rock', 'Ambient Jazz'],
+    driftReason: 'Mark Hollis\'s quiet revolution: vast silences, church organ breathing, and improvisational spiritual ecstasy.',
+    tracks: [
+      { id: 'tt-1', title: 'The Rainbow', durationMs: 485000, previewUrl: null, trackNumber: 1 },
+      { id: 'tt-2', title: 'Eden', durationMs: 457000, previewUrl: null, trackNumber: 2 }
+    ],
+    ...buildLinks('Talk Talk', 'Spirit of Eden'),
+    sonicTraits: { tempo: 'slow', atmospheric: 1.0, experimental: 0.9, era: '1980s' }
+  },
   {
     id: 'curated-alcest-edl',
     title: 'Écailles de lune',
     artist: 'Alcest',
     releaseYear: 2010,
     coverArtUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e5/2c/31/e52c3175-685b-e48d-6c16-95a7ec4e8f7c/796441804724.jpg/1000x1000bb.jpg',
-    label: 'Prophecy Productions',
-    country: 'FR',
     genres: ['Blackgaze', 'Post-Metal', 'Shoegaze'],
     driftReason: 'Surging oceanic tremolo guitars and ferocious blastbeats dissolving into fragile, starry acoustic reveries.',
     tracks: [
-      { id: 'al-1', title: 'Écailles de lune - Part 1', durationMs: 592000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4b/32/79/4b3279c5-8591-ba4a-0a75-236bcaee6e61/mzaf_14073359628037340078.plus.aac.p.m4a', trackNumber: 1 },
-      { id: 'al-2', title: 'Écailles de lune - Part 2', durationMs: 598000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/5a/a5/cb/5aa5cb56-3aa9-5dbf-9b2f-981f42289f89/mzaf_13508127393444452187.plus.aac.p.m4a', trackNumber: 2 },
-      { id: 'al-3', title: 'Percées de lumière', durationMs: 397000, previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/05/cf/4b/05cf4b5f-55ae-b6e9-b5f7-d2c69d4ad1df/mzaf_6705574340578665809.plus.aac.p.m4a', trackNumber: 3 }
+      { id: 'al-1', title: 'Écailles de lune - Part 1', durationMs: 592000, previewUrl: null, trackNumber: 1 },
+      { id: 'al-2', title: 'Écailles de lune - Part 2', durationMs: 598000, previewUrl: null, trackNumber: 2 }
     ],
-    spotifyUrl: 'https://open.spotify.com/search/Alcest%20Ecailles%20de%20lune',
-    youtubeUrl: 'https://www.youtube.com/results?search_query=Alcest+Ecailles+de+lune+full+album',
-    youtubeMusicUrl: 'https://music.youtube.com/search?q=Alcest+Ecailles+de+lune',
+    ...buildLinks('Alcest', 'Ecailles de lune'),
     sonicTraits: { tempo: 'up-tempo', energy: 0.9, distortion: 0.9, atmospheric: 0.95, era: '2010s' }
   }
 ];

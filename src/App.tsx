@@ -2,6 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useDriftEngine } from './hooks/useDriftEngine';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
+import { MobileHeader } from './components/header/MobileHeader';
+import { MobileTabBar } from './components/navigation/MobileTabBar';
 import { CrateGrid } from './components/crate/CrateGrid';
 import { InspectorDrawer } from './components/inspector/InspectorDrawer';
 import { CalibrationModal } from './components/onboarding/CalibrationModal';
@@ -90,38 +92,51 @@ export const App: React.FC = () => {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-canvas-black text-text-offwhite font-sans antialiased select-none">
-      {/* 1. Left Fixed Sidebar (240px) */}
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        tasteProfile={tasteProfile}
-        ratings={ratings}
-        onRecalibrate={() => setShowCalibrationModal(true)}
-        onExportBackup={handleExportBackup}
-        onImportBackup={handleImportBackup}
-        onToggleDivergence={toggleVectorDivergence}
-      />
+      {/* 1. Left Fixed Sidebar (Desktop only) */}
+      <div className="hidden md:flex flex-shrink-0 h-full">
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tasteProfile={tasteProfile}
+          ratings={ratings}
+          onRecalibrate={() => setShowCalibrationModal(true)}
+          onExportBackup={handleExportBackup}
+          onImportBackup={handleImportBackup}
+          onToggleDivergence={toggleVectorDivergence}
+        />
+      </div>
 
       {/* 2. Fluid Center Main Canvas */}
       <div className="flex-1 flex flex-col h-full min-w-0 bg-canvas-black overflow-hidden relative">
-        <Header
-          tasteProfile={tasteProfile}
-          ratedInCrateCount={ratedInCrateCount}
+        {/* Mobile Header (Hidden on Desktop) */}
+        <MobileHeader
+          driftPath={tasteProfile.currentDriftPath}
           onRefreshCrate={refreshCrate}
           isLoading={isLoading}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
+          onCalibrate={() => setShowCalibrationModal(true)}
         />
 
-        {/* Main View: Fits viewport completely for crate batch, scrollable for archive/taste */}
+        {/* Desktop Header (Hidden on Mobile) */}
+        <div className="hidden md:block">
+          <Header
+            tasteProfile={tasteProfile}
+            ratedInCrateCount={ratedInCrateCount}
+            onRefreshCrate={refreshCrate}
+            isLoading={isLoading}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
+        </div>
+
+        {/* Main View: Fits viewport completely for crate batch on desktop, scrollable on mobile */}
         <main
           className={`flex-1 min-h-0 ${
             activeTab === 'crate'
-              ? 'p-3 xl:p-4 flex flex-col overflow-hidden'
-              : 'overflow-y-auto p-6 lg:p-8'
+              ? 'p-2.5 sm:p-3 xl:p-4 flex flex-col overflow-y-auto lg:overflow-hidden pb-20 lg:pb-3'
+              : 'overflow-y-auto p-4 sm:p-6 lg:p-8 pb-20 md:pb-8'
           }`}
         >
-          <div className={`${activeTab === 'crate' ? 'h-full flex flex-col flex-1 min-h-0' : 'max-w-7xl mx-auto space-y-6'}`}>
+          <div className={`${activeTab === 'crate' ? 'lg:h-full flex flex-col lg:flex-1 lg:min-h-0' : 'max-w-7xl mx-auto space-y-6'}`}>
             {activeTab === 'crate' && (
               <CrateGrid
                 albums={displayedCrate}
@@ -172,7 +187,7 @@ export const App: React.FC = () => {
         </main>
       </div>
 
-      {/* 3. Right Fixed Album Inspector Drawer (380px) */}
+      {/* 3. Album Inspector (Responsive: Slide-In Drawer on Desktop, Slide-Up Bottom Sheet on Mobile) */}
       {selectedAlbum && (
         <InspectorDrawer
           album={selectedAlbum}
@@ -183,7 +198,15 @@ export const App: React.FC = () => {
         />
       )}
 
-      {/* 4. Centered Modal Overlay: Taste Recalibration // Step 01 */}
+      {/* 4. Mobile Fixed Bottom Navigation Tab Bar (Hidden on Desktop) */}
+      <MobileTabBar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        crateCount={crate.length}
+        ratedCount={ratings.length}
+      />
+
+      {/* 5. Centered Modal Overlay: Taste Recalibration // Step 01 */}
       <CalibrationModal
         isOpen={showCalibrationModal}
         onCalibrate={calibrateTaste}

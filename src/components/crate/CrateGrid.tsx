@@ -59,7 +59,7 @@ export const CrateGrid: React.FC<CrateGridProps> = ({
   }
 
   return (
-    <div className="h-full flex-1 min-h-0 flex flex-col justify-between">
+    <div className="w-full lg:h-full lg:flex-1 lg:min-h-0 flex flex-col justify-between">
       {/* Stitch Batch Header Bar */}
       <div className="flex items-center justify-between flex-shrink-0 mb-2">
         <div className="flex items-center gap-2">
@@ -70,14 +70,14 @@ export const CrateGrid: React.FC<CrateGridProps> = ({
             / 10 selected via acoustic affinity
           </span>
         </div>
-        <div className="flex items-center gap-2 font-mono text-[10px] xl:text-[11px] text-text-muted">
+        <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] xl:text-[11px] text-text-muted">
           <span className="inline-block w-2 h-2 rounded-full bg-electric-blue"></span>
-          <span>Selected Album in Inspector</span>
+          <span>Tap to inspect & rate</span>
         </div>
       </div>
 
-      {/* 5-Column Responsive Album Grid (2 rows on desktop) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 lg:grid-rows-2 gap-2.5 xl:gap-3 flex-1 min-h-0 h-full" id="albumGrid">
+      {/* 5-Column Responsive Album Grid (scrollable on mobile, 2 rows on desktop) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 lg:grid-rows-2 gap-2.5 xl:gap-3 lg:flex-1 lg:min-h-0 lg:h-full lg:auto-rows-fr" id="albumGrid">
         {albums.map((album) => (
           <AlbumCard
             key={album.id}

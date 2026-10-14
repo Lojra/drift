@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Album, AlbumRating, TasteProfile } from '../types/music';
 import {
   loadStoredCrate,
@@ -10,7 +10,7 @@ import {
   exportBackupData,
   importBackupData
 } from '../services/storage';
-import { SONIC_STARTING_POINTS, getLateralBridgesForGenre, LATERAL_GENRE_BRIDGES } from '../services/sonicBridge';
+import { SONIC_STARTING_POINTS, getLateralBridgesForGenre } from '../services/sonicBridge';
 import {
   searchItunesAlbums,
   generateLateralRecommendations
@@ -26,6 +26,7 @@ export function useDriftEngine() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'crate' | 'archive' | 'taste'>('crate');
   const [showCalibrationModal, setShowCalibrationModal] = useState<boolean>(false);
+  const seenAlbumIdsRef = useRef<Set<string>>(new Set());
 
   // Initialize from storage or request calibration
   useEffect(() => {
@@ -305,26 +306,36 @@ export function useDriftEngine() {
   }, [crate, ratings, selectedAlbum]);
 
   /**
-   * Refresh entire 10-album crate based on accumulated taste and lateral vectors
+   * Refresh entire 10-album crate: 100% fresh replacement from expanded library
    */
   const refreshCrate = useCallback(async () => {
     setIsLoading(true);
     try {
-      const existingIds = new Set(ratings.map(r => r.albumId));
+      const currentCrateIds = new Set(crate.map(a => a.id));
+      // Mark current crate as seen
+      currentCrateIds.forEach(id => seenAlbumIdsRef.current.add(id));
+
       let newBatch: Album[] = [];
 
       // 1. If Gemini API key is available, attempt AI lateral curation first
+      const existingIds = new Set([...ratings.map(r => r.albumId), ...seenAlbumIdsRef.current]);
       const geminiRecs = await getGeminiLateralRecommendations(ratings, existingIds);
-      if (geminiRecs && geminiRecs.length >= 4) {
-        newBatch.push(...geminiRecs);
+      if (geminiRecs && geminiRecs.length >= 3) {
+        for (const rec of geminiRecs) {
+          if (!currentCrateIds.has(rec.id) && !newBatch.some(b => b.id === rec.id)) {
+            newBatch.push(rec);
+            seenAlbumIdsRef.current.add(rec.id);
+            if (newBatch.length >= 4) break;
+          }
+        }
       }
 
       // 2. Lateral Bridge Generation based on top rated albums
       const topRatings = ratings.filter(r => r.score >= 7.0).slice(0, 3);
       for (const r of topRatings) {
         if (newBatch.length >= 10) break;
-        const sourceAlbum = crate.find(a => a.id === r.albumId) ||
-          CURATED_ALBUMS.find(a => a.id === r.albumId) || {
+        const sourceAlbum = CURATED_ALBUMS.find(a => a.id === r.albumId) ||
+          crate.find(a => a.id === r.albumId) || {
             id: r.albumId,
             title: r.albumTitle,
             artist: r.artist,
@@ -343,29 +354,44 @@ export function useDriftEngine() {
           sourceAlbum,
           r.score,
           r.sonicTag,
-          new Set([...existingIds, ...newBatch.map(b => b.id)]),
+          new Set([...seenAlbumIdsRef.current, ...newBatch.map(b => b.id)]),
           tasteProfile.vectorDivergence || 4.2
         );
-        newBatch.push(...lateralRecs);
-      }
 
-      // 3. If still under 10, search for under-explored lateral genres
-      if (newBatch.length < 10) {
-        const bridgeKeys = Object.keys(LATERAL_GENRE_BRIDGES);
-        const randomGenre = bridgeKeys[Math.floor(Math.random() * bridgeKeys.length)];
-        const moreAlbums = await searchItunesAlbums(randomGenre, 5);
-        for (const alb of moreAlbums) {
-          if (!newBatch.some(b => b.id === alb.id) && !existingIds.has(alb.id)) {
+        for (const alb of lateralRecs) {
+          if (!currentCrateIds.has(alb.id) && !newBatch.some(b => b.id === alb.id)) {
             newBatch.push(alb);
-            if (newBatch.length >= 10) break;
+            seenAlbumIdsRef.current.add(alb.id);
+            if (newBatch.length >= 6) break;
           }
         }
       }
 
-      // 4. Guaranteed fill with curated catalog if needed
+      // 3. Find unseen albums from CURATED_ALBUMS
+      let unseenCurated = CURATED_ALBUMS.filter(
+        a => !seenAlbumIdsRef.current.has(a.id) && !currentCrateIds.has(a.id) && !newBatch.some(b => b.id === a.id)
+      );
+
+      // If unseen pool is running low, reset seen pool except for current crate and batch
+      if (unseenCurated.length < (10 - newBatch.length)) {
+        seenAlbumIdsRef.current = new Set([...currentCrateIds, ...newBatch.map(b => b.id)]);
+        unseenCurated = CURATED_ALBUMS.filter(
+          a => !currentCrateIds.has(a.id) && !newBatch.some(b => b.id === a.id)
+        );
+      }
+
+      // Shuffle unseen curated albums to ensure diverse discovery
+      const shuffled = [...unseenCurated].sort(() => Math.random() - 0.5);
+      for (const alb of shuffled) {
+        if (newBatch.length >= 10) break;
+        newBatch.push(alb);
+        seenAlbumIdsRef.current.add(alb.id);
+      }
+
+      // 4. Guaranteed fill if still under 10
       if (newBatch.length < 10) {
         for (const cur of CURATED_ALBUMS) {
-          if (!newBatch.some(b => b.id === cur.id) && !existingIds.has(cur.id)) {
+          if (!newBatch.some(b => b.id === cur.id)) {
             newBatch.push(cur);
             if (newBatch.length >= 10) break;
           }
