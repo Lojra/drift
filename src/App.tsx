@@ -5,6 +5,7 @@ import { Header } from './components/layout/Header';
 import { MobileHeader } from './components/header/MobileHeader';
 import { MobileTabBar } from './components/navigation/MobileTabBar';
 import { CrateGrid } from './components/crate/CrateGrid';
+import { HiFiStudioDeck } from './components/studio/HiFiStudioDeck';
 import { InspectorDrawer } from './components/inspector/InspectorDrawer';
 import { CalibrationModal } from './components/onboarding/CalibrationModal';
 import { RatedArchive } from './components/archive/RatedArchive';
@@ -33,6 +34,7 @@ export const App: React.FC = () => {
   } = useDriftEngine();
 
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [viewMode, setViewMode] = useState<'grid' | 'studio'>('studio');
 
   // Count of rated albums inside the current 10-album crate
   const ratedInCrateCount = useMemo(() => {
@@ -114,6 +116,8 @@ export const App: React.FC = () => {
           onRefreshCrate={refreshCrate}
           isLoading={isLoading}
           onCalibrate={() => setShowCalibrationModal(true)}
+          viewMode={viewMode}
+          onToggleViewMode={setViewMode}
         />
 
         {/* Desktop Header (Hidden on Mobile) */}
@@ -125,6 +129,8 @@ export const App: React.FC = () => {
             isLoading={isLoading}
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
+            viewMode={viewMode}
+            onToggleViewMode={setViewMode}
           />
         </div>
 
@@ -132,19 +138,32 @@ export const App: React.FC = () => {
         <main
           className={`flex-1 min-h-0 ${
             activeTab === 'crate'
-              ? 'p-2.5 sm:p-3 xl:p-4 flex flex-col overflow-y-auto lg:overflow-hidden pb-28 lg:pb-3'
+              ? 'p-2 sm:p-3 xl:p-4 flex flex-col overflow-y-auto lg:overflow-hidden pb-28 lg:pb-3'
               : 'overflow-y-auto p-4 sm:p-6 lg:p-8 pb-28 md:pb-8'
           }`}
         >
-          <div className={`${activeTab === 'crate' ? 'lg:h-full flex flex-col lg:flex-1 lg:min-h-0' : 'max-w-7xl mx-auto space-y-6'}`}>
+          <div className={`${activeTab === 'crate' ? 'h-full flex flex-col flex-1 min-h-0' : 'max-w-7xl mx-auto space-y-6'}`}>
             {activeTab === 'crate' && (
-              <CrateGrid
-                albums={displayedCrate}
-                ratings={ratings}
-                selectedAlbum={selectedAlbum}
-                onSelectAlbum={setSelectedAlbum}
-                isLoading={isLoading}
-              />
+              viewMode === 'studio' ? (
+                <HiFiStudioDeck
+                  albums={displayedCrate}
+                  ratings={ratings}
+                  selectedAlbum={selectedAlbum}
+                  onSelectAlbum={setSelectedAlbum}
+                  onRateAlbum={(albumId, score, tag) => rateAlbum(albumId, score, tag)}
+                  onReplaceAlbum={(albumId) => replaceCrateAlbum(albumId)}
+                  onOpenInspector={(album) => setSelectedAlbum(album)}
+                  isLoading={isLoading}
+                />
+              ) : (
+                <CrateGrid
+                  albums={displayedCrate}
+                  ratings={ratings}
+                  selectedAlbum={selectedAlbum}
+                  onSelectAlbum={setSelectedAlbum}
+                  isLoading={isLoading}
+                />
+              )
             )}
 
             {activeTab === 'archive' && (

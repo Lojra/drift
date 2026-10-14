@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCw, Search, X, Sun, Moon } from 'lucide-react';
+import { RotateCw, Search, X, Sun, Moon, LayoutGrid, Disc } from 'lucide-react';
 import { TasteProfile } from '../../types/music';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -10,6 +10,8 @@ interface HeaderProps {
   isLoading: boolean;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  viewMode?: 'grid' | 'studio';
+  onToggleViewMode?: (mode: 'grid' | 'studio') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,7 +20,9 @@ export const Header: React.FC<HeaderProps> = ({
   onRefreshCrate,
   isLoading,
   searchQuery,
-  onSearchChange
+  onSearchChange,
+  viewMode = 'studio',
+  onToggleViewMode
 }) => {
   const { theme, toggleTheme } = useTheme();
   const driftText = (tasteProfile.currentDriftPath || 'INITIAL EXPLORATION').toUpperCase();
@@ -61,6 +65,36 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Right Header Action Button & Status */}
       <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        {/* View Mode Toggle: Grid vs Hi-Fi Studio Deck */}
+        {onToggleViewMode && (
+          <div className="flex items-center bg-panel-obsidian border border-border-subtle p-0.5 rounded-md">
+            <button
+              onClick={() => onToggleViewMode('grid')}
+              className={`px-2 py-1 rounded flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+                viewMode === 'grid'
+                  ? 'bg-panel-elevated text-electric-blue font-bold shadow-sm'
+                  : 'text-text-muted hover:text-text-offwhite'
+              }`}
+              title="Classic Crate Grid"
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span className="hidden xl:inline">Grid</span>
+            </button>
+            <button
+              onClick={() => onToggleViewMode('studio')}
+              className={`px-2 py-1 rounded flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+                viewMode === 'studio'
+                  ? 'bg-panel-elevated text-electric-blue font-bold shadow-sm'
+                  : 'text-text-muted hover:text-text-offwhite'
+              }`}
+              title="Audiophile Hi-Fi Studio Deck"
+            >
+              <Disc className="w-3.5 h-3.5" />
+              <span className="hidden xl:inline">Hi-Fi</span>
+            </button>
+          </div>
+        )}
+
         <div className="font-mono text-xs text-text-muted px-2.5 py-1.5 rounded bg-panel-obsidian border border-border-subtle hidden md:flex items-center gap-1">
           <span>CRATE STATUS:</span>
           <span className="text-text-offwhite font-bold">{ratedInCrateCount} / 10 RATED</span>

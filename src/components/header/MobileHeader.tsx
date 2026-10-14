@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCw, Compass, Sun, Moon } from 'lucide-react';
+import { RotateCw, Compass, Sun, Moon, LayoutGrid, Disc } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 
 interface MobileHeaderProps {
@@ -7,13 +7,17 @@ interface MobileHeaderProps {
   onRefreshCrate: () => void;
   isLoading: boolean;
   onCalibrate?: () => void;
+  viewMode?: 'grid' | 'studio';
+  onToggleViewMode?: (mode: 'grid' | 'studio') => void;
 }
 
 export const MobileHeader: React.FC<MobileHeaderProps> = ({
   driftPath,
   onRefreshCrate,
   isLoading,
-  onCalibrate
+  onCalibrate,
+  viewMode = 'studio',
+  onToggleViewMode
 }) => {
   const { theme, toggleTheme } = useTheme();
 
@@ -34,7 +38,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
       <div className="flex-1 min-w-0 px-1 text-center">
         <button
           onClick={onCalibrate}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-panel-elevated/70 backdrop-blur-md border border-border-light text-[10px] font-mono text-purple-soft truncate max-w-full hover:border-purple-soft/50 shadow-sm active:scale-95 transition-all"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-panel-elevated/70 backdrop-blur-md border border-border-light text-[10px] font-mono text-purple-soft truncate max-w-full hover:border-purple-soft/50 shadow-sm active:scale-95 transition-all"
           title="Tap to recalibrate taste baseline"
         >
           <Compass className="w-3 h-3 flex-shrink-0 text-purple-soft animate-spin-slow" />
@@ -42,11 +46,22 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         </button>
       </div>
 
-      {/* Action Controls: Theme Switcher & Refresh Crate */}
+      {/* Action Controls: View Switcher, Theme Switcher & Refresh Crate */}
       <div className="flex items-center gap-1.5 flex-shrink-0">
+        {onToggleViewMode && (
+          <button
+            onClick={() => onToggleViewMode(viewMode === 'grid' ? 'studio' : 'grid')}
+            className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-panel-elevated/80 border border-border-light text-electric-blue active:scale-95 transition-all"
+            title={viewMode === 'grid' ? 'Switch to Hi-Fi Turntable' : 'Switch to Crate Grid'}
+            aria-label="Toggle view mode"
+          >
+            {viewMode === 'grid' ? <Disc className="w-4 h-4" /> : <LayoutGrid className="w-4 h-4" />}
+          </button>
+        )}
+
         <button
           onClick={toggleTheme}
-          className="min-w-[38px] min-h-[38px] flex items-center justify-center rounded-full bg-panel-elevated/80 hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all shadow-sm"
+          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-panel-elevated/80 hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all shadow-sm"
           title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
           aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
         >
@@ -60,7 +75,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         <button
           onClick={onRefreshCrate}
           disabled={isLoading}
-          className="min-w-[38px] min-h-[38px] flex items-center justify-center rounded-full bg-panel-elevated/80 hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all disabled:opacity-50 shadow-sm"
+          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-panel-elevated/80 hover:bg-panel-hover border border-border-light text-text-offwhite active:scale-95 transition-all disabled:opacity-50 shadow-sm"
           title="Refresh with 10 completely fresh albums"
           aria-label="Refresh crate"
         >
