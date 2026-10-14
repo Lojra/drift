@@ -3,7 +3,37 @@ import { CURATED_ALBUMS } from './curatedCatalog';
 import { getLateralBridgesForGenre } from './sonicBridge';
 
 const MUSICBRAINZ_UA = 'DRIFT/1.0.0 ( contact@drift-music.app )';
-const memoryCache = new Map<string, any>();
+
+class BoundedCache<K, V> {
+  private map = new Map<K, V>();
+  constructor(private maxSize: number = 150) {}
+
+  has(key: K): boolean {
+    return this.map.has(key);
+  }
+
+  get(key: K): V | undefined {
+    if (!this.map.has(key)) return undefined;
+    const val = this.map.get(key)!;
+    this.map.delete(key);
+    this.map.set(key, val);
+    return val;
+  }
+
+  set(key: K, value: V): void {
+    if (this.map.has(key)) {
+      this.map.delete(key);
+    } else if (this.map.size >= this.maxSize) {
+      const oldestKey = this.map.keys().next().value;
+      if (oldestKey !== undefined) {
+        this.map.delete(oldestKey);
+      }
+    }
+    this.map.set(key, value);
+  }
+}
+
+const memoryCache = new BoundedCache<string, any>(150);
 
 function buildExternalLinks(artist: string, albumTitle: string) {
   const encQuery = encodeURIComponent(`${artist} ${albumTitle}`);

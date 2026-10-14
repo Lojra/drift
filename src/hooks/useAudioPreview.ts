@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { sanitizeExternalUrl } from '../utils/sanitizeUrl';
 
 export function useAudioPreview() {
   const [currentTrackId, setCurrentTrackId] = useState<string | null>(null);
@@ -37,6 +38,10 @@ export function useAudioPreview() {
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('ended', onEnded);
       audio.removeEventListener('error', onError);
+      // Explicitly detach audio buffer to avoid memory leaks
+      audio.src = '';
+      audio.load();
+      audioRef.current = null;
     };
   }, []);
 
@@ -50,12 +55,15 @@ export function useAudioPreview() {
       return;
     }
 
-    if (!previewUrl) {
+    const safeUrl = previewUrl ? sanitizeExternalUrl(previewUrl, '') : '';
+    if (!safeUrl) {
       setError('No audio preview available for this track');
       return;
     }
 
-    audioRef.current.src = previewUrl;
+    // Stop existing stream before loading new one
+    audioRef.current.pause();
+    audioRef.current.src = safeUrl;
     audioRef.current.load();
     audioRef.current.play()
       .then(() => {
@@ -72,6 +80,8 @@ export function useAudioPreview() {
   const stop = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.pause();
+      audioRef.current.src = '';
+      audioRef.current.load();
       setIsPlaying(false);
       setCurrentTrackId(null);
       setProgress(0);

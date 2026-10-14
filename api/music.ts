@@ -1,5 +1,11 @@
 const MUSICBRAINZ_UA = 'DRIFT/1.0.0 ( contact@drift-music.app )';
 
+function cleanQueryString(val: unknown, maxLen = 100): string {
+  if (typeof val !== 'string') return '';
+  // Strip control characters, null bytes, and excessive whitespace
+  return val.replace(/[\x00-\x1F\x7F]/g, '').trim().slice(0, maxLen);
+}
+
 export default async function handler(req: any, res: any) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -10,18 +16,27 @@ export default async function handler(req: any, res: any) {
     return res.status(200).end();
   }
 
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed. Use GET.' });
+  }
+
   // Edge cache headers: Cache for 24h on CDN, serve stale up to 7 days
   res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
 
-  const { genre, artist, album, limit = '10' } = req.query || {};
+  const cleanArtist = cleanQueryString(req.query?.artist);
+  const cleanAlbum = cleanQueryString(req.query?.album);
+  const cleanGenre = cleanQueryString(req.query?.genre);
+
+  const rawLimit = parseInt(String(req.query?.limit || '10'), 10);
+  const safeLimit = isNaN(rawLimit) ? 10 : Math.min(Math.max(1, rawLimit), 30);
 
   try {
     // 1. iTunes Tracklist & Artwork Lookup
-    if (artist && album) {
-      const term = `${artist} ${album}`;
+    if (cleanArtist && cleanAlbum) {
+      const term = `${cleanArtist} ${cleanAlbum}`;
       const itunesUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=album&limit=3`;
       const searchRes = await fetch(itunesUrl);
-      
+
       if (!searchRes.ok) {
         return res.status(200).json({ artworkUrl: null, tracks: [] });
       }
@@ -46,9 +61,9 @@ export default async function handler(req: any, res: any) {
               .filter((item: any) => item.wrapperType === 'track')
               .map((item: any, idx: number) => ({
                 id: `itunes-${item.trackId || idx}`,
-                title: item.trackName || `Track ${idx + 1}`,
-                durationMs: item.trackTimeMillis || null,
-                previewUrl: item.previewUrl || null,
+                title: cleanQueryString(item.trackName || `Track ${idx + 1}`, 150),
+                durationMs: typeof item.trackTimeMillis === 'number' ? item.trackTimeMillis : null,
+                previewUrl: typeof item.previewUrl === 'string' ? item.previewUrl : null,
                 trackNumber: item.trackNumber || idx + 1
               }));
           }
@@ -64,9 +79,11 @@ export default async function handler(req: any, res: any) {
     }
 
     // 2. MusicBrainz Tag/Genre Search
-    if (genre) {
-      const query = `tag:"${encodeURIComponent(genre)}" AND primarytype:Album AND status:official`;
-      const mbUrl = `https://musicbrainz.org/ws/2/release-group/?query=${encodeURIComponent(query)}&limit=${limit}&fmt=json`;
+    if (cleanGenre) {
+      // Strip Lucene syntax quotes and slashes to prevent query manipulation
+      const sanitizedTag = cleanGenre.replace(/["\\]/g, '');
+      const query = `tag:"${sanitizedTag}" AND primarytype:Album AND status:official`;
+      const mbUrl = `https://musicbrainz.org/ws/2/release-group/?query=${encodeURIComponent(query)}&limit=${safeLimit}&fmt=json`;
 
       const mbRes = await fetch(mbUrl, {
         headers: { 'User-Agent': MUSICBRAINZ_UA }
@@ -79,9 +96,9 @@ export default async function handler(req: any, res: any) {
       const data: any = await mbRes.json();
       const releaseGroups = data['release-groups'] || [];
 
-      const albums = releaseGroups.slice(0, parseInt(limit, 10)).map((rg: any) => {
-        const artistName = rg['artist-credit']?.[0]?.artist?.name || rg['artist-credit']?.[0]?.name || 'Unknown Artist';
-        const title = rg.title || 'Untitled';
+      const albums = releaseGroups.slice(0, safeLimit).map((rg: any) => {
+        const artistName = cleanQueryString(rg['artist-credit']?.[0]?.artist?.name || rg['artist-credit']?.[0]?.name || 'Unknown Artist', 120);
+        const title = cleanQueryString(rg.title || 'Untitled', 150);
         const year = rg['first-release-date'] ? rg['first-release-date'].substring(0, 4) : 'Unknown Year';
         const enc = encodeURIComponent(`${artistName} ${title}`);
 
@@ -92,8 +109,8 @@ export default async function handler(req: any, res: any) {
           artist: artistName,
           releaseYear: year,
           coverArtUrl: `https://coverartarchive.org/release-group/${rg.id}/front-500`,
-          genres: [genre],
-          driftReason: `Discovered through acoustic affinity with ${genre}.`,
+          genres: [cleanGenre],
+          driftReason: `Discovered through acoustic affinity with ${cleanGenre}.`,
           tracks: [],
           spotifyUrl: `https://open.spotify.com/search/${enc}`,
           youtubeUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(artistName + ' ' + title + ' full album')}`,
