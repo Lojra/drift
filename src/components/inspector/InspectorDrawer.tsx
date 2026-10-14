@@ -61,9 +61,9 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
         }}
       />
 
-      <aside className="fixed bottom-0 inset-x-0 max-h-[88vh] rounded-t-2xl border-t border-border-light bg-panel-obsidian z-50 overflow-y-auto select-none shadow-[0_-10px_40px_rgba(0,0,0,0.8)] md:relative md:inset-x-auto md:bottom-auto md:w-[380px] xl:w-[400px] md:rounded-none md:border-t-0 md:border-l md:border-border-subtle md:max-h-none md:h-screen md:z-20 flex flex-col flex-shrink-0 animate-slide-up md:animate-none">
+      <aside className="fixed bottom-0 inset-x-0 max-h-[90vh] rounded-t-[28px] border-t border-white/20 dark:border-white/10 bg-panel-obsidian/95 backdrop-blur-2xl z-50 overflow-y-auto select-none shadow-[0_-12px_48px_rgba(0,0,0,0.85)] md:relative md:inset-x-auto md:bottom-auto md:w-[380px] xl:w-[400px] md:rounded-none md:border-t-0 md:border-l md:border-border-subtle md:max-h-none md:h-screen md:z-20 flex flex-col flex-shrink-0 animate-slide-up md:animate-none">
         {/* Mobile Swipe/Drag Handle Pill */}
-        <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto my-2.5 md:hidden flex-shrink-0" />
+        <div className="w-12 h-1.5 bg-white/30 dark:bg-white/20 rounded-full mx-auto mt-3 mb-1 md:hidden flex-shrink-0 shadow-sm" />
 
         {/* Top Inspector Header */}
         <div className="px-5 py-3.5 border-b border-border-subtle flex items-center justify-between bg-panel-obsidian sticky top-0 z-30">

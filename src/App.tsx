@@ -132,8 +132,8 @@ export const App: React.FC = () => {
         <main
           className={`flex-1 min-h-0 ${
             activeTab === 'crate'
-              ? 'p-2.5 sm:p-3 xl:p-4 flex flex-col overflow-y-auto lg:overflow-hidden pb-20 lg:pb-3'
-              : 'overflow-y-auto p-4 sm:p-6 lg:p-8 pb-20 md:pb-8'
+              ? 'p-2.5 sm:p-3 xl:p-4 flex flex-col overflow-y-auto lg:overflow-hidden pb-28 lg:pb-3'
+              : 'overflow-y-auto p-4 sm:p-6 lg:p-8 pb-28 md:pb-8'
           }`}
         >
           <div className={`${activeTab === 'crate' ? 'lg:h-full flex flex-col lg:flex-1 lg:min-h-0' : 'max-w-7xl mx-auto space-y-6'}`}>

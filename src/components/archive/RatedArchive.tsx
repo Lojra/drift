@@ -1,6 +1,38 @@
 import React, { useState, useMemo } from 'react';
 import { Search, ArrowUpDown, Archive, ChevronRight } from 'lucide-react';
-import { AlbumRating } from '../../types/music';
+import { Album, AlbumRating } from '../../types/music';
+import { GenerativeVinylCover } from '../crate/GenerativeVinylCover';
+
+const ArchiveCover: React.FC<{ item: AlbumRating }> = ({ item }) => {
+  const [imgError, setImgError] = useState(false);
+  const fallbackAlbum: Album = useMemo(() => ({
+    id: item.albumId,
+    title: item.albumTitle,
+    artist: item.artist,
+    releaseYear: 'Archived',
+    coverArtUrl: item.coverArtUrl,
+    genres: item.genres,
+    driftReason: 'Archived discovery entry.',
+    tracks: [],
+    spotifyUrl: '',
+    youtubeUrl: '',
+    youtubeMusicUrl: '',
+    sonicTraits: {}
+  }), [item]);
+
+  if (!imgError && item.coverArtUrl) {
+    return (
+      <img
+        src={item.coverArtUrl}
+        alt={item.albumTitle}
+        onError={() => setImgError(true)}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+      />
+    );
+  }
+
+  return <GenerativeVinylCover album={fallbackAlbum} className="w-full h-full" />;
+};
 
 interface RatedArchiveProps {
   ratings: AlbumRating[];
@@ -125,11 +157,7 @@ export const RatedArchive: React.FC<RatedArchiveProps> = ({
             <div className="flex items-center space-x-3 truncate">
               {/* Cover Art */}
               <div className="w-14 h-14 rounded overflow-hidden bg-panel-elevated flex-shrink-0 border border-border-subtle">
-                <img
-                  src={item.coverArtUrl}
-                  alt={item.albumTitle}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                />
+                <ArchiveCover item={item} />
               </div>
 
               {/* Text Metadata */}

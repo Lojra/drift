@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Layers, Disc3, Compass, Sliders, Download, Upload, Share2, Sun, Moon } from 'lucide-react';
+import { Layers, Disc3, Compass, Sliders, Download, Upload, Share2, Sun, Moon, ShieldCheck } from 'lucide-react';
 import { TasteProfile, AlbumRating } from '../../types/music';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -228,6 +228,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Data Persistence Tools & PWA / Share */}
         <div className="space-y-1.5 pt-1">
+          {/* Local Vault Privacy Status */}
+          <div className="flex items-center justify-between px-2.5 py-1.5 rounded-md bg-panel-elevated/70 border border-border-subtle text-[10px] font-mono text-text-dim">
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-electric-blue" strokeWidth={1.8} />
+              <span className="text-text-muted">Local Vault</span>
+            </div>
+            <span className="text-electric-blue text-[9px] font-semibold tracking-wider">100% PRIVATE</span>
+          </div>
+
           <div className="grid grid-cols-2 gap-1.5">
             <button
               onClick={onExportBackup}
