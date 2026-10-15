@@ -3,19 +3,30 @@
 @tailwind utilities;
 
 :root {
-  /* Obsidian Dark Mode (Default) */
-  --canvas-bg: #050507;
-  --panel-obsidian: #0C0C10;
-  --panel-elevated: #13131A;
-  --panel-hover: #181822;
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-light: rgba(255, 255, 255, 0.12);
-  --electric-blue: #3B82F6;
-  --purple-soft: #C084FC;
-  --text-offwhite: #F4F4F6;
-  --text-muted: #8E8E9E;
-  --text-dim: #575766;
-  --scrollbar-thumb: #1c1c28;
+  /* Dieter Rams & Bauhaus Monochrome Palette */
+  --bg-black: #0A0A0C;
+  --panel-dark: #111114;
+  --panel-inset: #0E0E10;
+  --paper-white: #F5F4F0;
+  --paper-dim: #9C9A94;
+  --paper-muted: #575550;
+  --border-subtle: rgba(245, 244, 240, 0.08);
+  --border-medium: rgba(245, 244, 240, 0.16);
+  --border-light: rgba(245, 244, 240, 0.12);
+  --amber-accent: #D97706;
+  --amber-glow: rgba(217, 119, 6, 0.25);
+
+  /* Legacy aliases mapped to Dieter Rams palette for backwards-compatibility */
+  --canvas-bg: #0A0A0C;
+  --panel-obsidian: #111114;
+  --panel-elevated: #16161C;
+  --panel-hover: #1C1C24;
+  --electric-blue: #D97706;
+  --purple-soft: #9C9A94;
+  --text-offwhite: #F5F4F0;
+  --text-muted: #9C9A94;
+  --text-dim: #575550;
+  --scrollbar-thumb: #2A2A30;
 }
 
 .light {
@@ -26,8 +37,8 @@
   --panel-hover: #E9ECEF;
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-light: rgba(0, 0, 0, 0.14);
-  --electric-blue: #2563EB;
-  --purple-soft: #9333EA;
+  --electric-blue: #D97706;
+  --purple-soft: #575550;
   --text-offwhite: #0A0A0E;
   --text-muted: #4B5563;
   --text-dim: #6B7280;
@@ -43,57 +54,170 @@
   }
 }
 
-/* Theme-adaptive custom sleek scrollbar */
+/* Hairline precision borders */
+.hairline-border {
+  border: 1px solid var(--border-subtle);
+}
+.hairline-b {
+  border-bottom: 1px solid var(--border-subtle);
+}
+.hairline-r {
+  border-right: 1px solid var(--border-subtle);
+}
+.hairline-t {
+  border-top: 1px solid var(--border-subtle);
+}
+.hairline-l {
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Theme-adaptive custom slim amber scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--canvas-bg);
+  background: #0E0E10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 4px;
+  background: #2A2A30;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--electric-blue);
+  background: var(--amber-accent);
 }
 
-/* Custom range slider styling matching Stitch */
+/* Concentric micro-grooves vinyl disc surface */
+.vinyl-surface {
+  background: radial-gradient(circle, 
+    #1c1c20 0%, 
+    #0f0f12 18%, 
+    #141418 20%, 
+    #0b0b0d 28%, 
+    #17171c 30%, 
+    #0d0d0f 42%, 
+    #15151a 44%, 
+    #0a0a0c 56%, 
+    #16161b 58%, 
+    #0c0c0e 68%, 
+    #18181e 70%, 
+    #09090b 84%, 
+    #1a1a20 86%, 
+    #08080a 100%
+  );
+  box-shadow: inset 0 0 35px rgba(0,0,0,0.9), 0 12px 36px rgba(0,0,0,0.85);
+}
+
+/* Legacy vinyl micro-groove texture */
+.vinyl-grooves {
+  background: radial-gradient(circle, #0a0a0d 20%, #15151b 21%, #0a0a0d 22%, #15151b 35%, #0a0a0d 36%, #15151b 48%, #0a0a0d 49%, #15151b 60%, #0a0a0d 61%, #15151b 75%, #0a0a0d 76%);
+}
+
+/* Strobe dot perimeter ring for Braun audio equipment */
+.strobe-ring {
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    rgba(245, 244, 240, 0.4) 0deg 1deg,
+    transparent 1deg 3deg
+  );
+}
+
+/* Dieter Rams Braun tactile toggle switch */
+.braun-switch {
+  background: #18181D;
+  border: 1px solid var(--border-medium);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.braun-switch.active {
+  background: var(--paper-white);
+  color: var(--bg-black);
+  border-color: var(--paper-white);
+  font-weight: 600;
+}
+.braun-switch.active-amber {
+  background: var(--amber-accent);
+  color: #0A0A0C;
+  border-color: var(--amber-accent);
+  font-weight: 600;
+}
+
+/* Sliders & Step Attenuator */
+input[type=range].amber-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #1C1C22;
+  height: 4px;
+  border-radius: 0px;
+}
+input[type=range].amber-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  background: var(--amber-accent);
+  cursor: pointer;
+  border: 2px solid #0A0A0C;
+  box-shadow: 0 0 0 1px var(--border-medium);
+}
+input[type=range].amber-thumb::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  background: var(--amber-accent);
+  cursor: pointer;
+  border: 2px solid #0A0A0C;
+  box-shadow: 0 0 0 1px var(--border-medium);
+}
+
 .custom-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: var(--electric-blue);
+  border-radius: 2px;
+  background: var(--amber-accent);
   border: 2px solid var(--text-offwhite);
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .custom-range::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 14px rgba(59, 130, 246, 0.8);
+  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(217, 119, 6, 0.8);
 }
 
 .custom-range::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: var(--electric-blue);
+  border-radius: 2px;
+  background: var(--amber-accent);
   border: 2px solid var(--text-offwhite);
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
 }
 
-/* Vinyl Micro-Groove Texture effect */
-.vinyl-grooves {
-  background: radial-gradient(circle, #0a0a0d 20%, #15151b 21%, #0a0a0d 22%, #15151b 35%, #0a0a0d 36%, #15151b 48%, #0a0a0d 49%, #15151b 60%, #0a0a0d 61%, #15151b 75%, #0a0a0d 76%);
+/* Attenuator markers */
+.attenuator-mark {
+  position: relative;
+}
+.attenuator-mark::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 4px;
+  background: var(--paper-muted);
+}
+.attenuator-mark.active::before {
+  background: var(--amber-accent);
+  height: 7px;
 }
 
 /* Audiophile Brushed Chassis & Rackmount Textures */
@@ -108,12 +232,12 @@
 
 /* Warm Incandescent Amber Glow for Audiophile Meters & Filament Valves */
 .amber-glow {
-  text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+  text-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
+  box-shadow: 0 0 16px rgba(217, 119, 6, 0.25);
 }
 
 .amber-meter-scale {
-  background: radial-gradient(circle at 50% 120%, rgba(245, 158, 11, 0.25) 0%, rgba(26, 18, 8, 0.9) 75%);
+  background: radial-gradient(circle at 50% 120%, rgba(217, 119, 6, 0.25) 0%, rgba(26, 18, 8, 0.9) 75%);
 }
 
 /* Phosphor Green / Cyan CRT Scanline Overlay */
@@ -146,4 +270,3 @@
   background: linear-gradient(180deg, #40404a 0%, #22222a 50%, #15151c 100%);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.8);
 }
-

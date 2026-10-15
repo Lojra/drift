@@ -14,12 +14,20 @@ export default {
         'panel-elevated': 'var(--panel-elevated)',
         'panel-hover': 'var(--panel-hover)',
         'border-subtle': 'var(--border-subtle)',
+        'border-medium': 'var(--border-medium)',
         'border-light': 'var(--border-light)',
         'electric-blue': 'var(--electric-blue)',
         'purple-soft': 'var(--purple-soft)',
         'text-offwhite': 'var(--text-offwhite)',
         'text-muted': 'var(--text-muted)',
         'text-dim': 'var(--text-dim)',
+        'bg-black': 'var(--bg-black)',
+        'panel-dark': 'var(--panel-dark)',
+        'panel-inset': 'var(--panel-inset)',
+        'paper-white': 'var(--paper-white)',
+        'paper-dim': 'var(--paper-dim)',
+        'paper-muted': 'var(--paper-muted)',
+        'amber-accent': 'var(--amber-accent)',
         surface: {
           DEFAULT: 'var(--panel-obsidian)',
           hover: 'var(--panel-elevated)',
@@ -27,13 +35,13 @@ export default {
           borderHover: 'var(--border-light)'
         },
         accent: {
-          primary: 'var(--electric-blue)',
-          secondary: 'var(--purple-soft)',
+          primary: 'var(--amber-accent)',
+          secondary: 'var(--paper-dim)',
         },
         text: {
-          primary: 'var(--text-offwhite)',
-          muted: 'var(--text-muted)',
-          dim: 'var(--text-dim)',
+          primary: 'var(--paper-white)',
+          muted: 'var(--paper-dim)',
+          dim: 'var(--paper-muted)',
         }
       },
       fontFamily: {

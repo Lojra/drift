@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCw, Search, X, Sun, Moon, LayoutGrid, Disc, BookOpen, Sliders } from 'lucide-react';
+import { RotateCw, Search, X, Sun, Moon, LayoutGrid, Disc, FileText, Sliders } from 'lucide-react';
 import { TasteProfile } from '../../types/music';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -32,150 +32,160 @@ export const Header: React.FC<HeaderProps> = ({
   const driftText = (tasteProfile.currentDriftPath || 'INITIAL EXPLORATION').toUpperCase();
 
   return (
-    <header className="h-16 flex-shrink-0 audiophile-chassis border-b border-border-subtle px-4 lg:px-6 flex items-center justify-between gap-3 z-10 select-none min-w-0 relative">
-      {/* Left: Master Clock & Drift Vector Readout */}
-      <div className="flex items-center gap-3 min-w-0 max-w-[240px] sm:max-w-[340px] lg:max-w-[460px]">
-        <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-panel-obsidian border border-border-subtle min-w-0 shadow-inner">
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)] animate-pulse flex-shrink-0" />
-          <div className="min-w-0 truncate">
-            <span className="font-mono text-[8px] text-amber-500/90 tracking-widest block uppercase leading-none">
-              MASTER CLOCK // 192kHz
+    <header className="h-14 flex-shrink-0 bg-[#0E0E11] border-b border-[rgba(245,244,240,0.08)] px-4 lg:px-6 flex items-center justify-between gap-3 z-10 select-none min-w-0 relative">
+      {/* Left: Dieter Rams Bauhaus Wordmark & Divergence Breadcrumb */}
+      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+        <div className="flex items-baseline space-x-2 shrink-0">
+          <span className="text-lg font-bold tracking-tighter text-[#F5F4F0]">DRIFT</span>
+          <span className="text-[9px] font-mono tracking-widest text-[#9C9A94] uppercase hidden sm:inline">
+            SYSTEM 10 // BRAUN MK-10
+          </span>
+        </div>
+
+        <div className="h-4 w-[1px] bg-white/10 hidden sm:block shrink-0" />
+
+        {/* Master Clock & Acoustic Divergence Readout */}
+        <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-[#16161A] border border-white/5 min-w-0">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] shadow-[0_0_8px_#D97706] shrink-0" />
+          <div className="min-w-0 truncate font-mono text-[11px]">
+            <span className="text-[#9C9A94] text-[9px] tracking-wider uppercase hidden xl:inline mr-1">
+              MASTER CLOCK // 192kHz &bull;
             </span>
-            <span
-              className="font-mono text-xs font-bold tracking-tight text-text-offwhite truncate block leading-tight mt-0.5"
-              title={`CURRENT DRIFT: ${driftText}`}
-            >
-              DRIFT: {driftText}
+            <span className="text-[#F5F4F0] font-medium tracking-tight">
+              ACOUSTIC DIVERGENCE:
+            </span>{' '}
+            <span className="text-[#9C9A94] tracking-wider truncate">
+              {driftText}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Center: Search Console */}
-      <div className="relative flex-1 max-w-[160px] sm:max-w-xs md:max-w-sm">
+      {/* Center: Precision Search Console */}
+      <div className="relative flex-1 max-w-[140px] sm:max-w-xs md:max-w-sm">
         <Search
-          className="w-3.5 h-3.5 text-text-dim absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
-          strokeWidth={1.8}
+          className="w-3.5 h-3.5 text-[#9C9A94] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+          strokeWidth={1.75}
         />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Search catalog or artist..."
-          className="w-full bg-panel-obsidian border border-border-subtle focus:border-amber-500 rounded-lg py-1.5 pl-8 pr-7 font-mono text-xs text-text-offwhite placeholder:text-text-dim outline-none transition-all shadow-inner"
+          placeholder="Filter catalog or artist..."
+          className="w-full bg-[#141418] border border-[rgba(245,244,240,0.08)] focus:border-[#D97706] rounded py-1 pl-8 pr-7 font-mono text-xs text-[#F5F4F0] placeholder:text-[#575550] outline-none transition-all shadow-inner"
         />
         {searchQuery && (
           <button
             onClick={() => onSearchChange('')}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-text-dim hover:text-text-offwhite p-0.5 rounded transition-colors"
-            title="Clear search"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-[#9C9A94] hover:text-[#F5F4F0] p-0.5 rounded transition-colors"
+            title="Clear filter"
           >
             <X className="w-3 h-3" />
           </button>
         )}
       </div>
 
-      {/* Right Controls: View Switcher, Crate Status, Theme & Refresh */}
-      <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      {/* Right Controls: View Switcher, Dual Table Tabs, Theme & Refresh */}
+      <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
         {/* View Mode Toggle: Grid vs Hi-Fi Studio Deck */}
         {onToggleViewMode && (
-          <div className="flex items-center bg-panel-obsidian border border-border-subtle p-0.5 rounded-lg shadow-inner">
+          <div className="flex items-center bg-[#09090B] border border-white/10 p-0.5 rounded-sm">
             <button
               onClick={() => onToggleViewMode('grid')}
-              className={`px-2.5 py-1.5 rounded-md flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+              className={`px-2 py-1 rounded-sm flex items-center gap-1.5 font-mono text-[10px] transition-all ${
                 viewMode === 'grid'
-                  ? 'bg-panel-elevated text-electric-blue font-bold shadow-md border border-electric-blue/40'
-                  : 'text-text-muted hover:text-text-offwhite'
+                  ? 'braun-switch active shadow-sm'
+                  : 'text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
               title="Classic Crate Grid"
             >
-              <LayoutGrid className="w-3.5 h-3.5" />
+              <LayoutGrid className="w-3 h-3" />
               <span className="hidden xl:inline">CRATE GRID</span>
             </button>
             <button
               onClick={() => onToggleViewMode('studio')}
-              className={`px-2.5 py-1.5 rounded-md flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+              className={`px-2 py-1 rounded-sm flex items-center gap-1.5 font-mono text-[10px] transition-all ${
                 viewMode === 'studio'
-                  ? 'bg-panel-elevated text-amber-400 font-bold shadow-md border border-amber-500/40'
-                  : 'text-text-muted hover:text-text-offwhite'
+                  ? 'braun-switch active-amber shadow-sm'
+                  : 'text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
-              title="Audiophile Hi-Fi Studio Deck"
+              title="Braun Transcription Deck"
             >
-              <Disc className="w-3.5 h-3.5" />
+              <Disc className="w-3 h-3" />
               <span className="hidden xl:inline">HI-FI DECK</span>
             </button>
           </div>
         )}
 
-        {/* Top Bar Dual Shelves: Music Info Table & Music Test Table */}
+        {/* Dual Shelves: Music Info Table & Music Test Table */}
         {onToggleDrawerTable && (
-          <div className="flex items-center bg-panel-obsidian border border-border-subtle p-0.5 rounded-lg shadow-inner">
+          <div className="flex items-center bg-[#09090B] border border-white/10 p-0.5 rounded-sm">
             {/* Shelf 1: Music Info Table */}
             <button
               onClick={() => onToggleDrawerTable('info')}
-              className={`px-2.5 py-1.5 rounded-md flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+              className={`px-2.5 py-1 rounded-sm flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider transition-all ${
                 activeDrawerTable === 'info'
-                  ? 'bg-panel-elevated text-electric-blue font-bold shadow-md border border-electric-blue/40'
-                  : 'text-text-muted hover:text-text-offwhite'
+                  ? 'braun-switch active shadow-sm'
+                  : 'text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
-              title="Open Music Info Table (Gatefold Jacket, tracklist, audio preview, mastering specs)"
+              title="Music Info Table (Gatefold Jacket, tracklist, audio preview, specs)"
               aria-label="Toggle Music Info Table"
             >
-              <BookOpen className="w-3.5 h-3.5" />
+              <FileText className="w-3 h-3" />
               <span className="hidden lg:inline">INFO TABLE</span>
               {activeDrawerTable === 'info' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_6px_#3B82F6]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
               )}
             </button>
 
             {/* Shelf 2: Music Test Table */}
             <button
               onClick={() => onToggleDrawerTable('test')}
-              className={`px-2.5 py-1.5 rounded-md flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+              className={`px-2.5 py-1 rounded-sm flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider transition-all ${
                 activeDrawerTable === 'test'
-                  ? 'bg-panel-elevated text-amber-400 font-bold shadow-md border border-amber-500/40'
-                  : 'text-text-muted hover:text-text-offwhite'
+                  ? 'braun-switch active-amber shadow-sm'
+                  : 'text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
-              title="Open Music Test Table (Phono attenuator rating, sonic reaction tags, acoustic radar telemetry)"
+              title="Music Test Table (Stepped attenuator rating, sonic reaction stamps)"
               aria-label="Toggle Music Test Table"
             >
-              <Sliders className="w-3.5 h-3.5" />
+              <Sliders className="w-3 h-3" />
               <span className="hidden lg:inline">TEST TABLE</span>
               {activeDrawerTable === 'test' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_6px_#F59E0B]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
               )}
             </button>
           </div>
         )}
 
-        {/* Backlit Crate Status Indicator */}
-        <div className="font-mono text-xs px-2.5 py-1.5 rounded-lg bg-panel-obsidian border border-border-subtle hidden md:flex items-center gap-1.5 shadow-inner">
-          <span className="w-1.5 h-1.5 rounded-full bg-purple-soft" />
-          <span className="text-text-dim text-[10px]">ROTATION:</span>
-          <span className="text-text-offwhite font-bold">{ratedInCrateCount}/10 RATED</span>
+        {/* Crate Rotation Counter */}
+        <div className="font-mono text-xs px-2.5 py-1 rounded bg-[#141418] border border-white/5 hidden md:flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
+          <span className="text-[#9C9A94] text-[9px] uppercase">ROTATION:</span>
+          <span className="text-[#F5F4F0] font-bold text-[10px]">{ratedInCrateCount}/10 RATED</span>
         </div>
 
-        {/* White / Dark Mode Toggle */}
+        {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="flex items-center justify-center w-8 h-8 rounded-lg bg-panel-obsidian hover:bg-panel-elevated border border-border-subtle hover:border-border-light text-text-offwhite transition-all active:scale-95 shadow-sm"
-          title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
-          aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+          className="flex items-center justify-center w-7 h-7 rounded bg-[#141418] hover:bg-[#1E1E24] border border-white/10 text-[#F5F4F0] transition-all active:scale-95 shadow-sm"
+          title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Pitch Black Mode'}
+          aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Pitch Black Mode'}
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-500" strokeWidth={1.75} />
+            <Sun className="w-3.5 h-3.5 text-[#D97706]" strokeWidth={1.75} />
           ) : (
-            <Moon className="w-4 h-4 text-purple-soft" strokeWidth={1.75} />
+            <Moon className="w-3.5 h-3.5 text-[#F5F4F0]" strokeWidth={1.75} />
           )}
         </button>
 
-        {/* Refresh Crate Button */}
+        {/* Cycle 10 LPs Button */}
         <button
           onClick={onRefreshCrate}
           disabled={isLoading}
-          className="flex items-center gap-2 bg-electric-blue hover:bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg font-mono text-xs font-bold tracking-wider transition-all shadow-[0_0_16px_rgba(59,130,246,0.4)] active:scale-95 disabled:opacity-50"
+          className="flex items-center gap-1.5 bg-[#D97706] hover:bg-[#B45309] text-black px-3 py-1.5 rounded font-mono text-[11px] font-bold tracking-wider uppercase transition-all shadow-[0_2px_10px_rgba(217,119,6,0.3)] active:scale-95 disabled:opacity-50"
         >
-          <RotateCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2.2} />
+          <RotateCw className={`w-3 h-3 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2.2} />
           <span className="hidden sm:inline">CYCLE 10 LPs</span>
           <span className="sm:hidden">CYCLE</span>
         </button>

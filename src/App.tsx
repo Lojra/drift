@@ -35,7 +35,7 @@ export const App: React.FC = () => {
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewMode, setViewMode] = useState<'grid' | 'studio'>('studio');
-  const [drawerTable, setDrawerTable] = useState<'none' | 'info' | 'test'>('none');
+  const [drawerTable, setDrawerTable] = useState<'info' | 'test'>('info');
 
   // Count of rated albums inside the current 10-album crate
   const ratedInCrateCount = useMemo(() => {
@@ -64,14 +64,13 @@ export const App: React.FC = () => {
   // Keyboard shortcut: ESC closes Inspector Drawer if no modal is open
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && (selectedAlbum || drawerTable !== 'none') && !showCalibrationModal) {
+      if (e.key === 'Escape' && selectedAlbum && !showCalibrationModal) {
         setSelectedAlbum(null);
-        setDrawerTable('none');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedAlbum, drawerTable, showCalibrationModal, setSelectedAlbum]);
+  }, [selectedAlbum, showCalibrationModal, setSelectedAlbum]);
 
   const handleSelectRatedArchiveAlbum = (rated: AlbumRating) => {
     const albumMatch = crate.find(a => a.id === rated.albumId);
@@ -97,18 +96,14 @@ export const App: React.FC = () => {
   };
 
   const handleToggleDrawerTable = (table: 'info' | 'test') => {
-    if (drawerTable === table) {
-      setDrawerTable('none');
-    } else {
-      if (!selectedAlbum && displayedCrate.length > 0) {
-        setSelectedAlbum(displayedCrate[0]);
-      }
-      setDrawerTable(table);
+    setDrawerTable(table);
+    if (viewMode === 'grid' && !selectedAlbum && displayedCrate.length > 0) {
+      setSelectedAlbum(displayedCrate[0]);
     }
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-canvas-black text-text-offwhite font-sans antialiased select-none">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#0A0A0C] text-[#F5F4F0] font-sans antialiased select-none">
       {/* 1. Left Fixed Sidebar (Desktop only) with 10-LP Vinyl Shelf */}
       <div className="hidden md:flex flex-shrink-0 h-full overflow-visible z-30">
         <Sidebar
@@ -130,7 +125,7 @@ export const App: React.FC = () => {
       </div>
 
       {/* 2. Fluid Center Main Canvas */}
-      <div className="flex-1 flex flex-col h-full min-w-0 bg-canvas-black overflow-hidden relative">
+      <div className="flex-1 flex flex-col h-full min-w-0 bg-[#0A0A0C] overflow-hidden relative">
         {/* Mobile Header (Hidden on Desktop) */}
         <MobileHeader
           driftPath={tasteProfile.currentDriftPath}
@@ -163,7 +158,7 @@ export const App: React.FC = () => {
         <main
           className={`flex-1 min-h-0 ${
             activeTab === 'crate'
-              ? 'p-2 sm:p-3 xl:p-4 flex flex-col overflow-y-auto lg:overflow-hidden pb-28 lg:pb-3'
+              ? 'p-0 flex flex-col overflow-hidden pb-16 lg:pb-0'
               : 'overflow-y-auto p-4 sm:p-6 lg:p-8 pb-28 md:pb-8'
           }`}
         >
@@ -182,6 +177,8 @@ export const App: React.FC = () => {
                     setDrawerTable('info');
                   }}
                   isLoading={isLoading}
+                  tableMode={drawerTable}
+                  onSwitchTable={(mode) => setDrawerTable(mode)}
                 />
               ) : (
                 <CrateGrid
@@ -200,10 +197,10 @@ export const App: React.FC = () => {
             {activeTab === 'archive' && (
               <div className="space-y-4">
                 <div className="pb-1">
-                  <h2 className="text-sm font-bold tracking-wider font-mono text-text-offwhite uppercase">
+                  <h2 className="text-sm font-bold tracking-wider font-mono text-[#F5F4F0] uppercase">
                     AUDIOPHILE VINYL VAULT // 12-INCH MASTER ARCHIVE
                   </h2>
-                  <p className="text-xs text-text-muted mt-0.5 font-sans">
+                  <p className="text-xs text-[#9C9A94] mt-0.5 font-sans">
                     Your complete physical pressing registry, master grade certifications, and acoustic reaction stamps.
                   </p>
                 </div>
@@ -218,10 +215,10 @@ export const App: React.FC = () => {
             {activeTab === 'taste' && (
               <div className="space-y-4">
                 <div className="pb-1">
-                  <h2 className="text-sm font-bold tracking-wider font-mono text-text-offwhite uppercase">
+                  <h2 className="text-sm font-bold tracking-wider font-mono text-[#F5F4F0] uppercase">
                     STUDIO ACOUSTIC ANALYZER // 6-BAND PARAMETRIC CONSOLE
                   </h2>
-                  <p className="text-xs text-text-muted mt-0.5 font-sans">
+                  <p className="text-xs text-[#9C9A94] mt-0.5 font-sans">
                     Real-time polar acoustic radar scope, RIAA calibrated parametric faders, and magnetic tape bias anchors.
                   </p>
                 </div>
@@ -238,15 +235,14 @@ export const App: React.FC = () => {
       </div>
 
       {/* 3. Dual Table Album Inspector (Responsive: Slide-In Drawer on Desktop, Slide-Up Bottom Sheet on Mobile) */}
-      {(selectedAlbum || drawerTable !== 'none') && (
+      {viewMode === 'grid' && selectedAlbum && (
         <InspectorDrawer
-          album={selectedAlbum || displayedCrate[0] || null}
+          album={selectedAlbum}
           currentRating={currentAlbumRating}
-          tableMode={drawerTable === 'none' ? 'info' : drawerTable}
+          tableMode={drawerTable}
           onSwitchTable={(mode) => setDrawerTable(mode)}
           onClose={() => {
             setSelectedAlbum(null);
-            setDrawerTable('none');
           }}
           onRateAlbum={(albumId, score, tag) => rateAlbum(albumId, score, tag)}
           onReplaceAlbum={(albumId) => replaceCrateAlbum(albumId)}

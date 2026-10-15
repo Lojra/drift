@@ -209,7 +209,7 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
             type="button"
             onClick={handleSubmit}
             disabled={!isReady || isSubmitting}
-            className="w-full py-3 px-4 rounded-lg bg-electric-blue hover:bg-blue-600 text-text-offwhite font-mono text-xs font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(59,130,246,0.35)] active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full py-3 px-4 rounded-lg bg-[#D97706] hover:bg-[#B45309] text-black font-mono text-xs font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(217,119,6,0.35)] active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <span>CALCULATING PHONO BIAS &amp; CUTTING CRATE...</span>

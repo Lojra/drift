@@ -69,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, [tasteProfile.calibrated, ratings.length]);
 
   return (
-    <aside className="w-[260px] xl:w-[275px] flex-shrink-0 audiophile-chassis border-r border-border-subtle flex flex-col justify-between p-3.5 z-30 select-none relative audiophile-rack-edge overflow-visible">
+    <aside className="w-[260px] xl:w-[275px] flex-shrink-0 audiophile-chassis border-r border-[rgba(245,244,240,0.08)] flex flex-col justify-between p-3.5 z-30 select-none relative audiophile-rack-edge overflow-visible bg-[#0A0A0C]">
       {/* Top Countersunk Hex Bolt Fasteners */}
       <div className="absolute top-2 left-2 flex items-center justify-center">
         <div className="w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900 shadow-inner flex items-center justify-center">
@@ -83,26 +83,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Top Branding & Master Console Channel Selector */}
-      <div className="space-y-5 pt-1">
+      <div className="space-y-4 pt-1">
         {/* Brushed Metal Master Console Plate */}
-        <div className="p-2.5 rounded-lg bg-panel-obsidian/90 border border-border-subtle shadow-md relative overflow-hidden">
+        <div className="p-2.5 rounded-lg bg-[#111114] border border-[rgba(245,244,240,0.08)] shadow-md relative overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)] animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#D97706] shadow-[0_0_10px_rgba(217,119,6,0.8)] animate-pulse" />
               <div className="flex flex-col">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-amber-500/90 font-bold leading-none">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-[#D97706] font-bold leading-none">
                   PHONO STUDIO
                 </span>
-                <span className="font-black text-lg tracking-[0.2em] text-text-offwhite font-sans leading-tight">
+                <span className="font-black text-lg tracking-[0.2em] text-[#F5F4F0] font-sans leading-tight">
                   DRIFT
                 </span>
               </div>
             </div>
             <div className="text-right">
-              <span className="font-mono text-[9px] text-text-dim px-1.5 py-0.5 rounded bg-panel-elevated border border-border-subtle block">
+              <span className="font-mono text-[9px] text-[#9C9A94] px-1.5 py-0.5 rounded bg-[#16161C] border border-white/5 block">
                 MK-IV RACK
               </span>
-              <span className="font-mono text-[8px] text-text-dim mt-0.5 block">
+              <span className="font-mono text-[8px] text-[#575550] mt-0.5 block">
                 192kHz/24b
               </span>
             </div>
@@ -112,28 +112,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Section Label */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between px-2 mb-1.5">
-            <p className="font-mono text-[9px] uppercase tracking-widest text-text-dim">
+            <p className="font-mono text-[9px] uppercase tracking-widest text-[#575550]">
               CONSOLE BUS SELECTOR
             </p>
-            <span className="font-mono text-[8px] text-electric-blue">DIRECT CUE</span>
+            <span className="font-mono text-[8px] text-[#D97706]">DIRECT CUE</span>
           </div>
 
-          {/* Navigation Items: Styled as Illuminated Audiophile Rocker Switches */}
+          {/* Navigation Items: Styled as Illuminated Rocker Switches */}
           <nav className="space-y-1.5">
             {/* Bus 1: Current 10 Crate */}
             <button
               onClick={() => setActiveTab('crate')}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-mono font-medium transition-all group relative overflow-hidden ${
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono font-medium transition-all group relative overflow-hidden ${
                 activeTab === 'crate'
-                  ? 'bg-panel-elevated border-2 border-electric-blue text-text-offwhite shadow-[0_0_16px_rgba(59,130,246,0.25)]'
-                  : 'bg-panel-obsidian/60 hover:bg-panel-elevated/70 text-text-muted hover:text-text-offwhite border border-border-subtle'
+                  ? 'bg-[#181820] border-2 border-[#D97706] text-[#F5F4F0] shadow-[0_0_16px_rgba(217,119,6,0.25)]'
+                  : 'bg-[#111114]/60 hover:bg-[#16161C] text-[#9C9A94] hover:text-[#F5F4F0] border border-[rgba(245,244,240,0.08)]'
               }`}
             >
               <div className="flex items-center gap-2.5">
                 <span
                   className={`w-2 h-2 rounded-full transition-all ${
                     activeTab === 'crate'
-                      ? 'bg-electric-blue shadow-[0_0_8px_#3B82F6]'
+                      ? 'bg-[#D97706] shadow-[0_0_8px_#D97706]'
                       : 'bg-neutral-700 group-hover:bg-neutral-500'
                   }`}
                 />
@@ -143,8 +143,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded ${
                   activeTab === 'crate'
-                    ? 'bg-electric-blue/20 text-electric-blue font-bold border border-electric-blue/40'
-                    : 'text-text-dim bg-panel-elevated'
+                    ? 'bg-[#D97706]/20 text-[#D97706] font-bold border border-[#D97706]/40'
+                    : 'text-[#575550] bg-[#16161C]'
                 }`}
               >
                 10 LPs
@@ -154,17 +154,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {/* Bus 2: Rated Archive */}
             <button
               onClick={() => setActiveTab('archive')}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-mono font-medium transition-all group relative overflow-hidden ${
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono font-medium transition-all group relative overflow-hidden ${
                 activeTab === 'archive'
-                  ? 'bg-panel-elevated border-2 border-purple-soft text-text-offwhite shadow-[0_0_16px_rgba(192,132,252,0.25)]'
-                  : 'bg-panel-obsidian/60 hover:bg-panel-elevated/70 text-text-muted hover:text-text-offwhite border border-border-subtle'
+                  ? 'bg-[#181820] border-2 border-white/60 text-[#F5F4F0] shadow-sm'
+                  : 'bg-[#111114]/60 hover:bg-[#16161C] text-[#9C9A94] hover:text-[#F5F4F0] border border-[rgba(245,244,240,0.08)]'
               }`}
             >
               <div className="flex items-center gap-2.5">
                 <span
                   className={`w-2 h-2 rounded-full transition-all ${
                     activeTab === 'archive'
-                      ? 'bg-purple-soft shadow-[0_0_8px_#C084FC]'
+                      ? 'bg-[#F5F4F0] shadow-[0_0_8px_rgba(245,244,240,0.6)]'
                       : 'bg-neutral-700 group-hover:bg-neutral-500'
                   }`}
                 />
@@ -174,8 +174,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded ${
                   activeTab === 'archive'
-                    ? 'bg-purple-soft/20 text-purple-soft font-bold border border-purple-soft/40'
-                    : 'text-text-dim bg-panel-elevated'
+                    ? 'bg-white/10 text-[#F5F4F0] font-bold border border-white/20'
+                    : 'text-[#575550] bg-[#16161C]'
                 }`}
               >
                 {ratings.length} CUTS
@@ -185,17 +185,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {/* Bus 3: Taste Vector Telemetry */}
             <button
               onClick={() => setActiveTab('taste')}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-mono font-medium transition-all group relative overflow-hidden ${
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono font-medium transition-all group relative overflow-hidden ${
                 activeTab === 'taste'
-                  ? 'bg-panel-elevated border-2 border-amber-500 text-text-offwhite shadow-[0_0_16px_rgba(245,158,11,0.25)]'
-                  : 'bg-panel-obsidian/60 hover:bg-panel-elevated/70 text-text-muted hover:text-text-offwhite border border-border-subtle'
+                  ? 'bg-[#181820] border-2 border-[#D97706] text-[#F5F4F0] shadow-[0_0_16px_rgba(217,119,6,0.25)]'
+                  : 'bg-[#111114]/60 hover:bg-[#16161C] text-[#9C9A94] hover:text-[#F5F4F0] border border-[rgba(245,244,240,0.08)]'
               }`}
             >
               <div className="flex items-center gap-2.5">
                 <span
                   className={`w-2 h-2 rounded-full transition-all ${
                     activeTab === 'taste'
-                      ? 'bg-amber-500 shadow-[0_0_8px_#F59E0B]'
+                      ? 'bg-[#D97706] shadow-[0_0_8px_#D97706]'
                       : 'bg-neutral-700 group-hover:bg-neutral-500'
                   }`}
                 />
@@ -205,8 +205,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded ${
                   activeTab === 'taste'
-                    ? 'bg-amber-500/20 text-amber-500 font-bold border border-amber-500/40'
-                    : 'text-text-dim bg-panel-elevated'
+                    ? 'bg-[#D97706]/20 text-[#D97706] font-bold border border-[#D97706]/40'
+                    : 'text-[#575550] bg-[#16161C]'
                 }`}
               >
                 {telemetryPercent}
@@ -219,16 +219,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="space-y-1.5 pt-0.5">
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-1.5">
-              <Disc className="w-3 h-3 text-amber-500" strokeWidth={2} />
-              <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim font-bold">
+              <Disc className="w-3 h-3 text-[#D97706]" strokeWidth={2} />
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#575550] font-bold">
                 VINYL SHELF // 10-LP RACK
               </span>
             </div>
-            <span className="font-mono text-[8px] text-amber-500/80 uppercase">POPOUT ON HOVER</span>
+            <span className="font-mono text-[8px] text-[#D97706] uppercase">POPOUT ON HOVER</span>
           </div>
 
           {/* Shelving Cabinet Slots */}
-          <div className="p-1 rounded-xl bg-panel-obsidian/90 border border-border-subtle shadow-inner space-y-1 overflow-visible">
+          <div className="p-1 rounded-xl bg-[#111114]/90 border border-[rgba(245,244,240,0.08)] shadow-inner space-y-1 overflow-visible">
             {crate && crate.length > 0 ? (
               crate.slice(0, 10).map((album, idx) => {
                 const isSelected = selectedAlbum?.id === album.id;
@@ -249,56 +249,56 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     <div
                       className={`w-full h-7 px-2 rounded-md flex items-center justify-between font-mono text-[10px] transition-all duration-200 border relative ${
                         isSelected
-                          ? 'bg-panel-elevated border-amber-500/80 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.25)] translate-x-1.5'
-                          : 'bg-panel-obsidian/80 hover:bg-panel-elevated border-border-subtle hover:border-border-light text-text-muted hover:text-text-offwhite hover:translate-x-2'
+                          ? 'bg-[#181822] border-[#D97706] text-[#D97706] shadow-[0_0_12px_rgba(217,119,6,0.25)] translate-x-1.5'
+                          : 'bg-[#111114]/80 hover:bg-[#16161C] border-[rgba(245,244,240,0.06)] hover:border-white/20 text-[#9C9A94] hover:text-[#F5F4F0] hover:translate-x-2'
                       }`}
                     >
                       {/* Left Slot Spine Edge & Title */}
                       <div className="flex items-center gap-1.5 min-w-0">
-                        <span className={`text-[8px] font-bold ${isSelected ? 'text-amber-500' : 'text-text-dim'}`}>
+                        <span className={`text-[8px] font-bold ${isSelected ? 'text-[#D97706]' : 'text-[#575550]'}`}>
                           {slotNum}
                         </span>
                         <span
                           className={`w-1 h-3 rounded-full flex-shrink-0 ${
                             isSelected
-                              ? 'bg-amber-500 shadow-[0_0_6px_#F59E0B]'
+                              ? 'bg-[#D97706] shadow-[0_0_6px_#D97706]'
                               : isRated
-                              ? 'bg-purple-soft'
-                              : 'bg-electric-blue/70'
+                              ? 'bg-white/60'
+                              : 'bg-[#D97706]/60'
                           }`}
                         />
-                        <span className="truncate max-w-[125px] font-sans font-medium text-[10px] text-text-offwhite">
+                        <span className="truncate max-w-[125px] font-sans font-medium text-[10px] text-[#F5F4F0]">
                           {album.title}
                         </span>
                       </div>
 
                       {/* Right Edge Badge */}
-                      <div className="flex-shrink-0 text-[8px] font-mono text-text-dim pl-1">
+                      <div className="flex-shrink-0 text-[8px] font-mono text-[#575550] pl-1">
                         {isRated ? (
-                          <span className="text-purple-soft font-bold">{albumRating.score.toFixed(1)}</span>
+                          <span className="text-[#D97706] font-bold">{albumRating.score.toFixed(1)}</span>
                         ) : isSelected ? (
-                          <span className="text-amber-400 font-bold">CUED</span>
+                          <span className="text-[#D97706] font-bold">CUED</span>
                         ) : (
-                          <span className="text-text-dim/80">LP</span>
+                          <span className="text-[#575550]">LP</span>
                         )}
                       </div>
                     </div>
 
                     {/* Pop-Out Vinyl Record Sleeve & Spinning Disc Preview */}
-                    <div className={`absolute left-full ${idx >= 6 ? 'bottom-0' : 'top-1/2 -translate-y-1/2'} ml-3 w-64 p-3 rounded-xl bg-panel-obsidian border border-border-light shadow-[0_20px_50px_rgba(0,0,0,0.98)] opacity-0 pointer-events-none group-hover/slot:opacity-100 group-hover/slot:pointer-events-auto transition-all duration-300 z-50 flex flex-col gap-2.5 backdrop-blur-xl`}>
+                    <div className={`absolute left-full ${idx >= 6 ? 'bottom-0' : 'top-1/2 -translate-y-1/2'} ml-3 w-64 p-3 rounded-xl bg-[#111114] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.98)] opacity-0 pointer-events-none group-hover/slot:opacity-100 group-hover/slot:pointer-events-auto transition-all duration-300 z-50 flex flex-col gap-2.5 backdrop-blur-xl`}>
                       {/* Popout Header */}
                       <div className="flex items-center justify-between text-[9px] font-mono">
-                        <span className="text-amber-400 font-bold">LP RACK SLOT #{slotNum}</span>
-                        <span className="text-text-dim uppercase tracking-wider">
+                        <span className="text-[#D97706] font-bold">LP RACK SLOT #{slotNum}</span>
+                        <span className="text-[#575550] uppercase tracking-wider">
                           {isSelected ? 'ON TURNTABLE PLATTER' : 'READY TO DROP'}
                         </span>
                       </div>
 
                       {/* Artwork with Grooved Vinyl Disc Sliding Out */}
-                      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-neutral-950 border border-border-subtle shadow-lg flex items-center justify-center">
+                      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-neutral-950 border border-white/10 shadow-lg flex items-center justify-center">
                         {/* Grooved Vinyl Disc Slipping Out */}
                         <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-44 h-44 rounded-full vinyl-grooves border border-neutral-700 shadow-2xl flex items-center justify-center transition-transform duration-500 group-hover/slot:translate-x-4">
-                          <div className="w-12 h-12 rounded-full bg-amber-600/80 border border-neutral-900 flex items-center justify-center">
+                          <div className="w-12 h-12 rounded-full bg-[#D97706]/80 border border-neutral-900 flex items-center justify-center">
                             <div className="w-2 h-2 rounded-full bg-black" />
                           </div>
                         </div>
@@ -320,29 +320,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                       {/* Metadata */}
                       <div className="min-w-0">
-                        <h4 className="font-sans font-bold text-xs text-text-offwhite truncate">
+                        <h4 className="font-sans font-bold text-xs text-[#F5F4F0] truncate">
                           {album.title}
                         </h4>
-                        <p className="font-sans text-[11px] text-text-muted truncate">
+                        <p className="font-sans text-[11px] text-[#9C9A94] truncate">
                           {album.artist} &middot; <span className="font-mono text-[10px]">{album.releaseYear}</span>
                         </p>
                       </div>
 
                       {/* Lateral Drift Reason */}
                       {album.driftReason && (
-                        <p className="font-sans text-[10px] text-text-dim italic line-clamp-2 leading-relaxed bg-panel-elevated/60 p-1.5 rounded border border-border-subtle">
+                        <p className="font-sans text-[10px] text-[#575550] italic line-clamp-2 leading-relaxed bg-[#16161C] p-1.5 rounded border border-white/5">
                           &ldquo;{album.driftReason}&rdquo;
                         </p>
                       )}
 
                       {/* Drop Action */}
-                      <div className="flex items-center justify-between pt-1 border-t border-border-subtle text-[9px] font-mono">
-                        <span className="text-electric-blue flex items-center gap-1 font-bold">
+                      <div className="flex items-center justify-between pt-1 border-t border-[rgba(245,244,240,0.08)] text-[9px] font-mono">
+                        <span className="text-[#D97706] flex items-center gap-1 font-bold">
                           <Disc className="w-3 h-3 animate-spin-slow" />
                           CLICK TO DROP ON TURNTABLE
                         </span>
                         {isRated && (
-                          <span className="text-purple-soft font-bold">RATED {albumRating.score.toFixed(1)}</span>
+                          <span className="text-[#F5F4F0] font-bold">RATED {albumRating.score.toFixed(1)}</span>
                         )}
                       </div>
                     </div>
@@ -350,7 +350,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 );
               })
             ) : (
-              <div className="py-4 text-center font-mono text-[10px] text-text-dim">
+              <div className="py-4 text-center font-mono text-[10px] text-[#575550]">
                 LOADING 10-LP RACK...
               </div>
             )}
@@ -358,34 +358,34 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Rack Calibration & Analog Bias Controls */}
-        <div className="p-2.5 rounded-lg bg-panel-obsidian/70 border border-border-subtle space-y-1.5">
+        <div className="p-2.5 rounded-lg bg-[#111114]/70 border border-[rgba(245,244,240,0.08)] space-y-1.5">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim">
-              RACK BIAS & FILTERS
+            <span className="font-mono text-[9px] uppercase tracking-widest text-[#575550]">
+              RACK BIAS &amp; FILTERS
             </span>
-            <Cpu className="w-3 h-3 text-text-dim" />
+            <Cpu className="w-3 h-3 text-[#575550]" />
           </div>
 
-          <div className="space-y-1 font-mono text-[11px] text-text-muted">
+          <div className="space-y-1 font-mono text-[11px] text-[#9C9A94]">
             <div
               onClick={onToggleDivergence}
-              className="flex justify-between items-center py-0.5 border-b border-border-subtle cursor-pointer hover:text-text-offwhite transition-colors group"
+              className="flex justify-between items-center py-0.5 border-b border-[rgba(245,244,240,0.08)] cursor-pointer hover:text-[#F5F4F0] transition-colors group"
               title="Click to cycle Lateral Divergence degree (+2.1σ, +4.2σ, +6.8σ)"
             >
-              <span className="text-[10px] group-hover:text-text-offwhite">Lateral Bias</span>
-              <span className="text-amber-400 font-semibold group-hover:text-amber-300 flex items-center gap-1">
+              <span className="text-[10px] group-hover:text-[#F5F4F0]">Lateral Bias</span>
+              <span className="text-[#D97706] font-semibold group-hover:text-amber-400 flex items-center gap-1">
                 {divergenceLabel}
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-0.5 border-b border-border-subtle">
+            <div className="flex justify-between items-center py-0.5 border-b border-[rgba(245,244,240,0.08)]">
               <span className="text-[10px]">Phono RIAA</span>
-              <span className="text-electric-blue font-semibold text-[10px]">±0.1 dB</span>
+              <span className="text-[#F5F4F0] font-semibold text-[10px]">±0.1 dB</span>
             </div>
 
             <div className="flex justify-between items-center py-0.5">
               <span className="text-[10px]">Cartridge Load</span>
-              <span className="text-purple-soft font-semibold text-[10px]">47kΩ / 100pF</span>
+              <span className="text-[#9C9A94] font-semibold text-[10px]">47kΩ / 100pF</span>
             </div>
           </div>
         </div>
@@ -394,20 +394,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Bottom Area: Vacuum Tube Preamplifier Baseline & Tape Archival Tools */}
       <div className="space-y-3 pt-3">
         {/* Vacuum Tube Stage Card */}
-        <div className="p-3 rounded-lg bg-panel-elevated border border-border-light/40 space-y-2.5 relative overflow-hidden">
-          {/* Subtle Warm Amber Valve Filament Background Glow */}
-          <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-amber-500/10 rounded-full blur-xl pointer-events-none" />
+        <div className="p-3 rounded-lg bg-[#16161C] border border-white/10 space-y-2.5 relative overflow-hidden">
+          <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-[#D97706]/10 rounded-full blur-xl pointer-events-none" />
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <Radio className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
-              <span className="font-mono text-[9px] uppercase tracking-wider text-text-offwhite font-bold">
+              <Radio className="w-3.5 h-3.5 text-[#D97706] animate-pulse" />
+              <span className="font-mono text-[9px] uppercase tracking-wider text-[#F5F4F0] font-bold">
                 TUBE STAGE 12AX7
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
-              <span className="font-mono text-[8px] text-amber-500">HOT</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-ping" />
+              <span className="font-mono text-[8px] text-[#D97706]">HOT</span>
             </div>
           </div>
 
@@ -416,7 +415,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {activePills.map((pill) => (
               <span
                 key={pill}
-                className="font-mono text-[10px] font-medium text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-full"
+                className="font-mono text-[10px] font-medium text-[#D97706] bg-[#D97706]/10 border border-[#D97706]/30 px-2 py-0.5 rounded-full"
               >
                 {pill}
               </span>
@@ -426,28 +425,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Recalibrate Taste Button */}
           <button
             onClick={onRecalibrate}
-            className="w-full mt-1 py-1.5 px-2.5 rounded border border-border-light hover:border-amber-500 text-text-muted hover:text-amber-400 font-mono text-[10px] tracking-tight transition-all text-center flex items-center justify-center gap-1.5 group bg-panel-obsidian/80"
+            className="w-full mt-1 py-1.5 px-2.5 rounded border border-white/10 hover:border-[#D97706] text-[#9C9A94] hover:text-[#D97706] font-mono text-[10px] tracking-tight transition-all text-center flex items-center justify-center gap-1.5 group bg-[#111114]"
           >
-            <Sliders className="w-3 h-3 text-text-dim group-hover:text-amber-400 transition-colors" />
+            <Sliders className="w-3 h-3 text-[#575550] group-hover:text-[#D97706] transition-colors" />
             <span>CALIBRATE PHONO STAGE</span>
           </button>
         </div>
 
         {/* Master Tape Archival & Export Controls */}
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between px-2 py-1 rounded bg-panel-obsidian border border-border-subtle text-[9px] font-mono text-text-dim">
+          <div className="flex items-center justify-between px-2 py-1 rounded bg-[#111114] border border-[rgba(245,244,240,0.08)] text-[9px] font-mono text-[#575550]">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3 h-3 text-electric-blue" strokeWidth={1.8} />
-              <span className="text-text-muted">AIR-GAPPED VAULT</span>
+              <ShieldCheck className="w-3 h-3 text-[#D97706]" strokeWidth={1.8} />
+              <span className="text-[#9C9A94]">AIR-GAPPED VAULT</span>
             </div>
-            <span className="text-electric-blue text-[8px] font-bold tracking-wider">LOCAL ONLY</span>
+            <span className="text-[#D97706] text-[8px] font-bold tracking-wider">LOCAL ONLY</span>
           </div>
 
           <div className="grid grid-cols-2 gap-1.5">
             <button
               onClick={onExportBackup}
               title="Export rating history and crate to JSON backup"
-              className="flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-panel-obsidian border border-border-subtle hover:border-border-light text-[9px] font-mono text-text-dim hover:text-text-offwhite transition-colors"
+              className="flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-[#111114] border border-[rgba(245,244,240,0.08)] hover:border-white/20 text-[9px] font-mono text-[#9C9A94] hover:text-[#F5F4F0] transition-colors"
             >
               <Download className="w-2.5 h-2.5" strokeWidth={1.5} />
               <span>DUMP REC</span>
@@ -455,7 +454,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               onClick={() => fileInputRef.current?.click()}
               title="Import rating history and crate from JSON"
-              className="flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-panel-obsidian border border-border-subtle hover:border-border-light text-[9px] font-mono text-text-dim hover:text-text-offwhite transition-colors"
+              className="flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-[#111114] border border-[rgba(245,244,240,0.08)] hover:border-white/20 text-[9px] font-mono text-[#9C9A94] hover:text-[#F5F4F0] transition-colors"
             >
               <Upload className="w-2.5 h-2.5" strokeWidth={1.5} />
               <span>INGEST</span>
@@ -478,26 +477,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
               }
             }}
             title="Copy app link for quick access"
-            className="w-full flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-panel-obsidian border border-border-subtle hover:border-border-light text-[9px] font-mono text-text-dim hover:text-text-muted transition-colors"
+            className="w-full flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-[#111114] border border-[rgba(245,244,240,0.08)] hover:border-white/20 text-[9px] font-mono text-[#575550] hover:text-[#9C9A94] transition-colors"
           >
-            <Share2 className="w-2.5 h-2.5 text-text-dim" strokeWidth={1.5} />
+            <Share2 className="w-2.5 h-2.5 text-[#575550]" strokeWidth={1.5} />
             <span>COPY CONSOLE LINK</span>
           </button>
 
           {/* Theme Mode Toggle (Zero Emoji) */}
           <button
             onClick={toggleTheme}
-            title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
-            className="w-full flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-panel-obsidian border border-border-subtle hover:border-border-light text-[9px] font-mono text-text-dim hover:text-text-muted transition-colors"
+            title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Pitch Black Mode'}
+            className="w-full flex items-center justify-center gap-1.5 py-1 px-2 rounded bg-[#111114] border border-[rgba(245,244,240,0.08)] hover:border-white/20 text-[9px] font-mono text-[#575550] hover:text-[#9C9A94] transition-colors"
           >
             {theme === 'dark' ? (
               <>
-                <Sun className="w-2.5 h-2.5 text-amber-500" strokeWidth={1.5} />
+                <Sun className="w-2.5 h-2.5 text-[#D97706]" strokeWidth={1.5} />
                 <span>STUDIO WHITE</span>
               </>
             ) : (
               <>
-                <Moon className="w-2.5 h-2.5 text-purple-soft" strokeWidth={1.5} />
+                <Moon className="w-2.5 h-2.5 text-[#F5F4F0]" strokeWidth={1.5} />
                 <span>OBSIDIAN BLACK</span>
               </>
             )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCw, Compass, Sun, Moon, LayoutGrid, Disc, BookOpen, Sliders } from 'lucide-react';
+import { RotateCw, Compass, Sun, Moon, LayoutGrid, Disc, FileText, Sliders } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 
 interface MobileHeaderProps {
@@ -26,15 +26,15 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-30 audiophile-chassis border-b border-border-subtle md:hidden px-3.5 py-2.5 flex items-center justify-between gap-2 select-none shadow-[inset_0_-1px_0_rgba(255,255,255,0.06),0_4px_20px_rgba(0,0,0,0.5)] transition-colors">
+    <header className="sticky top-0 z-30 bg-[#0E0E11] border-b border-[rgba(245,244,240,0.08)] md:hidden px-3.5 py-2.5 flex items-center justify-between gap-2 select-none shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-colors">
       {/* Brand & Wordmark */}
       <div className="flex items-center gap-2 flex-shrink-0">
-        <div className="w-7 h-7 rounded-lg bg-panel-obsidian border border-amber-500/40 flex items-center justify-center shadow-[0_0_10px_rgba(245,158,11,0.3)]">
-          <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_#F59E0B] animate-pulse" />
+        <div className="w-7 h-7 rounded-sm bg-[#111114] border border-[#D97706]/40 flex items-center justify-center shadow-[0_0_10px_rgba(217,119,6,0.3)]">
+          <div className="w-2 h-2 rounded-full bg-[#D97706] shadow-[0_0_8px_#D97706] animate-pulse" />
         </div>
         <div className="flex flex-col">
-          <span className="font-extrabold tracking-widest text-sm text-text-offwhite leading-none font-sans">DRIFT</span>
-          <span className="font-mono text-[8px] text-amber-500/90 tracking-widest leading-none mt-0.5">PHONO LAB</span>
+          <span className="font-extrabold tracking-widest text-sm text-[#F5F4F0] leading-none font-sans">DRIFT</span>
+          <span className="font-mono text-[8px] text-[#D97706] tracking-widest leading-none mt-0.5">SYSTEM 10</span>
         </div>
       </div>
 
@@ -42,10 +42,10 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
       <div className="flex-1 min-w-0 px-1 text-center">
         <button
           onClick={onCalibrate}
-          className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-panel-obsidian/90 border border-border-light text-[10px] font-mono text-amber-400 truncate max-w-full hover:border-amber-500/50 shadow-sm active:scale-95 transition-all"
+          className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-[#16161A] border border-white/10 text-[10px] font-mono text-[#D97706] truncate max-w-full hover:border-[#D97706]/50 shadow-sm active:scale-95 transition-all"
           title="Tap to recalibrate taste baseline"
         >
-          <Compass className="w-3 h-3 flex-shrink-0 text-amber-500 animate-spin-slow" />
+          <Compass className="w-3 h-3 flex-shrink-0 text-[#D97706] animate-spin-slow" />
           <span className="truncate">{driftPath || 'Calibrated Taste Vector'}</span>
         </button>
       </div>
@@ -56,22 +56,22 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
           <>
             <button
               onClick={() => onToggleDrawerTable('info')}
-              className={`min-w-[32px] min-h-[32px] flex items-center justify-center rounded-lg border transition-all ${
+              className={`min-w-[32px] min-h-[32px] flex items-center justify-center rounded border transition-all ${
                 activeDrawerTable === 'info'
-                  ? 'bg-panel-elevated border-electric-blue text-electric-blue shadow-[0_0_8px_#3B82F6]'
-                  : 'bg-panel-obsidian border-border-light text-text-muted hover:text-text-offwhite'
+                  ? 'bg-[#18181D] border-white/40 text-[#F5F4F0]'
+                  : 'bg-[#111114] border-white/10 text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
               title="Toggle Music Info Table"
               aria-label="Toggle Music Info Table"
             >
-              <BookOpen className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => onToggleDrawerTable('test')}
-              className={`min-w-[32px] min-h-[32px] flex items-center justify-center rounded-lg border transition-all ${
+              className={`min-w-[32px] min-h-[32px] flex items-center justify-center rounded border transition-all ${
                 activeDrawerTable === 'test'
-                  ? 'bg-panel-elevated border-amber-500 text-amber-400 shadow-[0_0_8px_#F59E0B]'
-                  : 'bg-panel-obsidian border-border-light text-text-muted hover:text-text-offwhite'
+                  ? 'bg-[#18181D] border-[#D97706] text-[#D97706]'
+                  : 'bg-[#111114] border-white/10 text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
               title="Toggle Music Test Table"
               aria-label="Toggle Music Test Table"
@@ -84,7 +84,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         {onToggleViewMode && (
           <button
             onClick={() => onToggleViewMode(viewMode === 'grid' ? 'studio' : 'grid')}
-            className="min-w-[32px] min-h-[32px] flex items-center justify-center rounded-lg bg-panel-obsidian border border-border-light text-amber-400 active:scale-95 transition-all shadow-sm"
+            className="min-w-[32px] min-h-[32px] flex items-center justify-center rounded bg-[#111114] border border-white/10 text-[#D97706] active:scale-95 transition-all shadow-sm"
             title={viewMode === 'grid' ? 'Switch to Hi-Fi Turntable' : 'Switch to Crate Grid'}
             aria-label="Toggle view mode"
           >
@@ -94,25 +94,25 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
 
         <button
           onClick={toggleTheme}
-          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-panel-obsidian hover:bg-panel-elevated border border-border-light text-text-offwhite active:scale-95 transition-all shadow-sm"
-          title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
-          aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Obsidian Dark Mode'}
+          className="min-w-[34px] min-h-[34px] flex items-center justify-center rounded bg-[#111114] hover:bg-[#16161C] border border-white/10 text-[#F5F4F0] active:scale-95 transition-all shadow-sm"
+          title={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Pitch Black Mode'}
+          aria-label={theme === 'dark' ? 'Switch to Editorial White Mode' : 'Switch to Pitch Black Mode'}
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-500" strokeWidth={1.75} />
+            <Sun className="w-3.5 h-3.5 text-[#D97706]" strokeWidth={1.75} />
           ) : (
-            <Moon className="w-4 h-4 text-purple-soft" strokeWidth={1.75} />
+            <Moon className="w-3.5 h-3.5 text-[#F5F4F0]" strokeWidth={1.75} />
           )}
         </button>
 
         <button
           onClick={onRefreshCrate}
           disabled={isLoading}
-          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-electric-blue hover:bg-blue-600 border border-electric-blue text-white active:scale-95 transition-all disabled:opacity-50 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+          className="min-w-[34px] min-h-[34px] flex items-center justify-center rounded bg-[#D97706] hover:bg-[#B45309] border border-[#D97706] text-black active:scale-95 transition-all disabled:opacity-50 shadow-[0_0_12px_rgba(217,119,6,0.3)]"
           title="Refresh with 10 completely fresh albums"
           aria-label="Refresh crate"
         >
-          <RotateCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2} />
+          <RotateCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} strokeWidth={2.2} />
         </button>
       </div>
     </header>

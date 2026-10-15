@@ -27,7 +27,7 @@ export const Tracklist: React.FC<TracklistProps> = ({
 }) => {
   if (tracks.length === 0) {
     return (
-      <div className="py-4 text-center text-xs font-mono text-text-dim">
+      <div className="py-4 text-center text-xs font-mono text-[#575550]">
         Tracklist unavailable for this catalog entry
       </div>
     );
@@ -40,10 +40,10 @@ export const Tracklist: React.FC<TracklistProps> = ({
   return (
     <div className="space-y-2.5 pt-1 pb-6 select-none">
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-wider text-text-dim">
+        <span className="font-mono text-[10px] uppercase tracking-wider text-[#9C9A94]">
           Tracklist Composition
         </span>
-        <span className="font-mono text-[10px] text-text-dim">
+        <span className="font-mono text-[10px] text-[#575550]">
           {tracks.length} TRACKS &middot; {totalDurationStr}
         </span>
       </div>
@@ -65,10 +65,10 @@ export const Tracklist: React.FC<TracklistProps> = ({
               }}
               className={`flex items-center justify-between p-2 rounded transition-colors border ${
                 isTrackPlaying
-                  ? 'bg-panel-elevated/80 border-border-light text-electric-blue'
+                  ? 'bg-[#181822] border-[#D97706]/40 text-[#D97706]'
                   : isThisTrack
-                  ? 'bg-panel-elevated border-border-subtle text-electric-blue'
-                  : 'hover:bg-panel-elevated border-transparent hover:border-border-subtle text-text-offwhite'
+                  ? 'bg-[#16161C] border-white/10 text-[#D97706]'
+                  : 'hover:bg-[#16161C] border-transparent hover:border-white/5 text-[#F5F4F0]'
               } ${hasPreview ? 'cursor-pointer group' : 'opacity-70'}`}
             >
               <div className="flex items-center gap-3 truncate mr-2">
@@ -80,15 +80,15 @@ export const Tracklist: React.FC<TracklistProps> = ({
                       className="flex items-center justify-center w-full"
                     >
                       {isTrackPlaying ? (
-                        <Pause className="w-3.5 h-3.5 text-electric-blue fill-current" />
+                        <Pause className="w-3.5 h-3.5 text-[#D97706] fill-current" />
                       ) : (
-                        <span className="text-text-dim group-hover:text-purple-soft transition-colors">
+                        <span className="text-[#575550] group-hover:text-[#D97706] transition-colors">
                           {trackNumStr}
                         </span>
                       )}
                     </button>
                   ) : (
-                    <span className="text-text-dim">{trackNumStr}</span>
+                    <span className="text-[#575550]">{trackNumStr}</span>
                   )}
                 </div>
 
@@ -97,28 +97,28 @@ export const Tracklist: React.FC<TracklistProps> = ({
                   <span
                     className={`font-sans text-xs truncate ${
                       isTrackPlaying
-                        ? 'text-electric-blue font-semibold'
+                        ? 'text-[#D97706] font-semibold'
                         : isThisTrack
-                        ? 'text-electric-blue font-medium'
-                        : 'text-text-offwhite group-hover:text-electric-blue transition-colors font-medium'
+                        ? 'text-[#D97706] font-medium'
+                        : 'text-[#F5F4F0] group-hover:text-[#D97706] transition-colors font-medium'
                     }`}
                   >
                     {track.title}
                   </span>
                   {isTrackPlaying && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-ping flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-ping flex-shrink-0" />
                   )}
                 </div>
               </div>
 
               {/* Duration & 30s pill */}
-              <div className="flex items-center gap-2 flex-shrink-0 font-mono text-[11px] text-text-dim">
+              <div className="flex items-center gap-2 flex-shrink-0 font-mono text-[11px] text-[#575550]">
                 {hasPreview && (
-                  <span className="text-[9px] text-purple-soft/80 px-1 py-0.2 rounded bg-purple-soft/10 border border-purple-soft/20">
+                  <span className="text-[9px] text-[#D97706] px-1 py-0.2 rounded bg-[#D97706]/10 border border-[#D97706]/20">
                     30s
                   </span>
                 )}
-                <span className={isTrackPlaying ? 'text-electric-blue font-semibold' : ''}>
+                <span className={isTrackPlaying ? 'text-[#D97706] font-semibold' : ''}>
                   {formatDuration(track.durationMs)}
                 </span>
               </div>

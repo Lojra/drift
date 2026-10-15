@@ -30,7 +30,7 @@ export const MobileTabBar: React.FC<MobileTabBarProps> = ({
             onClick={() => setActiveTab('crate')}
             className={`relative flex flex-col items-center justify-center py-2 px-3 rounded-full transition-all duration-200 min-h-[48px] ${
               activeTab === 'crate'
-                ? 'bg-electric-blue/15 text-electric-blue border border-electric-blue/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]'
+                ? 'bg-electric-blue/15 text-electric-blue border border-electric-blue/30 shadow-[0_0_16px_rgba(217,119,6,0.25)]'
                 : 'text-text-muted hover:text-text-offwhite hover:bg-white/5 border border-transparent'
             }`}
           >
@@ -61,7 +61,7 @@ export const MobileTabBar: React.FC<MobileTabBarProps> = ({
             onClick={() => setActiveTab('archive')}
             className={`relative flex flex-col items-center justify-center py-2 px-3 rounded-full transition-all duration-200 min-h-[48px] ${
               activeTab === 'archive'
-                ? 'bg-purple-soft/15 text-purple-soft border border-purple-soft/30 shadow-[0_0_16px_rgba(192,132,252,0.25)]'
+                ? 'bg-purple-soft/15 text-purple-soft border border-purple-soft/30 shadow-[0_0_16px_rgba(156,154,148,0.25)]'
                 : 'text-text-muted hover:text-text-offwhite hover:bg-white/5 border border-transparent'
             }`}
           >
@@ -92,7 +92,7 @@ export const MobileTabBar: React.FC<MobileTabBarProps> = ({
             onClick={() => setActiveTab('taste')}
             className={`relative flex flex-col items-center justify-center py-2 px-3 rounded-full transition-all duration-200 min-h-[48px] ${
               activeTab === 'taste'
-                ? 'bg-electric-blue/15 text-electric-blue border border-electric-blue/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]'
+                ? 'bg-electric-blue/15 text-electric-blue border border-electric-blue/30 shadow-[0_0_16px_rgba(217,119,6,0.25)]'
                 : 'text-text-muted hover:text-text-offwhite hover:bg-white/5 border border-transparent'
             }`}
           >

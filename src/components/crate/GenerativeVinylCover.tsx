@@ -16,7 +16,7 @@ function hashString(str: string): number {
   return Math.abs(hash);
 }
 
-// Map primary genre to bespoke curated editorial color gradients
+// Map primary genre to bespoke Dieter Rams & Bauhaus monochrome + amber palettes
 function getGenrePalette(genres: string[] = []): {
   bgStart: string;
   bgEnd: string;
@@ -28,65 +28,65 @@ function getGenrePalette(genres: string[] = []): {
   
   if (g.includes('kraut') || g.includes('motorik')) {
     return {
-      bgStart: '#0F172A',
-      bgEnd: '#020617',
-      accent: '#3B82F6',
-      waveformColor: 'rgba(59, 130, 246, 0.4)',
+      bgStart: '#141418',
+      bgEnd: '#0A0A0C',
+      accent: '#D97706',
+      waveformColor: 'rgba(217, 119, 6, 0.4)',
       patternType: 'waves'
     };
   }
   if (g.includes('dub') || g.includes('reggae')) {
     return {
-      bgStart: '#142217',
-      bgEnd: '#070D08',
-      accent: '#10B981',
-      waveformColor: 'rgba(16, 185, 129, 0.35)',
+      bgStart: '#16161A',
+      bgEnd: '#0A0A0C',
+      accent: '#F5F4F0',
+      waveformColor: 'rgba(245, 244, 240, 0.35)',
       patternType: 'circles'
     };
   }
   if (g.includes('ambient') || g.includes('drone')) {
     return {
-      bgStart: '#1E1B4B',
-      bgEnd: '#090514',
-      accent: '#C084FC',
-      waveformColor: 'rgba(192, 132, 252, 0.35)',
+      bgStart: '#121216',
+      bgEnd: '#0A0A0C',
+      accent: '#9C9A94',
+      waveformColor: 'rgba(156, 154, 148, 0.35)',
       patternType: 'strips'
     };
   }
   if (g.includes('jazz') || g.includes('ethio') || g.includes('spiritual')) {
     return {
-      bgStart: '#2A1810',
-      bgEnd: '#0D0805',
-      accent: '#F59E0B',
-      waveformColor: 'rgba(245, 158, 11, 0.35)',
+      bgStart: '#18181D',
+      bgEnd: '#0B0B0E',
+      accent: '#D97706',
+      waveformColor: 'rgba(217, 119, 6, 0.35)',
       patternType: 'grid'
     };
   }
   if (g.includes('post-punk') || g.includes('darkwave') || g.includes('goth')) {
     return {
       bgStart: '#18181B',
-      bgEnd: '#09090B',
-      accent: '#E4E4E7',
-      waveformColor: 'rgba(244, 244, 246, 0.3)',
+      bgEnd: '#0A0A0C',
+      accent: '#F5F4F0',
+      waveformColor: 'rgba(245, 244, 240, 0.3)',
       patternType: 'waves'
     };
   }
   if (g.includes('electronic') || g.includes('idm') || g.includes('techno')) {
     return {
-      bgStart: '#172554',
-      bgEnd: '#0A0F1D',
-      accent: '#38BDF8',
-      waveformColor: 'rgba(56, 189, 248, 0.4)',
+      bgStart: '#131317',
+      bgEnd: '#0A0A0C',
+      accent: '#D97706',
+      waveformColor: 'rgba(217, 119, 6, 0.4)',
       patternType: 'grid'
     };
   }
 
-  // Default Editorial Noir
+  // Default Bauhaus Minimal Noir
   return {
-    bgStart: '#181822',
-    bgEnd: '#08080C',
-    accent: '#A855F7',
-    waveformColor: 'rgba(168, 85, 247, 0.35)',
+    bgStart: '#141418',
+    bgEnd: '#0A0A0C',
+    accent: '#D97706',
+    waveformColor: 'rgba(217, 119, 6, 0.35)',
     patternType: 'waves'
   };
 }
@@ -122,7 +122,7 @@ export const GenerativeVinylCover: React.FC<GenerativeVinylCoverProps> = ({ albu
   const catalogNum = `DF-${(seed % 899 + 100)}`;
 
   return (
-    <div className={`relative w-full h-full overflow-hidden select-none bg-[#050507] ${className}`}>
+    <div className={`relative w-full h-full overflow-hidden select-none bg-[#0A0A0C] ${className}`}>
       {/* SVG Canvas */}
       <svg
         viewBox="0 0 400 400"
@@ -169,7 +169,7 @@ export const GenerativeVinylCover: React.FC<GenerativeVinylCoverProps> = ({ albu
           </g>
         )}
 
-        {/* Waveform / Harmonic Ribbons (Joy Division Pulsar homage) */}
+        {/* Waveform / Harmonic Ribbons */}
         {palette.patternType === 'waves' && (
           <g fill="none" stroke={palette.waveformColor} strokeWidth="1.5" strokeLinecap="round">
             {wavePaths.map((d, idx) => (
@@ -257,7 +257,7 @@ export const GenerativeVinylCover: React.FC<GenerativeVinylCoverProps> = ({ albu
         <text
           x="24"
           y="84"
-          fill="#F4F4F6"
+          fill="#F5F4F0"
           fontSize="20"
           fontFamily="Plus Jakarta Sans, sans-serif"
           fontWeight="700"
@@ -269,7 +269,7 @@ export const GenerativeVinylCover: React.FC<GenerativeVinylCoverProps> = ({ albu
         <text
           x="24"
           y="108"
-          fill="rgba(244,244,246,0.65)"
+          fill="rgba(245,244,240,0.65)"
           fontSize="13"
           fontFamily="Plus Jakarta Sans, sans-serif"
           fontWeight="500"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, RefreshCw, Radio, BookOpen, Sliders, Cpu, Zap, ArrowRight } from 'lucide-react';
+import { X, RefreshCw, Radio, FileText, Sliders, Cpu, Zap, ArrowRight } from 'lucide-react';
 import { Album, AlbumRating, SonicTag } from '../../types/music';
 import { RatingWidget } from './RatingWidget';
 import { ExternalLinks } from './ExternalLinks';
@@ -60,11 +60,11 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
   // Computed acoustic telemetry traits for the Test Table
   const traits = album.sonicTraits || {};
   const acousticMeters = [
-    { label: 'SUB-BASS PRESSURE', value: (traits.percussive ?? 0.88) * 100, db: '+3.2 dB', color: 'text-purple-soft', barColor: 'bg-purple-soft' },
-    { label: 'ORGANIC SATURATION', value: (traits.distortion ?? 0.82) * 100, db: '12AX7 TUBE', color: 'text-amber-400', barColor: 'bg-amber-500' },
-    { label: 'DYNAMIC TRANSIENTS', value: (traits.energy ?? 0.85) * 100, db: 'DR-14 dB', color: 'text-electric-blue', barColor: 'bg-electric-blue' },
-    { label: 'STEREO DIFFUSION', value: (traits.atmospheric ?? 0.76) * 100, db: 'BLUMLEIN', color: 'text-emerald-400', barColor: 'bg-emerald-500' },
-    { label: 'HYPNOTIC PACING', value: (traits.hypnotic ?? 0.70) * 100, db: '120 BPM', color: 'text-amber-300', barColor: 'bg-amber-400' },
+    { label: 'SUB-BASS PRESSURE', value: (traits.percussive ?? 0.88) * 100, db: '+3.2 dB', color: 'text-[#F5F4F0]', barColor: 'bg-[#D97706]' },
+    { label: 'ORGANIC SATURATION', value: (traits.distortion ?? 0.82) * 100, db: '12AX7 TUBE', color: 'text-[#D97706]', barColor: 'bg-[#D97706]' },
+    { label: 'DYNAMIC TRANSIENTS', value: (traits.energy ?? 0.85) * 100, db: 'DR-14 dB', color: 'text-[#F5F4F0]', barColor: 'bg-white/40' },
+    { label: 'STEREO DIFFUSION', value: (traits.atmospheric ?? 0.76) * 100, db: 'BLUMLEIN', color: 'text-[#9C9A94]', barColor: 'bg-[#9C9A94]' },
+    { label: 'HYPNOTIC PACING', value: (traits.hypnotic ?? 0.70) * 100, db: '120 BPM', color: 'text-[#D97706]', barColor: 'bg-[#D97706]/70' },
   ];
 
   return (
@@ -78,24 +78,24 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
         }}
       />
 
-      <aside className="fixed bottom-0 inset-x-0 max-h-[92vh] rounded-t-[28px] border-t border-border-light audiophile-chassis z-50 overflow-y-auto select-none shadow-[0_-16px_50px_rgba(0,0,0,0.9)] md:relative md:inset-x-auto md:bottom-auto md:w-[390px] xl:w-[420px] md:rounded-none md:border-t-0 md:border-l md:border-border-subtle md:max-h-none md:h-screen md:z-20 flex flex-col flex-shrink-0 animate-slide-up md:animate-none relative">
+      <aside className="fixed bottom-0 inset-x-0 max-h-[92vh] rounded-t-[28px] border-t border-[rgba(245,244,240,0.12)] bg-[#0C0C10] z-50 overflow-y-auto select-none shadow-[0_-16px_50px_rgba(0,0,0,0.9)] md:relative md:inset-x-auto md:bottom-auto md:w-[390px] xl:w-[420px] md:rounded-none md:border-t-0 md:border-l md:border-[rgba(245,244,240,0.08)] md:max-h-none md:h-screen md:z-20 flex flex-col flex-shrink-0 animate-slide-up md:animate-none relative">
         {/* Mobile Swipe/Drag Handle Pill */}
         <div className="w-12 h-1.5 bg-white/30 rounded-full mx-auto mt-3 mb-1 md:hidden flex-shrink-0 shadow-sm" />
 
         {/* Top Inspector Header */}
-        <div className="px-5 py-3 border-b border-border-subtle flex items-center justify-between bg-panel-obsidian sticky top-0 z-30">
+        <div className="px-5 py-3 border-b border-[rgba(245,244,240,0.08)] flex items-center justify-between bg-[#111114] sticky top-0 z-30">
           <div className="flex items-center gap-2">
-            <span className={`w-2 h-2 rounded-full ${tableMode === 'info' ? 'bg-electric-blue shadow-[0_0_8px_#3B82F6]' : 'bg-amber-500 shadow-[0_0_8px_#F59E0B]'} animate-pulse`} />
-            <span className="font-mono text-[10px] uppercase tracking-wider text-text-offwhite font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#D97706] shadow-[0_0_8px_#D97706] animate-pulse" />
+            <span className="font-mono text-[10px] uppercase tracking-wider text-[#F5F4F0] font-bold">
               {tableMode === 'info' ? 'GATEFOLD INSPECTOR' : 'PHONO TEST TABLE'}
             </span>
-            <span className="font-mono text-[9px] text-text-dim bg-panel-elevated px-1.5 py-0.5 rounded border border-border-subtle">
+            <span className="font-mono text-[9px] text-[#9C9A94] bg-[#16161C] px-1.5 py-0.5 rounded border border-white/5">
               #{catalogId}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] text-amber-400 font-semibold hidden sm:inline">
+            <span className="font-mono text-[10px] text-[#D97706] font-semibold hidden sm:inline">
               180g VIRGIN WAX
             </span>
             <button
@@ -103,7 +103,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
                 stop();
                 onClose();
               }}
-              className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg hover:bg-panel-elevated text-text-dim hover:text-text-offwhite ml-1.5 transition-colors border border-border-subtle"
+              className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg hover:bg-[#16161C] text-[#9C9A94] hover:text-[#F5F4F0] ml-1.5 transition-colors border border-white/5"
               title="Close inspector drawer"
               aria-label="Close inspector drawer"
             >
@@ -113,25 +113,25 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
         </div>
 
         {/* Dual Table Switcher Bar */}
-        <div className="px-5 py-2.5 bg-panel-obsidian/95 border-b border-border-subtle sticky top-[53px] z-20 backdrop-blur-md">
-          <div className="flex items-center gap-1.5 p-1 bg-panel-elevated border border-border-subtle rounded-lg">
+        <div className="px-5 py-2.5 bg-[#111114]/95 border-b border-[rgba(245,244,240,0.08)] sticky top-[53px] z-20 backdrop-blur-md">
+          <div className="flex items-center gap-1.5 p-1 bg-[#09090B] border border-white/10 rounded-lg">
             <button
               onClick={() => onSwitchTable?.('info')}
               className={`flex-1 py-1.5 px-2.5 rounded-md font-mono text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all ${
                 tableMode === 'info'
-                  ? 'bg-panel-obsidian text-electric-blue shadow-md border border-electric-blue/40'
-                  : 'text-text-muted hover:text-text-offwhite'
+                  ? 'bg-[#18181D] text-[#F5F4F0] shadow-md border border-white/20'
+                  : 'text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5" />
               <span>MUSIC INFO TABLE</span>
             </button>
             <button
               onClick={() => onSwitchTable?.('test')}
               className={`flex-1 py-1.5 px-2.5 rounded-md font-mono text-[11px] font-bold flex items-center justify-center gap-1.5 transition-all ${
                 tableMode === 'test'
-                  ? 'bg-panel-obsidian text-amber-400 shadow-md border border-amber-500/40'
-                  : 'text-text-muted hover:text-text-offwhite'
+                  ? 'bg-[#18181D] text-[#D97706] shadow-md border border-[#D97706]/40'
+                  : 'text-[#9C9A94] hover:text-[#F5F4F0]'
               }`}
             >
               <Sliders className="w-3.5 h-3.5" />
@@ -155,21 +155,21 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
                   }`}
                 >
                   {/* Center Vinyl Label */}
-                  <div className="w-16 h-16 rounded-full bg-amber-600/70 border-2 border-neutral-900 flex flex-col items-center justify-center p-1 text-center shadow-inner">
-                    <span className="font-mono text-[7px] text-black font-extrabold uppercase leading-none">
+                  <div className="w-16 h-16 rounded-full bg-[#E5E3DC] border-2 border-neutral-900 flex flex-col items-center justify-center p-1 text-center shadow-inner text-black">
+                    <span className="font-mono text-[7px] font-extrabold uppercase leading-none">
                       DRIFT
                     </span>
                     <span className="font-mono text-[6px] text-black/80 font-bold leading-tight mt-0.5">
                       SIDE A // 33 RPM
                     </span>
-                    <div className="w-2 h-2 rounded-full bg-black mt-1" />
+                    <div className="w-2 h-2 rounded-full bg-[#D97706] mt-1" />
                   </div>
                 </div>
 
                 {/* Pulsing loading skeleton */}
                 {!imgLoaded && !imgError && album.coverArtUrl && (
-                  <div className="absolute inset-0 bg-panel-elevated animate-pulse flex items-center justify-center z-10">
-                    <div className="w-8 h-8 rounded-full border border-border-light/40 border-t-electric-blue animate-spin" />
+                  <div className="absolute inset-0 bg-[#16161C] animate-pulse flex items-center justify-center z-10">
+                    <div className="w-8 h-8 rounded-full border border-white/20 border-t-[#D97706] animate-spin" />
                   </div>
                 )}
 
@@ -196,10 +196,10 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
                   {/* Bottom Catalog Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between z-10">
-                    <span className="font-mono text-[10px] text-text-offwhite bg-panel-obsidian/90 backdrop-blur-md px-2 py-0.5 rounded border border-border-subtle">
+                    <span className="font-mono text-[10px] text-[#F5F4F0] bg-black/90 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
                       {matrixCode}
                     </span>
-                    <span className="font-mono text-[10px] font-bold text-amber-400 bg-panel-obsidian/90 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/40">
+                    <span className="font-mono text-[10px] font-bold text-[#D97706] bg-black/90 backdrop-blur-md px-2 py-0.5 rounded border border-[#D97706]/40">
                       SCORE: {scoreDisplay}
                     </span>
                   </div>
@@ -207,35 +207,35 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               </div>
 
               {/* 2. Audiophile Pressing Specifications Bar */}
-              <div className="grid grid-cols-3 gap-1.5 p-2 rounded-lg bg-panel-obsidian border border-border-subtle font-mono text-[9px] text-center">
-                <div className="p-1 rounded bg-panel-elevated">
-                  <span className="text-text-dim block">WEIGHT</span>
-                  <span className="text-amber-400 font-bold block">180g VIRGIN</span>
+              <div className="grid grid-cols-3 gap-1.5 p-2 rounded-lg bg-[#111114] border border-[rgba(245,244,240,0.08)] font-mono text-[9px] text-center">
+                <div className="p-1 rounded bg-[#16161C]">
+                  <span className="text-[#9C9A94] block">WEIGHT</span>
+                  <span className="text-[#D97706] font-bold block">180g VIRGIN</span>
                 </div>
-                <div className="p-1 rounded bg-panel-elevated">
-                  <span className="text-text-dim block">MASTERING</span>
-                  <span className="text-purple-soft font-bold block">HALF-SPEED</span>
+                <div className="p-1 rounded bg-[#16161C]">
+                  <span className="text-[#9C9A94] block">MASTERING</span>
+                  <span className="text-[#F5F4F0] font-bold block">HALF-SPEED</span>
                 </div>
-                <div className="p-1 rounded bg-panel-elevated">
-                  <span className="text-text-dim block">DYNAMIC RANGE</span>
-                  <span className="text-electric-blue font-bold block">DR-14 dB</span>
+                <div className="p-1 rounded bg-[#16161C]">
+                  <span className="text-[#9C9A94] block">DYNAMIC RANGE</span>
+                  <span className="text-[#F5F4F0] font-bold block">DR-14 dB</span>
                 </div>
               </div>
 
               {/* 3. Title, Artist, Release Year, Record Label */}
               <div className="space-y-1.5">
                 <div>
-                  <h2 className="text-xl font-bold tracking-tight text-text-offwhite leading-tight font-sans">
+                  <h2 className="text-xl font-bold tracking-tight text-[#F5F4F0] leading-tight font-sans">
                     {album.title}
                   </h2>
-                  <div className="flex items-center gap-2 mt-1 text-sm text-text-muted font-sans flex-wrap">
-                    <span className="text-text-offwhite font-medium">{album.artist}</span>
+                  <div className="flex items-center gap-2 mt-1 text-sm text-[#9C9A94] font-sans flex-wrap">
+                    <span className="text-[#F5F4F0] font-medium">{album.artist}</span>
                     <span>&middot;</span>
                     <span className="font-mono text-xs">{album.releaseYear}</span>
                     {album.label && (
                       <>
                         <span>&middot;</span>
-                        <span className="font-mono text-xs text-text-dim truncate max-w-[140px]">
+                        <span className="font-mono text-xs text-[#575550] truncate max-w-[140px]">
                           {album.label}
                         </span>
                       </>
@@ -250,8 +250,8 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
                       key={genre}
                       className={`px-2 py-0.5 rounded-full flex-shrink-0 ${
                         idx === 0
-                          ? 'bg-purple-soft/10 border border-purple-soft/30 text-purple-soft'
-                          : 'bg-panel-elevated border border-border-light text-text-offwhite'
+                          ? 'bg-[#D97706]/10 border border-[#D97706]/30 text-[#D97706]'
+                          : 'bg-[#16161C] border border-white/5 text-[#F5F4F0]'
                       }`}
                     >
                       {genre}
@@ -261,12 +261,12 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               </div>
 
               {/* 4. Lateral Drift Reason Quote Callout */}
-              <div className="p-3.5 rounded-lg bg-panel-obsidian border border-border-subtle space-y-1 relative">
-                <div className="flex items-center gap-1.5 text-amber-500 font-mono text-[10px] font-bold uppercase tracking-wider">
+              <div className="p-3.5 rounded-lg bg-[#111114] border border-[rgba(245,244,240,0.08)] space-y-1 relative">
+                <div className="flex items-center gap-1.5 text-[#D97706] font-mono text-[10px] font-bold uppercase tracking-wider">
                   <Radio className="w-3 h-3" />
                   <span>LATERAL DRIFT TRAJECTORY</span>
                 </div>
-                <p className="text-xs text-text-offwhite/90 leading-relaxed italic font-sans pt-0.5">
+                <p className="text-xs text-[#F5F4F0]/90 leading-relaxed italic font-sans pt-0.5">
                   &ldquo;{album.driftReason}&rdquo;
                 </p>
               </div>
@@ -277,9 +277,9 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               {/* Single Replacement Action */}
               <button
                 onClick={() => onReplaceAlbum(album.id)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-panel-obsidian hover:bg-panel-elevated text-text-muted hover:text-text-offwhite text-xs font-mono border border-border-subtle hover:border-border-light transition-all shadow-sm active:scale-98"
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#111114] hover:bg-[#16161C] text-[#9C9A94] hover:text-[#F5F4F0] text-xs font-mono border border-white/5 hover:border-white/15 transition-all shadow-sm active:scale-98"
               >
-                <RefreshCw className="w-3.5 h-3.5 text-electric-blue" />
+                <RefreshCw className="w-3.5 h-3.5 text-[#D97706]" />
                 <span>EJECT &amp; REPLACE IN CRATE (10)</span>
               </button>
 
@@ -302,7 +302,7 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               {/* Jump to Test Table Button */}
               <button
                 onClick={() => onSwitchTable?.('test')}
-                className="w-full py-2.5 px-3 rounded-lg bg-panel-elevated border border-amber-500/40 hover:border-amber-500 text-amber-400 font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-sm group"
+                className="w-full py-2.5 px-3 rounded-lg bg-[#16161C] border border-[#D97706]/40 hover:border-[#D97706] text-[#D97706] font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-sm group"
               >
                 <Sliders className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
                 <span>OPEN IN MUSIC TEST TABLE // EVALUATE &amp; RATE</span>
@@ -317,9 +317,9 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
           {tableMode === 'test' && (
             <>
               {/* Test Bench Header & Mini Album Pill */}
-              <div className="p-3.5 rounded-xl bg-panel-obsidian border border-border-subtle flex items-center justify-between gap-3 shadow-inner">
+              <div className="p-3.5 rounded-xl bg-[#111114] border border-[rgba(245,244,240,0.08)] flex items-center justify-between gap-3 shadow-inner">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-border-light flex-shrink-0 bg-neutral-950 relative">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-white/10 flex-shrink-0 bg-neutral-950 relative">
                     {album.coverArtUrl ? (
                       <img src={album.coverArtUrl} alt={album.title} className="w-full h-full object-cover" />
                     ) : (
@@ -327,21 +327,21 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
                     )}
                   </div>
                   <div className="min-w-0">
-                    <span className="font-mono text-[9px] text-amber-500 uppercase tracking-wider block font-bold">
+                    <span className="font-mono text-[9px] text-[#D97706] uppercase tracking-wider block font-bold">
                       TEST SPECIMEN
                     </span>
-                    <h3 className="font-sans font-bold text-sm text-text-offwhite truncate">
+                    <h3 className="font-sans font-bold text-sm text-[#F5F4F0] truncate">
                       {album.title}
                     </h3>
-                    <p className="font-sans text-xs text-text-muted truncate">
+                    <p className="font-sans text-xs text-[#9C9A94] truncate">
                       {album.artist} &middot; <span className="font-mono text-[10px]">{album.releaseYear}</span>
                     </p>
                   </div>
                 </div>
 
                 <div className="text-right flex-shrink-0">
-                  <span className="font-mono text-[9px] text-text-dim block">BENCH SCORE</span>
-                  <span className="font-mono text-sm font-bold text-amber-400">
+                  <span className="font-mono text-[9px] text-[#575550] block">BENCH SCORE</span>
+                  <span className="font-mono text-sm font-bold text-[#D97706]">
                     {scoreDisplay}
                   </span>
                 </div>
@@ -355,25 +355,25 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               />
 
               {/* 2. Real-Time Acoustic Telemetry Gauges */}
-              <div className="p-3.5 rounded-xl bg-panel-obsidian border border-border-subtle space-y-2.5">
+              <div className="p-3.5 rounded-xl bg-[#111114] border border-[rgba(245,244,240,0.08)] space-y-2.5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
-                    <Cpu className="w-3.5 h-3.5 text-amber-500" />
-                    <span className="font-mono text-[10px] font-bold text-text-offwhite uppercase tracking-wider">
+                    <Cpu className="w-3.5 h-3.5 text-[#D97706]" />
+                    <span className="font-mono text-[10px] font-bold text-[#F5F4F0] uppercase tracking-wider">
                       ACOUSTIC TELEMETRY GAUGES
                     </span>
                   </div>
-                  <span className="font-mono text-[8px] text-text-dim">CALIBRATED RIAA</span>
+                  <span className="font-mono text-[8px] text-[#575550]">CALIBRATED RIAA</span>
                 </div>
 
                 <div className="space-y-2 pt-1 font-mono text-[10px]">
                   {acousticMeters.map((meter) => (
                     <div key={meter.label} className="space-y-1">
                       <div className="flex items-center justify-between text-[9px]">
-                        <span className="text-text-muted">{meter.label}</span>
+                        <span className="text-[#9C9A94]">{meter.label}</span>
                         <span className={`${meter.color} font-bold`}>{meter.db}</span>
                       </div>
-                      <div className="w-full h-1.5 bg-neutral-900 rounded-full overflow-hidden border border-border-subtle">
+                      <div className="w-full h-1.5 bg-neutral-900 rounded-full overflow-hidden border border-[rgba(245,244,240,0.08)]">
                         <div
                           className={`h-full ${meter.barColor} transition-all duration-500 rounded-full`}
                           style={{ width: `${meter.value}%` }}
@@ -385,25 +385,25 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               </div>
 
               {/* 3. Lateral Drift Recommendation Trajectory Rules */}
-              <div className="p-3.5 rounded-xl bg-panel-obsidian border border-border-subtle space-y-2 font-mono text-[11px]">
+              <div className="p-3.5 rounded-xl bg-[#111114] border border-[rgba(245,244,240,0.08)] space-y-2 font-mono text-[11px]">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-purple-soft font-bold uppercase tracking-wider text-[10px]">
-                    <Zap className="w-3.5 h-3.5 text-purple-soft" />
+                  <div className="flex items-center gap-1.5 text-[#D97706] font-bold uppercase tracking-wider text-[10px]">
+                    <Zap className="w-3.5 h-3.5 text-[#D97706]" />
                     <span>DRIFT VECTOR SHIFT RULES</span>
                   </div>
-                  <span className="text-amber-400 font-bold text-[9px]">+4.2σ BIAS</span>
+                  <span className="text-[#D97706] font-bold text-[9px]">+4.2σ BIAS</span>
                 </div>
 
-                <div className="space-y-1.5 text-[10px] text-text-muted font-sans leading-relaxed pt-1">
-                  <div className="p-2 rounded bg-panel-elevated border border-border-subtle">
-                    <span className="font-mono text-purple-soft font-bold block">SCORE &ge; 7.0 (LATERAL EXPLORATION)</span>
-                    <span className="text-text-offwhite/90 text-[10px]">
+                <div className="space-y-1.5 text-[10px] text-[#9C9A94] font-sans leading-relaxed pt-1">
+                  <div className="p-2 rounded bg-[#16161C] border border-white/5">
+                    <span className="font-mono text-[#D97706] font-bold block">SCORE &ge; 7.0 (LATERAL EXPLORATION)</span>
+                    <span className="text-[#F5F4F0]/90 text-[10px]">
                       Engine locks onto texture, pacing, and mood, intentionally pivoting to an unexpected genre.
                     </span>
                   </div>
-                  <div className="p-2 rounded bg-panel-elevated border border-border-subtle">
-                    <span className="font-mono text-amber-500 font-bold block">SCORE &lt; 5.0 (VECTOR DIVERGENCE)</span>
-                    <span className="text-text-offwhite/90 text-[10px]">
+                  <div className="p-2 rounded bg-[#16161C] border border-white/5">
+                    <span className="font-mono text-[#9C9A94] font-bold block">SCORE &lt; 5.0 (VECTOR DIVERGENCE)</span>
+                    <span className="text-[#F5F4F0]/90 text-[10px]">
                       Engine downweights both this genre and its acoustic signature, shifting discovery away.
                     </span>
                   </div>
@@ -413,11 +413,11 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
               {/* Jump to Info Table Button */}
               <button
                 onClick={() => onSwitchTable?.('info')}
-                className="w-full py-2.5 px-3 rounded-lg bg-panel-elevated border border-electric-blue/40 hover:border-electric-blue text-electric-blue font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-sm group"
+                className="w-full py-2.5 px-3 rounded-lg bg-[#16161C] border border-white/10 hover:border-white/20 text-[#F5F4F0] font-mono text-xs flex items-center justify-center gap-2 transition-all shadow-sm group"
               >
-                <BookOpen className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                <FileText className="w-3.5 h-3.5 group-hover:scale-110 transition-transform text-[#D97706]" />
                 <span>VIEW GATEFOLD JACKET &amp; MASTER TRACKLIST</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#D97706]" />
               </button>
             </>
           )}
@@ -426,4 +426,3 @@ export const InspectorDrawer: React.FC<InspectorDrawerProps> = ({
     </>
   );
 };
-

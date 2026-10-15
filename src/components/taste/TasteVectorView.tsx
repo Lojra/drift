@@ -16,12 +16,12 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const traits = [
-    { key: 'atmospheric', label: 'Atmospheric & Spatial', value: tasteProfile.traits.atmospheric, color: '#3B82F6', band: '60Hz // AIR' },
-    { key: 'hypnotic', label: 'Hypnotic & Motorik', value: tasteProfile.traits.hypnotic, color: '#C084FC', band: '250Hz // DRIVE' },
-    { key: 'distortion', label: 'Raw Distortion & Fuzz', value: tasteProfile.traits.distortion, color: '#EF4444', band: '1kHz // CRUNCH' },
-    { key: 'percussive', label: 'Polyrhythmic & Pulse', value: tasteProfile.traits.percussive, color: '#10B981', band: '4kHz // ATTACK' },
-    { key: 'experimental', label: 'Avant-Garde & Dense', value: tasteProfile.traits.experimental, color: '#F59E0B', band: '8kHz // HARMONICS' },
-    { key: 'melancholic', label: 'Nocturnal & Reverb', value: tasteProfile.traits.melancholic, color: '#818CF8', band: '16kHz // SPACE' }
+    { key: 'atmospheric', label: 'Atmospheric & Spatial', value: tasteProfile.traits.atmospheric, color: '#D97706', band: '60Hz // AIR' },
+    { key: 'hypnotic', label: 'Hypnotic & Motorik', value: tasteProfile.traits.hypnotic, color: '#F5F4F0', band: '250Hz // DRIVE' },
+    { key: 'distortion', label: 'Raw Distortion & Fuzz', value: tasteProfile.traits.distortion, color: '#EA580C', band: '1kHz // CRUNCH' },
+    { key: 'percussive', label: 'Polyrhythmic & Pulse', value: tasteProfile.traits.percussive, color: '#D97706', band: '4kHz // ATTACK' },
+    { key: 'experimental', label: 'Avant-Garde & Dense', value: tasteProfile.traits.experimental, color: '#B45309', band: '8kHz // HARMONICS' },
+    { key: 'melancholic', label: 'Nocturnal & Reverb', value: tasteProfile.traits.melancholic, color: '#9C9A94', band: '16kHz // SPACE' }
   ];
 
   const highRatings = ratings.filter(r => r.score >= 7.0);
@@ -44,11 +44,11 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
       const cy = h / 2;
       const radius = Math.min(cx, cy) - 26;
 
-      ctx.fillStyle = '#06070a';
+      ctx.fillStyle = '#08080A';
       ctx.fillRect(0, 0, w, h);
 
       // CRT Concentric Range Ticks
-      ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
+      ctx.strokeStyle = 'rgba(217, 119, 6, 0.2)';
       ctx.lineWidth = 1;
       [0.25, 0.5, 0.75, 1.0].forEach((ratio) => {
         ctx.beginPath();
@@ -57,7 +57,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
       });
 
       // Crosshairs & Radial Spokes (6 directions for the 6 traits)
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.strokeStyle = 'rgba(245, 244, 240, 0.08)';
       ctx.lineWidth = 1;
       const numAxes = traits.length;
       for (let i = 0; i < numAxes; i++) {
@@ -74,8 +74,8 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
       const sweepX = cx + Math.cos(angle) * radius;
       const sweepY = cy + Math.sin(angle) * radius;
       const sweepGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-      sweepGrad.addColorStop(0, 'rgba(59, 130, 246, 0.35)');
-      sweepGrad.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
+      sweepGrad.addColorStop(0, 'rgba(217, 119, 6, 0.35)');
+      sweepGrad.addColorStop(1, 'rgba(217, 119, 6, 0.0)');
       ctx.fillStyle = sweepGrad;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
@@ -84,7 +84,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
       ctx.fill();
 
       // Sweep Beam Frontline
-      ctx.strokeStyle = 'rgba(147, 197, 253, 0.7)';
+      ctx.strokeStyle = 'rgba(217, 119, 6, 0.8)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
@@ -102,9 +102,9 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
         else ctx.lineTo(px, py);
       });
       ctx.closePath();
-      ctx.fillStyle = 'rgba(192, 132, 252, 0.22)';
+      ctx.fillStyle = 'rgba(217, 119, 6, 0.18)';
       ctx.fill();
-      ctx.strokeStyle = '#C084FC';
+      ctx.strokeStyle = '#D97706';
       ctx.lineWidth = 2;
       ctx.stroke();
 
@@ -120,8 +120,8 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
         ctx.arc(px, py, 4, 0, Math.PI * 2);
         ctx.fill();
 
-        // White Center Pip
-        ctx.fillStyle = '#FFFFFF';
+        // Center Pip
+        ctx.fillStyle = '#0A0A0C';
         ctx.beginPath();
         ctx.arc(px, py, 1.5, 0, Math.PI * 2);
         ctx.fill();
@@ -137,19 +137,19 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
   return (
     <div className="space-y-6 max-w-5xl select-none pb-12">
       {/* Top Console Chassis */}
-      <div className="p-5 sm:p-6 rounded-xl audiophile-chassis border border-border-subtle shadow-2xl relative space-y-4">
+      <div className="p-5 sm:p-6 rounded-xl audiophile-chassis border border-[rgba(245,244,240,0.08)] shadow-2xl relative space-y-4 bg-[#0E0E11]">
         {/* Hex Bolts */}
         <div className="absolute top-2.5 left-2.5 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
         <div className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border-subtle pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[rgba(245,244,240,0.08)] pb-4">
           <div className="flex items-center space-x-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)] animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#D97706] shadow-[0_0_10px_rgba(217,119,6,0.8)] animate-pulse" />
             <div>
-              <h2 className="text-sm font-bold uppercase tracking-widest font-mono text-text-offwhite">
+              <h2 className="text-sm font-bold uppercase tracking-widest font-mono text-[#F5F4F0]">
                 STUDIO ACOUSTIC ANALYZER // 6-BAND PARAMETRIC CONSOLE
               </h2>
-              <p className="text-[11px] font-mono text-text-muted">
+              <p className="text-[11px] font-mono text-[#9C9A94]">
                 CALIBRATED FREQUENCY MATRIX &middot; REAL-TIME POLAR TELEMETRY
               </p>
             </div>
@@ -157,7 +157,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
 
           <button
             onClick={onRecalibrate}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-panel-elevated hover:bg-amber-500 hover:text-black text-amber-400 text-xs font-mono transition-all border border-amber-500/30 shadow-sm active:scale-95"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#16161C] hover:bg-[#D97706] hover:text-black text-[#D97706] text-xs font-mono transition-all border border-[#D97706]/30 shadow-sm active:scale-95"
           >
             <Sliders className="w-3.5 h-3.5" />
             <span>RECALIBRATE PHONO STAGE</span>
@@ -165,32 +165,32 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
         </div>
 
         {/* Master Trajectory Status Plate */}
-        <div className="p-4 rounded-lg bg-panel-obsidian border border-border-subtle flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="p-4 rounded-lg bg-[#111114] border border-[rgba(245,244,240,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#575550]">
                 ACTIVE DRIFT VECTOR // CARTESIAN DRIFT
               </span>
-              <span className="font-mono text-[8px] text-electric-blue px-1.5 py-0.2 rounded bg-electric-blue/10 border border-electric-blue/30">
+              <span className="font-mono text-[8px] text-[#D97706] px-1.5 py-0.2 rounded bg-[#D97706]/10 border border-[#D97706]/30">
                 LOCKED
               </span>
             </div>
-            <p className="text-sm font-mono text-text-offwhite font-bold tracking-tight">
+            <p className="text-sm font-mono text-[#F5F4F0] font-bold tracking-tight">
               {tasteProfile.currentDriftPath || 'Awaiting initial crate ratings to lock lateral bridge...'}
             </p>
-            <p className="text-xs text-text-muted font-sans leading-relaxed">
+            <p className="text-xs text-[#9C9A94] font-sans leading-relaxed">
               Ratings &ge; 7.0 automatically bias the analog response curves while purposefully sweeping into unvisited genre borders.
             </p>
           </div>
 
           <div className="flex items-center gap-2 flex-shrink-0 font-mono text-xs">
-            <div className="p-2 rounded bg-canvas-black border border-border-subtle text-center min-w-[70px]">
-              <span className="text-[9px] text-text-dim block">BIAS</span>
-              <span className="text-amber-400 font-bold block">{tasteProfile.vectorDivergence || 4.2}&sigma;</span>
+            <div className="p-2 rounded bg-[#0A0A0C] border border-white/5 text-center min-w-[70px]">
+              <span className="text-[9px] text-[#575550] block">BIAS</span>
+              <span className="text-[#D97706] font-bold block">{tasteProfile.vectorDivergence || 4.2}&sigma;</span>
             </div>
-            <div className="p-2 rounded bg-canvas-black border border-border-subtle text-center min-w-[70px]">
-              <span className="text-[9px] text-text-dim block">ACCURACY</span>
-              <span className="text-purple-soft font-bold block">99.4%</span>
+            <div className="p-2 rounded bg-[#0A0A0C] border border-white/5 text-center min-w-[70px]">
+              <span className="text-[9px] text-[#575550] block">ACCURACY</span>
+              <span className="text-[#F5F4F0] font-bold block">99.4%</span>
             </div>
           </div>
         </div>
@@ -199,21 +199,21 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
       {/* Center Stage: CRT Polar Acoustic Radar Scope (Left) & 6-Band Parametric Equalizer Rack (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Phosphor CRT Polar Scope (5 Columns) */}
-        <div className="lg:col-span-5 p-5 rounded-xl bg-panel-obsidian border border-border-subtle shadow-xl flex flex-col justify-between relative overflow-hidden">
-          <div className="flex items-center justify-between border-b border-border-subtle pb-2.5 mb-3">
+        <div className="lg:col-span-5 p-5 rounded-xl bg-[#111114] border border-[rgba(245,244,240,0.08)] shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <div className="flex items-center justify-between border-b border-[rgba(245,244,240,0.08)] pb-2.5 mb-3">
             <div className="flex items-center gap-2">
-              <Zap className="w-3.5 h-3.5 text-electric-blue" />
-              <span className="font-mono text-xs font-bold text-text-offwhite uppercase tracking-wider">
+              <Zap className="w-3.5 h-3.5 text-[#D97706]" />
+              <span className="font-mono text-xs font-bold text-[#F5F4F0] uppercase tracking-wider">
                 POLAR ACOUSTIC RADAR
               </span>
             </div>
-            <span className="font-mono text-[9px] text-text-dim px-1.5 py-0.5 rounded bg-panel-elevated border border-border-subtle">
+            <span className="font-mono text-[9px] text-[#575550] px-1.5 py-0.5 rounded bg-[#16161C] border border-white/5">
               CRT 6-AXIS
             </span>
           </div>
 
           {/* Canvas Display with Scanline Filter */}
-          <div className="relative w-full aspect-square max-h-[320px] mx-auto rounded-lg overflow-hidden border border-border-light shadow-inner flex items-center justify-center bg-[#06070a]">
+          <div className="relative w-full aspect-square max-h-[320px] mx-auto rounded-lg overflow-hidden border border-white/10 shadow-inner flex items-center justify-center bg-[#08080A]">
             <canvas
               ref={canvasRef}
               width={340}
@@ -224,22 +224,22 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
             <div className="absolute inset-0 crt-screen-overlay" />
           </div>
 
-          <div className="pt-3 font-mono text-[10px] text-text-dim flex items-center justify-between">
+          <div className="pt-3 font-mono text-[10px] text-[#575550] flex items-center justify-between">
             <span>SWEEP: 33.3 RPM RAD</span>
-            <span className="text-purple-soft">HARMONIC POLARITY: POS</span>
+            <span className="text-[#D97706]">HARMONIC POLARITY: POS</span>
           </div>
         </div>
 
         {/* 6-Band Graphic Equalizer Faders Rack (7 Columns) */}
-        <div className="lg:col-span-7 p-5 rounded-xl audiophile-chassis border border-border-subtle shadow-xl flex flex-col justify-between relative">
-          <div className="flex items-center justify-between border-b border-border-subtle pb-2.5 mb-4">
+        <div className="lg:col-span-7 p-5 rounded-xl audiophile-chassis border border-[rgba(245,244,240,0.08)] shadow-xl flex flex-col justify-between relative bg-[#0E0E11]">
+          <div className="flex items-center justify-between border-b border-[rgba(245,244,240,0.08)] pb-2.5 mb-4">
             <div className="flex items-center gap-2">
-              <Activity className="w-4 h-4 text-amber-500" />
-              <span className="font-mono text-xs font-bold text-text-offwhite uppercase tracking-wider">
+              <Activity className="w-4 h-4 text-[#D97706]" />
+              <span className="font-mono text-xs font-bold text-[#F5F4F0] uppercase tracking-wider">
                 PARAMETRIC EQ FADER RACK
               </span>
             </div>
-            <span className="font-mono text-[9px] text-amber-500 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
+            <span className="font-mono text-[9px] text-[#D97706] font-semibold px-2 py-0.5 rounded bg-[#D97706]/10 border border-[#D97706]/30">
               RIAA CALIBRATED
             </span>
           </div>
@@ -254,10 +254,10 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
               return (
                 <div
                   key={t.key}
-                  className="flex flex-col items-center p-2 rounded-lg bg-panel-obsidian border border-border-subtle space-y-2 relative group"
+                  className="flex flex-col items-center p-2 rounded-lg bg-[#111114] border border-[rgba(245,244,240,0.08)] space-y-2 relative group"
                 >
                   {/* Channel Frequency Tag */}
-                  <span className="font-mono text-[8px] text-text-dim text-center tracking-tight leading-tight">
+                  <span className="font-mono text-[8px] text-[#575550] text-center tracking-tight leading-tight">
                     {t.band}
                   </span>
 
@@ -270,7 +270,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
                   </span>
 
                   {/* Vertical Fader Track Slot */}
-                  <div className="relative w-6 h-36 bg-canvas-black rounded-full border border-border-subtle flex flex-col items-center justify-end p-1 shadow-inner overflow-hidden">
+                  <div className="relative w-6 h-36 bg-[#0A0A0C] rounded-full border border-white/5 flex flex-col items-center justify-end p-1 shadow-inner overflow-hidden">
                     {/* Center Detent (0dB) Marker */}
                     <div className="absolute inset-x-0 top-1/2 h-[1px] bg-neutral-600/60 z-0" />
 
@@ -299,12 +299,12 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
                   </div>
 
                   {/* Percentage Readout */}
-                  <span className="font-mono text-[10px] text-text-offwhite font-medium">
+                  <span className="font-mono text-[10px] text-[#F5F4F0] font-medium">
                     {pct}%
                   </span>
 
                   {/* Short Trait Name */}
-                  <span className="font-sans text-[10px] text-text-muted text-center font-medium line-clamp-1">
+                  <span className="font-sans text-[10px] text-[#9C9A94] text-center font-medium line-clamp-1">
                     {t.label.split(' ')[0]}
                   </span>
                 </div>
@@ -312,7 +312,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
             })}
           </div>
 
-          <div className="pt-3 border-t border-border-subtle flex items-center justify-between font-mono text-[10px] text-text-dim">
+          <div className="pt-3 border-t border-[rgba(245,244,240,0.08)] flex items-center justify-between font-mono text-[10px] text-[#575550]">
             <span>DETENT: 0.0 dB</span>
             <span>GAIN RANGE: -12.0 dB TO +12.0 dB</span>
           </div>
@@ -322,20 +322,20 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
       {/* Bottom Area: Magnetic Tape Bias Anchors & Suppressed Notch Boundaries */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Reinforced Magnetic Anchors */}
-        <div className="p-5 rounded-xl audiophile-chassis border border-border-subtle space-y-3.5 shadow-xl relative">
+        <div className="p-5 rounded-xl audiophile-chassis border border-[rgba(245,244,240,0.08)] space-y-3.5 shadow-xl relative bg-[#0E0E11]">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-purple-soft">
+            <div className="flex items-center space-x-2 text-[#D97706]">
               <Sparkles className="w-4 h-4" />
               <h4 className="text-xs font-bold uppercase tracking-wider font-mono">
                 MAGNETIC TAPE BIAS ANCHORS ({highRatings.length})
               </h4>
             </div>
-            <span className="font-mono text-[9px] text-purple-soft bg-purple-soft/10 border border-purple-soft/30 px-1.5 py-0.2 rounded">
+            <span className="font-mono text-[9px] text-[#D97706] bg-[#D97706]/10 border border-[#D97706]/30 px-1.5 py-0.2 rounded">
               GRADE 7.0+
             </span>
           </div>
 
-          <p className="text-xs text-text-muted font-sans leading-relaxed">
+          <p className="text-xs text-[#9C9A94] font-sans leading-relaxed">
             Acoustic footprints scoring 7.0 or higher. DRIFT magnetically binds to their harmonic structures to engineer lateral transitions.
           </p>
 
@@ -344,15 +344,15 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
               Object.entries(tasteProfile.likedGenres).map(([genre, count]) => (
                 <span
                   key={genre}
-                  className="text-xs font-mono px-2.5 py-1 rounded-md bg-purple-soft/10 border border-purple-soft/40 text-purple-soft flex items-center gap-1.5 shadow-sm"
+                  className="text-xs font-mono px-2.5 py-1 rounded-md bg-[#D97706]/10 border border-[#D97706]/40 text-[#D97706] flex items-center gap-1.5 shadow-sm"
                 >
-                  <Disc className="w-3 h-3 text-purple-soft/70" />
+                  <Disc className="w-3 h-3 text-[#D97706]/70" />
                   <span className="font-semibold">{genre}</span>
-                  <span className="text-[10px] text-purple-soft/75 bg-purple-soft/20 px-1 rounded">&times;{count}</span>
+                  <span className="text-[10px] text-[#D97706]/75 bg-[#D97706]/20 px-1 rounded">&times;{count}</span>
                 </span>
               ))
             ) : (
-              <span className="text-xs text-text-dim italic font-mono">
+              <span className="text-xs text-[#575550] italic font-mono">
                 Rate albums 7.0+ on the turntable to stamp magnetic bias anchors.
               </span>
             )}
@@ -360,7 +360,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
         </div>
 
         {/* Suppressed Trajectories / Notch Filters */}
-        <div className="p-5 rounded-xl audiophile-chassis border border-border-subtle space-y-3.5 shadow-xl relative">
+        <div className="p-5 rounded-xl audiophile-chassis border border-[rgba(245,244,240,0.08)] space-y-3.5 shadow-xl relative bg-[#0E0E11]">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 text-red-400">
               <ShieldAlert className="w-4 h-4" />
@@ -373,7 +373,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
             </span>
           </div>
 
-          <p className="text-xs text-text-muted font-sans leading-relaxed">
+          <p className="text-xs text-[#9C9A94] font-sans leading-relaxed">
             Styles rated below 5.0. High-order acoustic notch filters attenuate matching traits in future crate generations.
           </p>
 
@@ -388,7 +388,7 @@ export const TasteVectorView: React.FC<TasteVectorViewProps> = ({
                 </span>
               ))
             ) : (
-              <span className="text-xs text-text-dim italic font-mono">
+              <span className="text-xs text-[#575550] italic font-mono">
                 No styles currently notch-filtered.
               </span>
             )}

@@ -21,13 +21,13 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ backgroundColor: '#050507', color: '#F4F4F6', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-          <div style={{ maxWidth: '420px', width: '100%', textAlign: 'center', background: '#0C0C10', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '28px' }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3B82F6', margin: '0 auto 12px auto' }}></div>
-            <h2 style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 8px 0', color: '#F4F4F6' }}>
+        <div style={{ backgroundColor: '#0A0A0C', color: '#F5F4F0', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          <div style={{ maxWidth: '420px', width: '100%', textAlign: 'center', background: '#111114', border: '1px solid rgba(245,244,240,0.08)', borderRadius: '12px', padding: '28px' }}>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#D97706', margin: '0 auto 12px auto' }}></div>
+            <h2 style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 8px 0', color: '#F5F4F0' }}>
               DRIFT // Session Refresh
             </h2>
-            <p style={{ fontSize: '12px', color: '#8E8E9E', margin: '0 0 20px 0', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '12px', color: '#9C9A94', margin: '0 0 20px 0', lineHeight: 1.6 }}>
               A cached browser asset mismatch was detected. Click below to refresh your session state.
             </p>
             <button
@@ -43,7 +43,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
                 localStorage.clear();
                 window.location.reload();
               }}
-              style={{ background: '#3B82F6', color: '#FFFFFF', border: 'none', borderRadius: '6px', padding: '10px 20px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', transition: 'background 0.2s' }}
+              style={{ background: '#D97706', color: '#0A0A0C', border: 'none', borderRadius: '6px', padding: '10px 20px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', transition: 'background 0.2s' }}
             >
               Clear Cache & Refresh
             </button>
