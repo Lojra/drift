@@ -285,7 +285,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     </div>
 
                     {/* Pop-Out Vinyl Record Sleeve & Spinning Disc Preview */}
-                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-64 p-3 rounded-xl bg-panel-obsidian border border-border-light shadow-[0_20px_50px_rgba(0,0,0,0.98)] opacity-0 pointer-events-none group-hover/slot:opacity-100 group-hover/slot:pointer-events-auto transition-all duration-300 z-50 flex flex-col gap-2.5 backdrop-blur-xl">
+                    <div className={`absolute left-full ${idx >= 6 ? 'bottom-0' : 'top-1/2 -translate-y-1/2'} ml-3 w-64 p-3 rounded-xl bg-panel-obsidian border border-border-light shadow-[0_20px_50px_rgba(0,0,0,0.98)] opacity-0 pointer-events-none group-hover/slot:opacity-100 group-hover/slot:pointer-events-auto transition-all duration-300 z-50 flex flex-col gap-2.5 backdrop-blur-xl`}>
                       {/* Popout Header */}
                       <div className="flex items-center justify-between text-[9px] font-mono">
                         <span className="text-amber-400 font-bold">LP RACK SLOT #{slotNum}</span>
