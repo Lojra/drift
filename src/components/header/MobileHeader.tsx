@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCw, Compass, Sun, Moon, LayoutGrid, Disc } from 'lucide-react';
+import { RotateCw, Compass, Sun, Moon, LayoutGrid, Disc, BookOpen, Sliders } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 
 interface MobileHeaderProps {
@@ -9,6 +9,8 @@ interface MobileHeaderProps {
   onCalibrate?: () => void;
   viewMode?: 'grid' | 'studio';
   onToggleViewMode?: (mode: 'grid' | 'studio') => void;
+  activeDrawerTable?: 'none' | 'info' | 'test';
+  onToggleDrawerTable?: (table: 'info' | 'test') => void;
 }
 
 export const MobileHeader: React.FC<MobileHeaderProps> = ({
@@ -17,7 +19,9 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
   isLoading,
   onCalibrate,
   viewMode = 'studio',
-  onToggleViewMode
+  onToggleViewMode,
+  activeDrawerTable = 'none',
+  onToggleDrawerTable
 }) => {
   const { theme, toggleTheme } = useTheme();
 
@@ -38,7 +42,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
       <div className="flex-1 min-w-0 px-1 text-center">
         <button
           onClick={onCalibrate}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-panel-obsidian/90 border border-border-light text-[10px] font-mono text-amber-400 truncate max-w-full hover:border-amber-500/50 shadow-sm active:scale-95 transition-all"
+          className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-panel-obsidian/90 border border-border-light text-[10px] font-mono text-amber-400 truncate max-w-full hover:border-amber-500/50 shadow-sm active:scale-95 transition-all"
           title="Tap to recalibrate taste baseline"
         >
           <Compass className="w-3 h-3 flex-shrink-0 text-amber-500 animate-spin-slow" />
@@ -46,16 +50,45 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         </button>
       </div>
 
-      {/* Action Controls: View Switcher, Theme Switcher & Refresh Crate */}
-      <div className="flex items-center gap-1.5 flex-shrink-0">
+      {/* Action Controls: Dual Shelf Drawers, View Switcher, Theme & Refresh */}
+      <div className="flex items-center gap-1 flex-shrink-0">
+        {onToggleDrawerTable && (
+          <>
+            <button
+              onClick={() => onToggleDrawerTable('info')}
+              className={`min-w-[32px] min-h-[32px] flex items-center justify-center rounded-lg border transition-all ${
+                activeDrawerTable === 'info'
+                  ? 'bg-panel-elevated border-electric-blue text-electric-blue shadow-[0_0_8px_#3B82F6]'
+                  : 'bg-panel-obsidian border-border-light text-text-muted hover:text-text-offwhite'
+              }`}
+              title="Toggle Music Info Table"
+              aria-label="Toggle Music Info Table"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => onToggleDrawerTable('test')}
+              className={`min-w-[32px] min-h-[32px] flex items-center justify-center rounded-lg border transition-all ${
+                activeDrawerTable === 'test'
+                  ? 'bg-panel-elevated border-amber-500 text-amber-400 shadow-[0_0_8px_#F59E0B]'
+                  : 'bg-panel-obsidian border-border-light text-text-muted hover:text-text-offwhite'
+              }`}
+              title="Toggle Music Test Table"
+              aria-label="Toggle Music Test Table"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+            </button>
+          </>
+        )}
+
         {onToggleViewMode && (
           <button
             onClick={() => onToggleViewMode(viewMode === 'grid' ? 'studio' : 'grid')}
-            className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg bg-panel-obsidian border border-border-light text-amber-400 active:scale-95 transition-all shadow-sm"
+            className="min-w-[32px] min-h-[32px] flex items-center justify-center rounded-lg bg-panel-obsidian border border-border-light text-amber-400 active:scale-95 transition-all shadow-sm"
             title={viewMode === 'grid' ? 'Switch to Hi-Fi Turntable' : 'Switch to Crate Grid'}
             aria-label="Toggle view mode"
           >
-            {viewMode === 'grid' ? <Disc className="w-4 h-4" /> : <LayoutGrid className="w-4 h-4" />}
+            {viewMode === 'grid' ? <Disc className="w-3.5 h-3.5" /> : <LayoutGrid className="w-3.5 h-3.5" />}
           </button>
         )}
 

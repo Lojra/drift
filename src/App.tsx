@@ -35,6 +35,7 @@ export const App: React.FC = () => {
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewMode, setViewMode] = useState<'grid' | 'studio'>('studio');
+  const [drawerTable, setDrawerTable] = useState<'none' | 'info' | 'test'>('none');
 
   // Count of rated albums inside the current 10-album crate
   const ratedInCrateCount = useMemo(() => {
@@ -56,19 +57,21 @@ export const App: React.FC = () => {
 
   // Active rating for currently inspected album
   const currentAlbumRating = useMemo(() => {
-    return ratings.find(r => r.albumId === selectedAlbum?.id);
-  }, [ratings, selectedAlbum]);
+    const activeAlb = selectedAlbum || displayedCrate[0] || null;
+    return ratings.find(r => r.albumId === activeAlb?.id);
+  }, [ratings, selectedAlbum, displayedCrate]);
 
   // Keyboard shortcut: ESC closes Inspector Drawer if no modal is open
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && selectedAlbum && !showCalibrationModal) {
+      if (e.key === 'Escape' && (selectedAlbum || drawerTable !== 'none') && !showCalibrationModal) {
         setSelectedAlbum(null);
+        setDrawerTable('none');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedAlbum, showCalibrationModal, setSelectedAlbum]);
+  }, [selectedAlbum, drawerTable, showCalibrationModal, setSelectedAlbum]);
 
   const handleSelectRatedArchiveAlbum = (rated: AlbumRating) => {
     const albumMatch = crate.find(a => a.id === rated.albumId);
@@ -90,12 +93,24 @@ export const App: React.FC = () => {
         sonicTraits: {}
       });
     }
+    setDrawerTable('info');
+  };
+
+  const handleToggleDrawerTable = (table: 'info' | 'test') => {
+    if (drawerTable === table) {
+      setDrawerTable('none');
+    } else {
+      if (!selectedAlbum && displayedCrate.length > 0) {
+        setSelectedAlbum(displayedCrate[0]);
+      }
+      setDrawerTable(table);
+    }
   };
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-canvas-black text-text-offwhite font-sans antialiased select-none">
-      {/* 1. Left Fixed Sidebar (Desktop only) */}
-      <div className="hidden md:flex flex-shrink-0 h-full">
+      {/* 1. Left Fixed Sidebar (Desktop only) with 10-LP Vinyl Shelf */}
+      <div className="hidden md:flex flex-shrink-0 h-full overflow-visible z-30">
         <Sidebar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -105,6 +120,12 @@ export const App: React.FC = () => {
           onExportBackup={handleExportBackup}
           onImportBackup={handleImportBackup}
           onToggleDivergence={toggleVectorDivergence}
+          crate={displayedCrate}
+          selectedAlbum={selectedAlbum}
+          onSelectAlbum={(album) => {
+            setSelectedAlbum(album);
+            setActiveTab('crate');
+          }}
         />
       </div>
 
@@ -118,9 +139,11 @@ export const App: React.FC = () => {
           onCalibrate={() => setShowCalibrationModal(true)}
           viewMode={viewMode}
           onToggleViewMode={setViewMode}
+          activeDrawerTable={drawerTable}
+          onToggleDrawerTable={handleToggleDrawerTable}
         />
 
-        {/* Desktop Header (Hidden on Mobile) */}
+        {/* Desktop Header (Hidden on Mobile) with Dual Shelf Tables */}
         <div className="hidden md:block">
           <Header
             tasteProfile={tasteProfile}
@@ -131,6 +154,8 @@ export const App: React.FC = () => {
             onSearchChange={setSearchQuery}
             viewMode={viewMode}
             onToggleViewMode={setViewMode}
+            activeDrawerTable={drawerTable}
+            onToggleDrawerTable={handleToggleDrawerTable}
           />
         </div>
 
@@ -152,7 +177,10 @@ export const App: React.FC = () => {
                   onSelectAlbum={setSelectedAlbum}
                   onRateAlbum={(albumId, score, tag) => rateAlbum(albumId, score, tag)}
                   onReplaceAlbum={(albumId) => replaceCrateAlbum(albumId)}
-                  onOpenInspector={(album) => setSelectedAlbum(album)}
+                  onOpenInspector={(album) => {
+                    setSelectedAlbum(album);
+                    setDrawerTable('info');
+                  }}
                   isLoading={isLoading}
                 />
               ) : (
@@ -160,7 +188,10 @@ export const App: React.FC = () => {
                   albums={displayedCrate}
                   ratings={ratings}
                   selectedAlbum={selectedAlbum}
-                  onSelectAlbum={setSelectedAlbum}
+                  onSelectAlbum={(album) => {
+                    setSelectedAlbum(album);
+                    setDrawerTable('info');
+                  }}
                   isLoading={isLoading}
                 />
               )
@@ -206,12 +237,17 @@ export const App: React.FC = () => {
         </main>
       </div>
 
-      {/* 3. Album Inspector (Responsive: Slide-In Drawer on Desktop, Slide-Up Bottom Sheet on Mobile) */}
-      {selectedAlbum && (
+      {/* 3. Dual Table Album Inspector (Responsive: Slide-In Drawer on Desktop, Slide-Up Bottom Sheet on Mobile) */}
+      {(selectedAlbum || drawerTable !== 'none') && (
         <InspectorDrawer
-          album={selectedAlbum}
+          album={selectedAlbum || displayedCrate[0] || null}
           currentRating={currentAlbumRating}
-          onClose={() => setSelectedAlbum(null)}
+          tableMode={drawerTable === 'none' ? 'info' : drawerTable}
+          onSwitchTable={(mode) => setDrawerTable(mode)}
+          onClose={() => {
+            setSelectedAlbum(null);
+            setDrawerTable('none');
+          }}
           onRateAlbum={(albumId, score, tag) => rateAlbum(albumId, score, tag)}
           onReplaceAlbum={(albumId) => replaceCrateAlbum(albumId)}
         />

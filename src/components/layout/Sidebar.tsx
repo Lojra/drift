@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
-import { Layers, Disc3, Compass, Sliders, Download, Upload, Share2, Sun, Moon, ShieldCheck, Radio, Cpu } from 'lucide-react';
-import { TasteProfile, AlbumRating } from '../../types/music';
+import { Layers, Disc3, Disc, Compass, Sliders, Download, Upload, Share2, Sun, Moon, ShieldCheck, Radio, Cpu } from 'lucide-react';
+import { TasteProfile, AlbumRating, Album } from '../../types/music';
 import { useTheme } from '../../contexts/ThemeContext';
+import { GenerativeVinylCover } from '../crate/GenerativeVinylCover';
 
 interface SidebarProps {
   activeTab: 'crate' | 'archive' | 'taste';
@@ -12,6 +13,9 @@ interface SidebarProps {
   onExportBackup: () => void;
   onImportBackup: (file: File) => void;
   onToggleDivergence?: () => void;
+  crate?: Album[];
+  selectedAlbum?: Album | null;
+  onSelectAlbum?: (album: Album) => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -22,7 +26,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onRecalibrate,
   onExportBackup,
   onImportBackup,
-  onToggleDivergence
+  onToggleDivergence,
+  crate = [],
+  selectedAlbum = null,
+  onSelectAlbum
 }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { theme, toggleTheme } = useTheme();
@@ -62,7 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, [tasteProfile.calibrated, ratings.length]);
 
   return (
-    <aside className="w-[250px] flex-shrink-0 audiophile-chassis border-r border-border-subtle flex flex-col justify-between p-4 z-20 select-none relative audiophile-rack-edge">
+    <aside className="w-[260px] xl:w-[275px] flex-shrink-0 audiophile-chassis border-r border-border-subtle flex flex-col justify-between p-3.5 z-30 select-none relative audiophile-rack-edge overflow-visible">
       {/* Top Countersunk Hex Bolt Fasteners */}
       <div className="absolute top-2 left-2 flex items-center justify-center">
         <div className="w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900 shadow-inner flex items-center justify-center">
@@ -208,8 +215,150 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </nav>
         </div>
 
+        {/* Physical 10-LP Vinyl Shelf Unit */}
+        <div className="space-y-1.5 pt-0.5">
+          <div className="flex items-center justify-between px-2">
+            <div className="flex items-center gap-1.5">
+              <Disc className="w-3 h-3 text-amber-500" strokeWidth={2} />
+              <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim font-bold">
+                VINYL SHELF // 10-LP RACK
+              </span>
+            </div>
+            <span className="font-mono text-[8px] text-amber-500/80 uppercase">POPOUT ON HOVER</span>
+          </div>
+
+          {/* Shelving Cabinet Slots */}
+          <div className="p-1 rounded-xl bg-panel-obsidian/90 border border-border-subtle shadow-inner space-y-1 overflow-visible">
+            {crate && crate.length > 0 ? (
+              crate.slice(0, 10).map((album, idx) => {
+                const isSelected = selectedAlbum?.id === album.id;
+                const albumRating = ratings.find((r) => r.albumId === album.id);
+                const isRated = !!albumRating;
+                const slotNum = String(idx + 1).padStart(2, '0');
+
+                return (
+                  <div
+                    key={album.id}
+                    className="relative group/slot cursor-pointer"
+                    onClick={() => {
+                      onSelectAlbum?.(album);
+                      if (activeTab !== 'crate') setActiveTab('crate');
+                    }}
+                  >
+                    {/* Tucked-in Vinyl Spine in Shelf Slot */}
+                    <div
+                      className={`w-full h-7 px-2 rounded-md flex items-center justify-between font-mono text-[10px] transition-all duration-200 border relative ${
+                        isSelected
+                          ? 'bg-panel-elevated border-amber-500/80 text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.25)] translate-x-1.5'
+                          : 'bg-panel-obsidian/80 hover:bg-panel-elevated border-border-subtle hover:border-border-light text-text-muted hover:text-text-offwhite hover:translate-x-2'
+                      }`}
+                    >
+                      {/* Left Slot Spine Edge & Title */}
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className={`text-[8px] font-bold ${isSelected ? 'text-amber-500' : 'text-text-dim'}`}>
+                          {slotNum}
+                        </span>
+                        <span
+                          className={`w-1 h-3 rounded-full flex-shrink-0 ${
+                            isSelected
+                              ? 'bg-amber-500 shadow-[0_0_6px_#F59E0B]'
+                              : isRated
+                              ? 'bg-purple-soft'
+                              : 'bg-electric-blue/70'
+                          }`}
+                        />
+                        <span className="truncate max-w-[125px] font-sans font-medium text-[10px] text-text-offwhite">
+                          {album.title}
+                        </span>
+                      </div>
+
+                      {/* Right Edge Badge */}
+                      <div className="flex-shrink-0 text-[8px] font-mono text-text-dim pl-1">
+                        {isRated ? (
+                          <span className="text-purple-soft font-bold">{albumRating.score.toFixed(1)}</span>
+                        ) : isSelected ? (
+                          <span className="text-amber-400 font-bold">CUED</span>
+                        ) : (
+                          <span className="text-text-dim/80">LP</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Pop-Out Vinyl Record Sleeve & Spinning Disc Preview */}
+                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-64 p-3 rounded-xl bg-panel-obsidian border border-border-light shadow-[0_20px_50px_rgba(0,0,0,0.98)] opacity-0 pointer-events-none group-hover/slot:opacity-100 group-hover/slot:pointer-events-auto transition-all duration-300 z-50 flex flex-col gap-2.5 backdrop-blur-xl">
+                      {/* Popout Header */}
+                      <div className="flex items-center justify-between text-[9px] font-mono">
+                        <span className="text-amber-400 font-bold">LP RACK SLOT #{slotNum}</span>
+                        <span className="text-text-dim uppercase tracking-wider">
+                          {isSelected ? 'ON TURNTABLE PLATTER' : 'READY TO DROP'}
+                        </span>
+                      </div>
+
+                      {/* Artwork with Grooved Vinyl Disc Sliding Out */}
+                      <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-neutral-950 border border-border-subtle shadow-lg flex items-center justify-center">
+                        {/* Grooved Vinyl Disc Slipping Out */}
+                        <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-44 h-44 rounded-full vinyl-grooves border border-neutral-700 shadow-2xl flex items-center justify-center transition-transform duration-500 group-hover/slot:translate-x-4">
+                          <div className="w-12 h-12 rounded-full bg-amber-600/80 border border-neutral-900 flex items-center justify-center">
+                            <div className="w-2 h-2 rounded-full bg-black" />
+                          </div>
+                        </div>
+
+                        {/* Front Jacket Art */}
+                        <div className="relative w-full h-full z-10 rounded-lg overflow-hidden">
+                          {album.coverArtUrl ? (
+                            <img
+                              src={album.coverArtUrl}
+                              alt={album.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <GenerativeVinylCover album={album} className="w-full h-full" />
+                          )}
+                          <div className="absolute inset-0 vinyl-sleeve-gloss pointer-events-none" />
+                        </div>
+                      </div>
+
+                      {/* Metadata */}
+                      <div className="min-w-0">
+                        <h4 className="font-sans font-bold text-xs text-text-offwhite truncate">
+                          {album.title}
+                        </h4>
+                        <p className="font-sans text-[11px] text-text-muted truncate">
+                          {album.artist} &middot; <span className="font-mono text-[10px]">{album.releaseYear}</span>
+                        </p>
+                      </div>
+
+                      {/* Lateral Drift Reason */}
+                      {album.driftReason && (
+                        <p className="font-sans text-[10px] text-text-dim italic line-clamp-2 leading-relaxed bg-panel-elevated/60 p-1.5 rounded border border-border-subtle">
+                          &ldquo;{album.driftReason}&rdquo;
+                        </p>
+                      )}
+
+                      {/* Drop Action */}
+                      <div className="flex items-center justify-between pt-1 border-t border-border-subtle text-[9px] font-mono">
+                        <span className="text-electric-blue flex items-center gap-1 font-bold">
+                          <Disc className="w-3 h-3 animate-spin-slow" />
+                          CLICK TO DROP ON TURNTABLE
+                        </span>
+                        {isRated && (
+                          <span className="text-purple-soft font-bold">RATED {albumRating.score.toFixed(1)}</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="py-4 text-center font-mono text-[10px] text-text-dim">
+                LOADING 10-LP RACK...
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Rack Calibration & Analog Bias Controls */}
-        <div className="p-3 rounded-lg bg-panel-obsidian/70 border border-border-subtle space-y-2">
+        <div className="p-2.5 rounded-lg bg-panel-obsidian/70 border border-border-subtle space-y-1.5">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[9px] uppercase tracking-widest text-text-dim">
               RACK BIAS & FILTERS
@@ -217,10 +366,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <Cpu className="w-3 h-3 text-text-dim" />
           </div>
 
-          <div className="space-y-1.5 font-mono text-[11px] text-text-muted">
+          <div className="space-y-1 font-mono text-[11px] text-text-muted">
             <div
               onClick={onToggleDivergence}
-              className="flex justify-between items-center py-1 border-b border-border-subtle cursor-pointer hover:text-text-offwhite transition-colors group"
+              className="flex justify-between items-center py-0.5 border-b border-border-subtle cursor-pointer hover:text-text-offwhite transition-colors group"
               title="Click to cycle Lateral Divergence degree (+2.1σ, +4.2σ, +6.8σ)"
             >
               <span className="text-[10px] group-hover:text-text-offwhite">Lateral Bias</span>
@@ -229,12 +378,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-border-subtle">
+            <div className="flex justify-between items-center py-0.5 border-b border-border-subtle">
               <span className="text-[10px]">Phono RIAA</span>
               <span className="text-electric-blue font-semibold text-[10px]">±0.1 dB</span>
             </div>
 
-            <div className="flex justify-between items-center py-1">
+            <div className="flex justify-between items-center py-0.5">
               <span className="text-[10px]">Cartridge Load</span>
               <span className="text-purple-soft font-semibold text-[10px]">47kΩ / 100pF</span>
             </div>

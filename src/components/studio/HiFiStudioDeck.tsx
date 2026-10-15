@@ -247,9 +247,14 @@ export const HiFiStudioDeck: React.FC<HiFiStudioDeckProps> = ({
           <div className="relative flex-1 flex items-center justify-center my-4 min-h-[260px] sm:min-h-[320px]">
             {/* Circular Vinyl Platter Chassis */}
             <div className="relative w-56 h-56 sm:w-72 sm:h-72 xl:w-80 xl:h-80 rounded-full border-4 border-neutral-800 bg-[#07070A] shadow-[0_20px_50px_rgba(0,0,0,0.9),inset_0_0_30px_rgba(0,0,0,0.8)] flex items-center justify-center">
-              {/* Spinning Vinyl Record Body */}
+              {/* Spinning Vinyl Record Body (Clickable to drop/lift needle) */}
               <div
-                className={`w-[96%] h-[96%] rounded-full vinyl-grooves relative flex items-center justify-center transition-transform ${
+                onClick={handleTogglePlayback}
+                role="button"
+                tabIndex={0}
+                aria-label={isPlaying ? "Lift needle from vinyl" : "Drop needle onto vinyl to play sample"}
+                title={isPlaying ? "Click record or needle to lift stylus (pause)" : "Click record or needle to drop stylus (play sample)"}
+                className={`w-[96%] h-[96%] rounded-full vinyl-grooves relative flex items-center justify-center transition-transform cursor-pointer group/vinyl ${
                   isPlaying ? 'animate-spin-slow' : ''
                 }`}
                 style={{
@@ -259,7 +264,7 @@ export const HiFiStudioDeck: React.FC<HiFiStudioDeckProps> = ({
               >
                 {/* Vinyl Light Sheen Cone Overlay */}
                 <div
-                  className="absolute inset-0 rounded-full pointer-events-none opacity-40"
+                  className="absolute inset-0 rounded-full pointer-events-none opacity-40 group-hover/vinyl:opacity-50 transition-opacity"
                   style={{
                     background:
                       'conic-gradient(from 45deg, transparent 0deg, rgba(255,255,255,0.08) 45deg, transparent 90deg, rgba(255,255,255,0.08) 225deg, transparent 270deg)'
@@ -290,31 +295,59 @@ export const HiFiStudioDeck: React.FC<HiFiStudioDeckProps> = ({
                 </div>
               </div>
 
-              {/* Tonearm Assembly Overlay */}
+              {/* Tonearm & Needle Assembly Overlay (Press needle to drop / lift) */}
               <div
-                className="absolute top-2 right-2 sm:top-4 sm:right-4 w-32 h-48 pointer-events-none transition-transform duration-700 ease-out origin-top-right z-30"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleTogglePlayback();
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={isPlaying ? "Lift stylus needle from record" : "Press stylus needle to drop onto record"}
+                title={isPlaying ? "Click needle to lift and pause sample" : "Click needle to drop and play sample"}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 w-32 h-48 cursor-pointer group/needle transition-transform duration-700 ease-out origin-top-right z-30 select-none"
                 style={{
                   transform: isPlaying ? 'rotate(-14deg)' : 'rotate(10deg)'
                 }}
               >
-                {/* Pivot Gimbal Base */}
-                <div className="absolute top-0 right-0 w-10 h-10 rounded-full bg-neutral-800 border-2 border-neutral-600 shadow-md flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-neutral-600 border border-neutral-400" />
+                {/* Pivot Gimbal Base with Knurled Rim */}
+                <div className="absolute top-0 right-0 w-10 h-10 rounded-full bg-neutral-800 border-2 border-neutral-600 shadow-lg flex items-center justify-center group-hover/needle:border-amber-500 transition-colors">
+                  <div className="w-4 h-4 rounded-full bg-neutral-600 border border-neutral-400 shadow-inner" />
                 </div>
+
                 {/* Tonearm Titanium Tube */}
                 <div
-                  className="absolute top-5 right-5 w-1 h-36 bg-gradient-to-b from-neutral-400 via-neutral-200 to-neutral-400 shadow-sm rounded-full origin-top"
+                  className="absolute top-5 right-5 w-1 h-36 bg-gradient-to-b from-neutral-400 via-neutral-200 to-neutral-400 shadow-md rounded-full origin-top group-hover/needle:from-amber-200 group-hover/needle:to-amber-400 transition-colors"
                   style={{ transform: 'rotate(-18deg)' }}
                 >
-                  {/* Headshell & Stylus Cartridge */}
-                  <div className="absolute bottom-0 left-[-4px] w-3 h-6 bg-neutral-900 border border-neutral-500 rounded-sm flex items-center justify-center shadow-lg">
-                    {/* Glowing Blue Stylus LED Indicator */}
+                  {/* Headshell & Stylus Needle Cartridge */}
+                  <div className="absolute bottom-0 left-[-6px] w-4 h-7 bg-neutral-900 border border-neutral-500 rounded-sm flex flex-col items-center justify-between p-0.5 shadow-2xl group-hover/needle:border-amber-400 group-hover/needle:scale-110 active/needle:scale-95 transition-all">
+                    {/* Glowing Stylus LED Indicator */}
                     <div
-                      className={`w-1.5 h-1.5 rounded-full ${
-                        isPlaying ? 'bg-electric-blue shadow-[0_0_8px_#3B82F6]' : 'bg-neutral-600'
+                      className={`w-1.5 h-1.5 rounded-full transition-all ${
+                        isPlaying
+                          ? 'bg-electric-blue shadow-[0_0_10px_#3B82F6]'
+                          : 'bg-amber-500 shadow-[0_0_8px_#F59E0B]'
                       }`}
                     />
+
+                    {/* Diamond Stylus Cantilever & Microscopic Needle Tip */}
+                    <div className="w-0.5 h-2.5 bg-neutral-300 relative flex justify-center">
+                      <div
+                        className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all ${
+                          isPlaying
+                            ? 'bg-amber-400 shadow-[0_0_8px_#F59E0B] animate-pulse'
+                            : 'bg-neutral-400 group-hover/needle:bg-amber-400'
+                        }`}
+                      />
+                    </div>
                   </div>
+                </div>
+
+                {/* Tactile Needle Drop / Lift Floating Badge */}
+                <div className="absolute -left-14 bottom-4 opacity-0 group-hover/needle:opacity-100 transition-all duration-200 bg-panel-obsidian/95 border border-amber-500/70 text-amber-400 px-2 py-1 rounded text-[9px] font-mono whitespace-nowrap shadow-xl pointer-events-none flex items-center gap-1.5 backdrop-blur-md">
+                  <span className={`w-1.5 h-1.5 rounded-full ${isPlaying ? 'bg-amber-400' : 'bg-electric-blue'} animate-ping`} />
+                  <span>{isPlaying ? 'CLICK NEEDLE TO LIFT' : 'CLICK NEEDLE TO DROP'}</span>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCw, Search, X, Sun, Moon, LayoutGrid, Disc } from 'lucide-react';
+import { RotateCw, Search, X, Sun, Moon, LayoutGrid, Disc, BookOpen, Sliders } from 'lucide-react';
 import { TasteProfile } from '../../types/music';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -12,6 +12,8 @@ interface HeaderProps {
   onSearchChange: (query: string) => void;
   viewMode?: 'grid' | 'studio';
   onToggleViewMode?: (mode: 'grid' | 'studio') => void;
+  activeDrawerTable?: 'none' | 'info' | 'test';
+  onToggleDrawerTable?: (table: 'info' | 'test') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -22,7 +24,9 @@ export const Header: React.FC<HeaderProps> = ({
   searchQuery,
   onSearchChange,
   viewMode = 'studio',
-  onToggleViewMode
+  onToggleViewMode,
+  activeDrawerTable = 'none',
+  onToggleDrawerTable
 }) => {
   const { theme, toggleTheme } = useTheme();
   const driftText = (tasteProfile.currentDriftPath || 'INITIAL EXPLORATION').toUpperCase();
@@ -99,6 +103,47 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Disc className="w-3.5 h-3.5" />
               <span className="hidden xl:inline">HI-FI DECK</span>
+            </button>
+          </div>
+        )}
+
+        {/* Top Bar Dual Shelves: Music Info Table & Music Test Table */}
+        {onToggleDrawerTable && (
+          <div className="flex items-center bg-panel-obsidian border border-border-subtle p-0.5 rounded-lg shadow-inner">
+            {/* Shelf 1: Music Info Table */}
+            <button
+              onClick={() => onToggleDrawerTable('info')}
+              className={`px-2.5 py-1.5 rounded-md flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+                activeDrawerTable === 'info'
+                  ? 'bg-panel-elevated text-electric-blue font-bold shadow-md border border-electric-blue/40'
+                  : 'text-text-muted hover:text-text-offwhite'
+              }`}
+              title="Open Music Info Table (Gatefold Jacket, tracklist, audio preview, mastering specs)"
+              aria-label="Toggle Music Info Table"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline">INFO TABLE</span>
+              {activeDrawerTable === 'info' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_6px_#3B82F6]" />
+              )}
+            </button>
+
+            {/* Shelf 2: Music Test Table */}
+            <button
+              onClick={() => onToggleDrawerTable('test')}
+              className={`px-2.5 py-1.5 rounded-md flex items-center gap-1.5 font-mono text-[11px] transition-all ${
+                activeDrawerTable === 'test'
+                  ? 'bg-panel-elevated text-amber-400 font-bold shadow-md border border-amber-500/40'
+                  : 'text-text-muted hover:text-text-offwhite'
+              }`}
+              title="Open Music Test Table (Phono attenuator rating, sonic reaction tags, acoustic radar telemetry)"
+              aria-label="Toggle Music Test Table"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline">TEST TABLE</span>
+              {activeDrawerTable === 'test' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_6px_#F59E0B]" />
+              )}
             </button>
           </div>
         )}
